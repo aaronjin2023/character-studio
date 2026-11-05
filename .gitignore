@@ -1,0 +1,21 @@
+# Runtime assets, imports, generated images, jobs, credentials and local research.
+/data/*
+!/data/effect-sources/
+/review/
+/node_modules/
+/.serena/
+/.taste-skill/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+# Images must not accidentally enter the source repository from another folder.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.mov
+*.zip

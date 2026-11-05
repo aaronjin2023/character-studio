@@ -1,0 +1,3101 @@
+{
+  "note": "从库内草稿筛选视觉方法，转写为当前工作台的风格方案；不直接复刻原作，不代表模型效果已验证。",
+  "effects": [
+    {
+      "id": "dramatic-light",
+      "file": "data/effect-sources/dramatic-light.md",
+      "sha256": "6cfebce5784c9cc733d2a15744b6aae5596ef022fa401653bb133f818a42c445",
+      "source": {
+        "name": "卡拉瓦乔",
+        "path": "painters/caravaggio/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/caravaggio/style.md"
+      }
+    },
+    {
+      "id": "window-light",
+      "file": "data/effect-sources/window-light.md",
+      "sha256": "5be1d2b23f72e907238c62cdfc284c3c2fbe73694dfe5c9c44aa75f5e1d0f772",
+      "source": {
+        "name": "维梅尔",
+        "path": "painters/vermeer/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/vermeer/style.md"
+      }
+    },
+    {
+      "id": "luminous-mist",
+      "file": "data/effect-sources/luminous-mist.md",
+      "sha256": "b21c99254e0fafd46ad5c88be51c0340d9fe4f068a8430c2c8a20203442fc09f",
+      "source": {
+        "name": "特纳",
+        "path": "painters/turner/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/turner/style.md"
+      }
+    },
+    {
+      "id": "quiet-distance",
+      "file": "data/effect-sources/quiet-distance.md",
+      "sha256": "04be1b71b5d31e765d98a300117ab8ed304a0fa46c8f8ebaf0bd19f58f344bf6",
+      "source": {
+        "name": "弗里德里希",
+        "path": "painters/caspar-david-friedrich/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/caspar-david-friedrich/style.md"
+      }
+    },
+    {
+      "id": "pastel-symmetry",
+      "file": "data/effect-sources/pastel-symmetry.md",
+      "sha256": "d07e3891327a5268e55c96c35b2f182b18a9da0322a356fb2805c73ea76deef5",
+      "source": {
+        "name": "韦斯·安德森",
+        "path": "directors/wes-anderson/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/directors/wes-anderson/style.md"
+      }
+    },
+    {
+      "id": "neon-night",
+      "file": "data/effect-sources/neon-night.md",
+      "sha256": "67bfdc3ae8d2a20afc2780b667e960d653b8291ca9ee37ffd6f93ec5917d4a48",
+      "source": {
+        "name": "王家卫",
+        "path": "directors/wong-kar-wai/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/directors/wong-kar-wai/style.md"
+      }
+    },
+    {
+      "id": "impression-color",
+      "file": "data/effect-sources/impression-color.md",
+      "sha256": "23ac39c8d83eb42fe0b5080f4756cd2c4a0cee471160a04ca1964944a8746683",
+      "source": {
+        "name": "莫奈",
+        "path": "painters/monet/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/monet/style.md"
+      }
+    },
+    {
+      "id": "monumental-ink",
+      "file": "data/effect-sources/monumental-ink.md",
+      "sha256": "5ed98832e3d80b674c9a54eb703d898e685242fee8bd7c274446123f8dbf23df",
+      "source": {
+        "name": "范宽",
+        "path": "painters/fan-kuan/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/fan-kuan/style.md"
+      }
+    },
+    {
+      "id": "minimal-ink",
+      "file": "data/effect-sources/minimal-ink.md",
+      "sha256": "ba042d6f5cbf68145aec1856f20fe104f0e75c8a45f64f72ccf5db742587a313",
+      "source": {
+        "name": "八大山人",
+        "path": "painters/bada-shanren/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/bada-shanren/style.md"
+      }
+    },
+    {
+      "id": "woodblock",
+      "file": "data/effect-sources/woodblock.md",
+      "sha256": "67c3b486d66aabe5ee9cc068b2f4085357268bf2807a532538a036290cf8f01f",
+      "source": {
+        "name": "葛饰北斋",
+        "path": "painters/hokusai/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/painters/hokusai/style.md"
+      }
+    },
+    {
+      "id": "clear-line",
+      "file": "data/effect-sources/clear-line.md",
+      "sha256": "107f7657a1a497dae506ae07571330a54ef847ebaa60fe42e0956072925987c7",
+      "source": {
+        "name": "墨比斯",
+        "path": "cartoonists/moebius/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/cartoonists/moebius/style.md"
+      }
+    },
+    {
+      "id": "handdrawn-nature",
+      "file": "data/effect-sources/handdrawn-nature.md",
+      "sha256": "83d74e31f358b69879f234426a36f5dca2793a182ff2403aa5a1f14c3023af57",
+      "source": {
+        "name": "宫崎骏",
+        "path": "directors/hayao-miyazaki/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/directors/hayao-miyazaki/style.md"
+      }
+    },
+    {
+      "id": "classic-manga",
+      "file": "data/effect-sources/classic-manga.md",
+      "sha256": "7792786f5a6a8e1c848cd77d99223eef8fb761a41d0c574521278b36a906f5f1",
+      "source": {
+        "name": "手冢治虫",
+        "path": "cartoonists/tezuka-osamu/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/cartoonists/tezuka-osamu/style.md"
+      }
+    },
+    {
+      "id": "bold-comic",
+      "file": "data/effect-sources/bold-comic.md",
+      "sha256": "bd70af1fc5a2b306dc854f8089e6625c13145fbe75744074d8279feb059c87f8",
+      "source": {
+        "name": "杰克·科比",
+        "path": "cartoonists/jack-kirby/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/cartoonists/jack-kirby/style.md"
+      }
+    },
+    {
+      "id": "noir-comic",
+      "file": "data/effect-sources/noir-comic.md",
+      "sha256": "c5ea6b46c20750dc0dc21d7c77ce400224784457863fa4af85fc43d8b226fa3b",
+      "source": {
+        "name": "弗兰克·米勒",
+        "path": "cartoonists/frank-miller/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/cartoonists/frank-miller/style.md"
+      }
+    },
+    {
+      "id": "monochrome-editorial",
+      "file": "data/effect-sources/monochrome-editorial.md",
+      "sha256": "175b738ce616715e12c9dafdc35da3dc1ed6b9250dd7f18f539f42e95691d063",
+      "source": {
+        "name": "卡尔·拉格斐",
+        "path": "fashion-designers/karl-lagerfeld/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/fashion-designers/karl-lagerfeld/style.md"
+      }
+    },
+    {
+      "id": "warm-film",
+      "file": "data/effect-sources/warm-film.md",
+      "sha256": "67bfdc3ae8d2a20afc2780b667e960d653b8291ca9ee37ffd6f93ec5917d4a48",
+      "source": {
+        "name": "王家卫",
+        "path": "directors/wong-kar-wai/style.md",
+        "revision": "07d79bebdfbea3c380e6e796a5d184ca37cd8626",
+        "url": "https://github.com/aaronjin2023/human-distillation-lab/blob/07d79bebdfbea3c380e6e796a5d184ca37cd8626/directors/wong-kar-wai/style.md"
+      }
+    },
+    {
+      "id": "manga-araki-hirohiko",
+      "file": "data/effect-sources/manga-araki-hirohiko.md",
+      "sha256": "e57144a0622e3a2ccce3896c3999c826637cd45495bfd95bdb12259a8c911a57",
+      "source": {
+        "name": "荒木飞吕彦",
+        "path": "manga-authors/authors/araki-hirohiko/SKILL.md",
+        "revision": "local-sha256:e57144a0622e3a2ccce3896c3999c826637cd45495bfd95bdb12259a8c911a57",
+        "url": "/api/effect-sources/manga-araki-hirohiko"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/araki-hirohiko/SKILL.md",
+          "sha256": "8d7fce39414978f04984a36c81796d9303ce7c363a68d518cc35f60abe76e82a"
+        },
+        {
+          "path": "manga-authors/authors/araki-hirohiko/drawing.md",
+          "sha256": "00579a3084dab6adee653ca41cf0731428345802a8999716a64a26562da7e70d"
+        },
+        {
+          "path": "manga-authors/authors/araki-hirohiko/prompts.md",
+          "sha256": "6495bb190390db027d4ce3af34600ecdd3dab4514f4e4d625e08c01778830d7d"
+        },
+        {
+          "path": "manga-authors/authors/araki-hirohiko/manifest.json",
+          "sha256": "9db6d59b309e06f735f434075b112fdca57e27f5d610e03ffff29ae8f0115ea7"
+        }
+      ]
+    },
+    {
+      "id": "manga-kubo-tite",
+      "file": "data/effect-sources/manga-kubo-tite.md",
+      "sha256": "012ca6f3c161a168a95a38b2e8e6270589017b6052f7e1c8b93335c6f59ec730",
+      "source": {
+        "name": "久保带人",
+        "path": "manga-authors/authors/kubo-tite/SKILL.md",
+        "revision": "local-sha256:012ca6f3c161a168a95a38b2e8e6270589017b6052f7e1c8b93335c6f59ec730",
+        "url": "/api/effect-sources/manga-kubo-tite"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/kubo-tite/SKILL.md",
+          "sha256": "888f0d7d18ca3589646aeba09d4e7e5fe7b96e72dac7588e3e066339db6dd7d3"
+        },
+        {
+          "path": "manga-authors/authors/kubo-tite/drawing.md",
+          "sha256": "ac24bb76086c9407fdf8c54c3337216e9e788e19a4f1f97708fd228cc808ac05"
+        },
+        {
+          "path": "manga-authors/authors/kubo-tite/prompts.md",
+          "sha256": "d932f64a035b92d7f25be77a6be5c6db90eb7c9a66ff0b01939c4f0bac96f1ee"
+        },
+        {
+          "path": "manga-authors/authors/kubo-tite/manifest.json",
+          "sha256": "459f864f8305d300f174be994c129893970662857b3a21ba160be82aac878549"
+        }
+      ]
+    },
+    {
+      "id": "manga-oda-eiichiro",
+      "file": "data/effect-sources/manga-oda-eiichiro.md",
+      "sha256": "e5d9d79e6aa07036bd13277af43d3d1e6ee46931975a1adcbb10dd044c4acff4",
+      "source": {
+        "name": "尾田荣一郎",
+        "path": "manga-authors/authors/oda-eiichiro/SKILL.md",
+        "revision": "local-sha256:e5d9d79e6aa07036bd13277af43d3d1e6ee46931975a1adcbb10dd044c4acff4",
+        "url": "/api/effect-sources/manga-oda-eiichiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/oda-eiichiro/SKILL.md",
+          "sha256": "5dd289c90bc284b2049df3900411ae4b616630598549904baa734ea0938cb5cb"
+        },
+        {
+          "path": "manga-authors/authors/oda-eiichiro/drawing.md",
+          "sha256": "c5518ec3b4b7130b60918a090db0b095f0bc90346730fcecc7baa9d78b18bc67"
+        },
+        {
+          "path": "manga-authors/authors/oda-eiichiro/prompts.md",
+          "sha256": "162ad425e08b965dadd4f4b3d6cc4966c3fde2728d5f96a1041c196f068a3104"
+        },
+        {
+          "path": "manga-authors/authors/oda-eiichiro/manifest.json",
+          "sha256": "84c4d3e27bf6a8cc045e608df2bbd52521f09d92998a56d02ca5ae6a620a367c"
+        }
+      ]
+    },
+    {
+      "id": "manga-takahashi-rumiko",
+      "file": "data/effect-sources/manga-takahashi-rumiko.md",
+      "sha256": "7dc934574b0a5611f37bd02674678a565a7bc0acc0218a366ca43087966793cf",
+      "source": {
+        "name": "高桥留美子",
+        "path": "manga-authors/authors/takahashi-rumiko/SKILL.md",
+        "revision": "local-sha256:7dc934574b0a5611f37bd02674678a565a7bc0acc0218a366ca43087966793cf",
+        "url": "/api/effect-sources/manga-takahashi-rumiko"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/takahashi-rumiko/SKILL.md",
+          "sha256": "5d1c7b3be1c0630f73263abfc009526422f3155a2d4f99715cafd9798c994d1a"
+        },
+        {
+          "path": "manga-authors/authors/takahashi-rumiko/drawing.md",
+          "sha256": "82f2e29abe163746429c0b87ec305d1502e5d905c365a8e390d158486782c9bc"
+        },
+        {
+          "path": "manga-authors/authors/takahashi-rumiko/prompts.md",
+          "sha256": "fc0a6f827c04b024e348f21ac2282e169d65cafaaea58997bcfc2930fc59cd1c"
+        },
+        {
+          "path": "manga-authors/authors/takahashi-rumiko/manifest.json",
+          "sha256": "2464b8f573c9ace070de97c91cb0ecfb36afff86f611d03ce9edc12ea5f7fb75"
+        }
+      ]
+    },
+    {
+      "id": "manga-urasawa-naoki",
+      "file": "data/effect-sources/manga-urasawa-naoki.md",
+      "sha256": "cfe38cbbce6b34914547af99515653f2c31ee7cc200899e47c3ea85deda8741e",
+      "source": {
+        "name": "浦泽直树",
+        "path": "manga-authors/authors/urasawa-naoki/SKILL.md",
+        "revision": "local-sha256:cfe38cbbce6b34914547af99515653f2c31ee7cc200899e47c3ea85deda8741e",
+        "url": "/api/effect-sources/manga-urasawa-naoki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/urasawa-naoki/SKILL.md",
+          "sha256": "e0ece7e7ead5b88e20fe15e4b932701c0b47d7deb7f8d1f54e06b20746ca4736"
+        },
+        {
+          "path": "manga-authors/authors/urasawa-naoki/drawing.md",
+          "sha256": "4b88fbb772ffcc4f1713a91076dcb66965ae6c20fcb17936db06c487c09911c1"
+        },
+        {
+          "path": "manga-authors/authors/urasawa-naoki/prompts.md",
+          "sha256": "3941987f39c812ab8cd24e186f43b2a19cb61e15aab25dda2dffbb388ef40e2b"
+        },
+        {
+          "path": "manga-authors/authors/urasawa-naoki/manifest.json",
+          "sha256": "6da704e922976b1943708fa73e8ced501dfeba8a4330550930cd85bd6d81c3aa"
+        }
+      ]
+    },
+    {
+      "id": "manga-ito-junji",
+      "file": "data/effect-sources/manga-ito-junji.md",
+      "sha256": "b2267cad9c6cf939674fa40607dac90ce691391e384baa2705243663261c0651",
+      "source": {
+        "name": "伊藤润二",
+        "path": "manga-authors/authors/ito-junji/SKILL.md",
+        "revision": "local-sha256:b2267cad9c6cf939674fa40607dac90ce691391e384baa2705243663261c0651",
+        "url": "/api/effect-sources/manga-ito-junji"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/ito-junji/SKILL.md",
+          "sha256": "775c28b8062f6d002f066a8c2dcd51f34f203e15f9b62cb9c5152165974b3db3"
+        },
+        {
+          "path": "manga-authors/authors/ito-junji/drawing.md",
+          "sha256": "5a7fed6bc83ef2e91e02099a6abd9de49e3fe6c0a3a117eafddaaad96e485436"
+        },
+        {
+          "path": "manga-authors/authors/ito-junji/prompts.md",
+          "sha256": "12e24ce37ce396e7113969d75c3c2f65a7af6d9bd7f80ed30502644c543b4e47"
+        },
+        {
+          "path": "manga-authors/authors/ito-junji/manifest.json",
+          "sha256": "e9746f68acd18005d0db97f5bec5de708bb0bbe30b14d4aae59ab8efd0fc7488"
+        }
+      ]
+    },
+    {
+      "id": "manga-arakawa-hiromu",
+      "file": "data/effect-sources/manga-arakawa-hiromu.md",
+      "sha256": "0d7a113487c92ea3ba030b3bec9b855e90ff4a76242557db0488f767f4c5ade3",
+      "source": {
+        "name": "荒川弘",
+        "path": "manga-authors/authors/arakawa-hiromu/SKILL.md",
+        "revision": "local-sha256:0d7a113487c92ea3ba030b3bec9b855e90ff4a76242557db0488f767f4c5ade3",
+        "url": "/api/effect-sources/manga-arakawa-hiromu"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/arakawa-hiromu/SKILL.md",
+          "sha256": "8b7a47049caffbb2be5e4940801f3406756ac31667bee3dd14236f5586caca48"
+        },
+        {
+          "path": "manga-authors/authors/arakawa-hiromu/drawing.md",
+          "sha256": "e1a5fadd5ca56563482c4c53e281e476f950d39b2f3e19f470f531878239a637"
+        },
+        {
+          "path": "manga-authors/authors/arakawa-hiromu/prompts.md",
+          "sha256": "8f2aba94922e9eb6703020a93e85dcdd9c7c5ffaf84feca6a16995887a1b45d2"
+        },
+        {
+          "path": "manga-authors/authors/arakawa-hiromu/manifest.json",
+          "sha256": "d3691608ff62ea86cdff551dabe3ced7b78c7527e9977ce433fa006eb8ff17e7"
+        }
+      ]
+    },
+    {
+      "id": "manga-togashi-yoshihiro",
+      "file": "data/effect-sources/manga-togashi-yoshihiro.md",
+      "sha256": "a45d9d4774ce50b2daac0f5cf43868ef0c771f6fefb3257c03929c26e19cda31",
+      "source": {
+        "name": "富坚义博",
+        "path": "manga-authors/authors/togashi-yoshihiro/SKILL.md",
+        "revision": "local-sha256:a45d9d4774ce50b2daac0f5cf43868ef0c771f6fefb3257c03929c26e19cda31",
+        "url": "/api/effect-sources/manga-togashi-yoshihiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/togashi-yoshihiro/SKILL.md",
+          "sha256": "ddcc5404da37be8af806705b2caacd0b892d04d7f035fb0860143973620c19c4"
+        },
+        {
+          "path": "manga-authors/authors/togashi-yoshihiro/drawing.md",
+          "sha256": "041968d2557642001ea33d440c0ea774ccd405d56d528bd74fea897c24135306"
+        },
+        {
+          "path": "manga-authors/authors/togashi-yoshihiro/prompts.md",
+          "sha256": "a248238f3e20ecb23e4c1ebb41d4223360e36d5086247149a2d61094161c2bd6"
+        },
+        {
+          "path": "manga-authors/authors/togashi-yoshihiro/manifest.json",
+          "sha256": "6b7e50f38aef45c1625b0a6de477b974adfdc04c9d892e0f2818151f9c2dd786"
+        }
+      ]
+    },
+    {
+      "id": "manga-obata-takeshi",
+      "file": "data/effect-sources/manga-obata-takeshi.md",
+      "sha256": "a72addd8169b9acceebc31698e6ac2eba37abb6a9364b86a404a1bb6455a30fe",
+      "source": {
+        "name": "小畑健",
+        "path": "manga-authors/authors/obata-takeshi/SKILL.md",
+        "revision": "local-sha256:a72addd8169b9acceebc31698e6ac2eba37abb6a9364b86a404a1bb6455a30fe",
+        "url": "/api/effect-sources/manga-obata-takeshi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/obata-takeshi/SKILL.md",
+          "sha256": "dbbcee2f74df899c7e414410fc133b965ac1a4cf7f473624ee5041fcc118479c"
+        },
+        {
+          "path": "manga-authors/authors/obata-takeshi/drawing.md",
+          "sha256": "f0731b8ba95820f37ce4b63c63b7d54faf2b9bfa5d2cded11dade61a1ec9dfee"
+        },
+        {
+          "path": "manga-authors/authors/obata-takeshi/prompts.md",
+          "sha256": "edc6e4c74df3ed852737f55608eded7bc1840b3563af65e7a4b44462b8e81e75"
+        },
+        {
+          "path": "manga-authors/authors/obata-takeshi/manifest.json",
+          "sha256": "42f427996627b17e04f317dda065aedd9018f247e36ac7b2b1fc31dc3a39d3e7"
+        }
+      ]
+    },
+    {
+      "id": "manga-murata-yusuke",
+      "file": "data/effect-sources/manga-murata-yusuke.md",
+      "sha256": "af5affd2871d23fe599c48806c7d00e7d01457c8ba4bf9d5fca08a4c6a52b0fc",
+      "source": {
+        "name": "村田雄介",
+        "path": "manga-authors/authors/murata-yusuke/SKILL.md",
+        "revision": "local-sha256:af5affd2871d23fe599c48806c7d00e7d01457c8ba4bf9d5fca08a4c6a52b0fc",
+        "url": "/api/effect-sources/manga-murata-yusuke"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/murata-yusuke/SKILL.md",
+          "sha256": "2fc7811a235e4d21037218542bbb85f563b020d29a12c5c7efc3b8ac86afbdbd"
+        },
+        {
+          "path": "manga-authors/authors/murata-yusuke/drawing.md",
+          "sha256": "0a9e4c0321004c088e6b17c1a581c959cc99db9ecf993f78a6702dbdf20c7ce3"
+        },
+        {
+          "path": "manga-authors/authors/murata-yusuke/prompts.md",
+          "sha256": "27ff8de9ba08b0ae88c08705f853b987cf316c3ac7162ca093dc3406750970ef"
+        },
+        {
+          "path": "manga-authors/authors/murata-yusuke/manifest.json",
+          "sha256": "2b40fd04c87de9881c6eb5602f0ec70a5e5ec9c8dfd4fa1e49c4f1949feb1188"
+        }
+      ]
+    },
+    {
+      "id": "manga-one",
+      "file": "data/effect-sources/manga-one.md",
+      "sha256": "f4d22079d39b5919b443096632aea5b894af726ced5966053afa314af248488f",
+      "source": {
+        "name": "ONE",
+        "path": "manga-authors/authors/one/SKILL.md",
+        "revision": "local-sha256:f4d22079d39b5919b443096632aea5b894af726ced5966053afa314af248488f",
+        "url": "/api/effect-sources/manga-one"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/one/SKILL.md",
+          "sha256": "f10ac85bb92dbbe6d5a11e6dc9af62139fa420a3169ccf7a382357cf2b721caf"
+        },
+        {
+          "path": "manga-authors/authors/one/drawing.md",
+          "sha256": "128e84b19af064c6dd7a4106ac0a35106bdeaa6702650707ee3da617c6efc2e4"
+        },
+        {
+          "path": "manga-authors/authors/one/prompts.md",
+          "sha256": "82f688053f59c2b8ac40d5d1bbcd20330e5aa242dcd2986bcda1048e701f084e"
+        },
+        {
+          "path": "manga-authors/authors/one/manifest.json",
+          "sha256": "3160a17d59b90a60a91bb840f581692c268b95dd3514b3465031f7f692d27ed0"
+        }
+      ]
+    },
+    {
+      "id": "manga-mashima-hiro",
+      "file": "data/effect-sources/manga-mashima-hiro.md",
+      "sha256": "1b57159789ca5a145e667f5845166a6b60c8933df1b61da8aa5e35c8695bc231",
+      "source": {
+        "name": "真岛浩",
+        "path": "manga-authors/authors/mashima-hiro/SKILL.md",
+        "revision": "local-sha256:1b57159789ca5a145e667f5845166a6b60c8933df1b61da8aa5e35c8695bc231",
+        "url": "/api/effect-sources/manga-mashima-hiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/mashima-hiro/SKILL.md",
+          "sha256": "6344dda72cd142705577e8077da35b76a1a62ec678dd7dfd5a4afaf8a42869eb"
+        },
+        {
+          "path": "manga-authors/authors/mashima-hiro/drawing.md",
+          "sha256": "a504eba71e4c528ed372fc56f5023736837b1fce62e3c60a94383eadb9312945"
+        },
+        {
+          "path": "manga-authors/authors/mashima-hiro/prompts.md",
+          "sha256": "37b193a532cdecfc3a6f1ceb1c0a575e5670aa6576ea08a03503c09ba1875281"
+        },
+        {
+          "path": "manga-authors/authors/mashima-hiro/manifest.json",
+          "sha256": "9935e492a3c86cc55c29fcb3c4510297311effb82c7eb28ae0d4a09440bd0832"
+        }
+      ]
+    },
+    {
+      "id": "manga-suzuki-nakaba",
+      "file": "data/effect-sources/manga-suzuki-nakaba.md",
+      "sha256": "afb455ed1b0164a41d0e5ebf9f18ea3b620f872645b7b9985f586475543a3364",
+      "source": {
+        "name": "铃木央",
+        "path": "manga-authors/authors/suzuki-nakaba/SKILL.md",
+        "revision": "local-sha256:afb455ed1b0164a41d0e5ebf9f18ea3b620f872645b7b9985f586475543a3364",
+        "url": "/api/effect-sources/manga-suzuki-nakaba"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/suzuki-nakaba/SKILL.md",
+          "sha256": "1237b945e05c89a7beb7b13a536166e97ab2f30ecd025850a70b8dc90be1e246"
+        },
+        {
+          "path": "manga-authors/authors/suzuki-nakaba/drawing.md",
+          "sha256": "2e32ce23a6e13c28c1531f461d210a24d88f82fdedda96b326faf2c3b5287123"
+        },
+        {
+          "path": "manga-authors/authors/suzuki-nakaba/prompts.md",
+          "sha256": "8e1d56925c2f88462b05785f83a35898a3b2485dc73bd192f6f11912a3aef005"
+        },
+        {
+          "path": "manga-authors/authors/suzuki-nakaba/manifest.json",
+          "sha256": "8241f2f9f946fd1a24c8f915ce4ffad8967c6b74040b12ed81cf195c8112922d"
+        }
+      ]
+    },
+    {
+      "id": "manga-horikoshi-kohei",
+      "file": "data/effect-sources/manga-horikoshi-kohei.md",
+      "sha256": "37d14566ff801c33404dcf046e2dc76f29dd0bdf41369822e9c81559a7bf97a2",
+      "source": {
+        "name": "堀越耕平",
+        "path": "manga-authors/authors/horikoshi-kohei/SKILL.md",
+        "revision": "local-sha256:37d14566ff801c33404dcf046e2dc76f29dd0bdf41369822e9c81559a7bf97a2",
+        "url": "/api/effect-sources/manga-horikoshi-kohei"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/horikoshi-kohei/SKILL.md",
+          "sha256": "fb1d68548ef1a54f722ad83ca48dd9891332cf8f2d4ba7e5e3ff22c47934eb50"
+        },
+        {
+          "path": "manga-authors/authors/horikoshi-kohei/drawing.md",
+          "sha256": "cb76b8c00073c78c9e35a8743331c298c0237df20bfce21f018baed9787b9e41"
+        },
+        {
+          "path": "manga-authors/authors/horikoshi-kohei/prompts.md",
+          "sha256": "491f9c90bac402dcd6b7505c30041fdc32d788f1d208c35a1356e53759f8bed7"
+        },
+        {
+          "path": "manga-authors/authors/horikoshi-kohei/manifest.json",
+          "sha256": "ea0670998b2775a605cc5e9c90d84a3a10e40a090b23e4dec34f1a5ae856d496"
+        }
+      ]
+    },
+    {
+      "id": "manga-furudate-haruichi",
+      "file": "data/effect-sources/manga-furudate-haruichi.md",
+      "sha256": "a00c3ba1ec0a00eb39a1c3b95f12ccdb954e3fdae65735eeb3046193e339472d",
+      "source": {
+        "name": "古馆春一",
+        "path": "manga-authors/authors/furudate-haruichi/SKILL.md",
+        "revision": "local-sha256:a00c3ba1ec0a00eb39a1c3b95f12ccdb954e3fdae65735eeb3046193e339472d",
+        "url": "/api/effect-sources/manga-furudate-haruichi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/furudate-haruichi/SKILL.md",
+          "sha256": "3b79052ae32aeef236d70cd3e2643192f45e5e15b0ba23d82ee4d1916f421437"
+        },
+        {
+          "path": "manga-authors/authors/furudate-haruichi/drawing.md",
+          "sha256": "77241715144ddbcf43010d75ee4bb1efe3304f7a8e34cf2aa0eeefdb1fa7d8e1"
+        },
+        {
+          "path": "manga-authors/authors/furudate-haruichi/prompts.md",
+          "sha256": "a10d4641e126e709a58178a596c652e538046b516d1b70d93d9bc6f1fe53c3ae"
+        },
+        {
+          "path": "manga-authors/authors/furudate-haruichi/manifest.json",
+          "sha256": "df3e0b54a2e8959dcf3a510255b101a5d51a5d4dbe927034233834a6eea9171b"
+        }
+      ]
+    },
+    {
+      "id": "manga-isayama-hajime",
+      "file": "data/effect-sources/manga-isayama-hajime.md",
+      "sha256": "db42d502d1c439c0c201959017735802643540bdc24ed73976f71010ce04656f",
+      "source": {
+        "name": "谏山创",
+        "path": "manga-authors/authors/isayama-hajime/SKILL.md",
+        "revision": "local-sha256:db42d502d1c439c0c201959017735802643540bdc24ed73976f71010ce04656f",
+        "url": "/api/effect-sources/manga-isayama-hajime"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/isayama-hajime/SKILL.md",
+          "sha256": "b08afc5547a1fa5e497ea7d66ed6c888d597744d8a914cdfca5a466e27adbfd8"
+        },
+        {
+          "path": "manga-authors/authors/isayama-hajime/drawing.md",
+          "sha256": "4d3a0b3bbb18a934ae087d512c63d786064297052c5c8ec4f6ff8120348b8cc2"
+        },
+        {
+          "path": "manga-authors/authors/isayama-hajime/prompts.md",
+          "sha256": "f71d7b44984f7a6f54e30b33899423d73bbd3beaeab0665dc28a4d611f0e4c9f"
+        },
+        {
+          "path": "manga-authors/authors/isayama-hajime/manifest.json",
+          "sha256": "60774646d1b57d229a7a69b3a37b286db997e11a23f161c332c1bbcce1e28803"
+        }
+      ]
+    },
+    {
+      "id": "manga-gotouge-koyoharu",
+      "file": "data/effect-sources/manga-gotouge-koyoharu.md",
+      "sha256": "f16c8bab2bbef4b84a1eb6d593485e159a45615acd3bc6be1ce601c80a60d5aa",
+      "source": {
+        "name": "吾峠呼世晴",
+        "path": "manga-authors/authors/gotouge-koyoharu/SKILL.md",
+        "revision": "local-sha256:f16c8bab2bbef4b84a1eb6d593485e159a45615acd3bc6be1ce601c80a60d5aa",
+        "url": "/api/effect-sources/manga-gotouge-koyoharu"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/gotouge-koyoharu/SKILL.md",
+          "sha256": "c37cab104c8bd5616290a04fcfa98b86c91852f540cec8f01c31158c842232a2"
+        },
+        {
+          "path": "manga-authors/authors/gotouge-koyoharu/drawing.md",
+          "sha256": "dca136f7e968ba5db4b07834d26b8102d0dea7bca6d304312d5b00d5966abbdc"
+        },
+        {
+          "path": "manga-authors/authors/gotouge-koyoharu/prompts.md",
+          "sha256": "5846cd2aa91df411327e96cf9d8c4dc6ec3c6b0b58cbb06398898513ea934845"
+        },
+        {
+          "path": "manga-authors/authors/gotouge-koyoharu/manifest.json",
+          "sha256": "d391ca2d0c960bbe410f16a5e2a770edcd4453e6d19197d0d1e700e7673afeda"
+        }
+      ]
+    },
+    {
+      "id": "manga-akutami-gege",
+      "file": "data/effect-sources/manga-akutami-gege.md",
+      "sha256": "7c989321e451dd366c47c92e08fa0fc1f861de989ea6130aed8a0eaca0981c5c",
+      "source": {
+        "name": "芥见下下",
+        "path": "manga-authors/authors/akutami-gege/SKILL.md",
+        "revision": "local-sha256:7c989321e451dd366c47c92e08fa0fc1f861de989ea6130aed8a0eaca0981c5c",
+        "url": "/api/effect-sources/manga-akutami-gege"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/akutami-gege/SKILL.md",
+          "sha256": "5e15ee4dd904111693bc1a9fd31d4fd9545995568168e6c62cb75354286e14d6"
+        },
+        {
+          "path": "manga-authors/authors/akutami-gege/drawing.md",
+          "sha256": "60872606cc790473cf1c8298d65ae9a0d933e79e1a60db22fc8b183b5a25840a"
+        },
+        {
+          "path": "manga-authors/authors/akutami-gege/prompts.md",
+          "sha256": "4190584434d5a9ec9f3071448fc91b202788face5df80f38dcded43cc4ba1c72"
+        },
+        {
+          "path": "manga-authors/authors/akutami-gege/manifest.json",
+          "sha256": "67a62314326d5819f62544ba61c5cbb7c8f638e5c3592c7c04d65ac2f9701e80"
+        }
+      ]
+    },
+    {
+      "id": "manga-fujimoto-tatsuki",
+      "file": "data/effect-sources/manga-fujimoto-tatsuki.md",
+      "sha256": "48fb4fce15ff75215761ce18bff83143f796f3ee93fbb614257cd6dc2e0a8ab1",
+      "source": {
+        "name": "藤本树",
+        "path": "manga-authors/authors/fujimoto-tatsuki/SKILL.md",
+        "revision": "local-sha256:48fb4fce15ff75215761ce18bff83143f796f3ee93fbb614257cd6dc2e0a8ab1",
+        "url": "/api/effect-sources/manga-fujimoto-tatsuki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/fujimoto-tatsuki/SKILL.md",
+          "sha256": "20959e16fb9320e7e21b80fe23e4d46fdb42da105f340ef3a4822d48c297be70"
+        },
+        {
+          "path": "manga-authors/authors/fujimoto-tatsuki/drawing.md",
+          "sha256": "c271b7d44d0032e39b2513317c8272868c5e78a95ce8187982ebe83ed42a3e85"
+        },
+        {
+          "path": "manga-authors/authors/fujimoto-tatsuki/prompts.md",
+          "sha256": "a5c2a624c3a487cfd5746eb82852740a79f370e12a4e61732fed4e8212f5ac94"
+        },
+        {
+          "path": "manga-authors/authors/fujimoto-tatsuki/manifest.json",
+          "sha256": "baeebc2f24db9105246fc5f43bf8966648756ae42617b3dd4a801aa2ba09a6eb"
+        }
+      ]
+    },
+    {
+      "id": "manga-endo-tatsuya",
+      "file": "data/effect-sources/manga-endo-tatsuya.md",
+      "sha256": "17c31649b78069af47404c633bd5299fb445164f2034e1d8140c5253d40c8114",
+      "source": {
+        "name": "远藤达哉",
+        "path": "manga-authors/authors/endo-tatsuya/SKILL.md",
+        "revision": "local-sha256:17c31649b78069af47404c633bd5299fb445164f2034e1d8140c5253d40c8114",
+        "url": "/api/effect-sources/manga-endo-tatsuya"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/endo-tatsuya/SKILL.md",
+          "sha256": "619ef1babb6363458a9ea4f0a127d2abeb59d605e8d24149b8d1ac5729036909"
+        },
+        {
+          "path": "manga-authors/authors/endo-tatsuya/drawing.md",
+          "sha256": "6a152d8688147a9410415def7e9976466631872fb4ff134ea0bb344ce518b5fe"
+        },
+        {
+          "path": "manga-authors/authors/endo-tatsuya/prompts.md",
+          "sha256": "966a5b3b6cd3e951759df98df0cc3568e15ae4e338e3a482b1eb18b496696e8e"
+        },
+        {
+          "path": "manga-authors/authors/endo-tatsuya/manifest.json",
+          "sha256": "4c9ee38bea838c9419e0b3bb0a343dcb0b95932b16b9cfa7e669ae382b200e10"
+        }
+      ]
+    },
+    {
+      "id": "manga-tatsu-yukinobu",
+      "file": "data/effect-sources/manga-tatsu-yukinobu.md",
+      "sha256": "7dde9583c66d3dfbb6b0d1a43022d7cafc6795e90938d750a3e108be11da882b",
+      "source": {
+        "name": "龙幸伸",
+        "path": "manga-authors/authors/tatsu-yukinobu/SKILL.md",
+        "revision": "local-sha256:7dde9583c66d3dfbb6b0d1a43022d7cafc6795e90938d750a3e108be11da882b",
+        "url": "/api/effect-sources/manga-tatsu-yukinobu"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/tatsu-yukinobu/SKILL.md",
+          "sha256": "3e4e86c81c57dfb76400f17ff29b754984fc22484b3a1e9db47931b373f7e56e"
+        },
+        {
+          "path": "manga-authors/authors/tatsu-yukinobu/drawing.md",
+          "sha256": "13df010ae36825b0a3ceb9b496654b6bf7fa0a9fd901ab82dd0f505b930fbe9b"
+        },
+        {
+          "path": "manga-authors/authors/tatsu-yukinobu/prompts.md",
+          "sha256": "517be99f2b8ca0b32d539597a14b47e68ce6a516c0d2b26d564e2b633299240b"
+        },
+        {
+          "path": "manga-authors/authors/tatsu-yukinobu/manifest.json",
+          "sha256": "b5f737710f5617959f63b444de154d40ee1a20dcf206c07a75d8ff5b0df967b7"
+        }
+      ]
+    },
+    {
+      "id": "manga-suzuki-yuto",
+      "file": "data/effect-sources/manga-suzuki-yuto.md",
+      "sha256": "0d2898497923bfc9e9531e47f7878fbbba7e922828bc3a96a2510dbb8f0ac0c8",
+      "source": {
+        "name": "铃木祐斗",
+        "path": "manga-authors/authors/suzuki-yuto/SKILL.md",
+        "revision": "local-sha256:0d2898497923bfc9e9531e47f7878fbbba7e922828bc3a96a2510dbb8f0ac0c8",
+        "url": "/api/effect-sources/manga-suzuki-yuto"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/suzuki-yuto/SKILL.md",
+          "sha256": "ac1ab9ed5d5aecba2e08112c0f5fdac43ccf76057c1de0167a81d34dae6561a9"
+        },
+        {
+          "path": "manga-authors/authors/suzuki-yuto/drawing.md",
+          "sha256": "44cd57cfcb9d5df8e1befe7771ce212cdf31891d012d3eb03212142c4ede90a9"
+        },
+        {
+          "path": "manga-authors/authors/suzuki-yuto/prompts.md",
+          "sha256": "b7b075336702f2780b7c3d976c7f7eec277ae4c3d3952ed1ed084e6edb342feb"
+        },
+        {
+          "path": "manga-authors/authors/suzuki-yuto/manifest.json",
+          "sha256": "ef5dec44e68e445ff7507217dfadde8b7acbf8f9ef1b9d09d63b5d279837ae17"
+        }
+      ]
+    },
+    {
+      "id": "manga-matsumoto-naoya",
+      "file": "data/effect-sources/manga-matsumoto-naoya.md",
+      "sha256": "b6c070b88033697e2e34945e1def0d3db9e4e6742235b610c563fe2a77594dfd",
+      "source": {
+        "name": "松本直也",
+        "path": "manga-authors/authors/matsumoto-naoya/SKILL.md",
+        "revision": "local-sha256:b6c070b88033697e2e34945e1def0d3db9e4e6742235b610c563fe2a77594dfd",
+        "url": "/api/effect-sources/manga-matsumoto-naoya"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/matsumoto-naoya/SKILL.md",
+          "sha256": "7113ea2f55725055529ad968d1db3664acd92a0e9d6a8e2c178b5621a97bda8a"
+        },
+        {
+          "path": "manga-authors/authors/matsumoto-naoya/drawing.md",
+          "sha256": "c1f820ccb4d775ffe53504432a7f2c9d094a8d4f71427693e2977f4d4f805fbc"
+        },
+        {
+          "path": "manga-authors/authors/matsumoto-naoya/prompts.md",
+          "sha256": "a3dadee40cb01b8e8b9f480b4570c20e72be31f3a2a68402979468ed46ca3f93"
+        },
+        {
+          "path": "manga-authors/authors/matsumoto-naoya/manifest.json",
+          "sha256": "ff0f54e1956f0659ec6b7ed2553a24f9ac0f190c7d3efd349a2ee803a585d9da"
+        }
+      ]
+    },
+    {
+      "id": "manga-kaku-yuji",
+      "file": "data/effect-sources/manga-kaku-yuji.md",
+      "sha256": "b10dc3cdaea27d8e3fcaa669e32bc7acf16051fb985258c812e2e6c748b3e1c4",
+      "source": {
+        "name": "贺来友治",
+        "path": "manga-authors/authors/kaku-yuji/SKILL.md",
+        "revision": "local-sha256:b10dc3cdaea27d8e3fcaa669e32bc7acf16051fb985258c812e2e6c748b3e1c4",
+        "url": "/api/effect-sources/manga-kaku-yuji"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/kaku-yuji/SKILL.md",
+          "sha256": "6d0bfc58f35434632d455fcc51a104bf471df32e62a4257bae611d551a90e28f"
+        },
+        {
+          "path": "manga-authors/authors/kaku-yuji/drawing.md",
+          "sha256": "bb7b21a019b382454216407e366e05f8d4363bbfbc54377b40b7634c2f848f52"
+        },
+        {
+          "path": "manga-authors/authors/kaku-yuji/prompts.md",
+          "sha256": "449793ed1ae5917b692fab058b134b24f7200ada0e81d1b4253dd45a29af6049"
+        },
+        {
+          "path": "manga-authors/authors/kaku-yuji/manifest.json",
+          "sha256": "15e4ba4e872bfa67dade590bcce6ba2f268f24793f8f36be1f7184f79c694842"
+        }
+      ]
+    },
+    {
+      "id": "manga-yagi-norihiro",
+      "file": "data/effect-sources/manga-yagi-norihiro.md",
+      "sha256": "91b871413537e7047882e55c34206d11799b3ad340cd0784da0cc8ef849502bd",
+      "source": {
+        "name": "八木教广",
+        "path": "manga-authors/authors/yagi-norihiro/SKILL.md",
+        "revision": "local-sha256:91b871413537e7047882e55c34206d11799b3ad340cd0784da0cc8ef849502bd",
+        "url": "/api/effect-sources/manga-yagi-norihiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yagi-norihiro/SKILL.md",
+          "sha256": "3821c23ed21667a63bdd3dfffd2b98a5133c8a7fb26ada02bfd9d0ebb71e642e"
+        },
+        {
+          "path": "manga-authors/authors/yagi-norihiro/drawing.md",
+          "sha256": "b90feddd2f46e500d8bab75be62952fa483af38f8fb5dd5409b9dd1edf537f85"
+        },
+        {
+          "path": "manga-authors/authors/yagi-norihiro/prompts.md",
+          "sha256": "1d1a2e040e7335ee9ee553a2952b46ac1686963503057e69e55ea8d15ff775ef"
+        },
+        {
+          "path": "manga-authors/authors/yagi-norihiro/manifest.json",
+          "sha256": "12f7618fd5be58368092645fde087ee8e127cf37481ca0cb4f0eac58d7c270f8"
+        }
+      ]
+    },
+    {
+      "id": "manga-hoshino-katsura",
+      "file": "data/effect-sources/manga-hoshino-katsura.md",
+      "sha256": "24920ced83cfdabb3755c0490949a1789ba7d9e8fc26c02ff0ba278be61d289b",
+      "source": {
+        "name": "星野桂",
+        "path": "manga-authors/authors/hoshino-katsura/SKILL.md",
+        "revision": "local-sha256:24920ced83cfdabb3755c0490949a1789ba7d9e8fc26c02ff0ba278be61d289b",
+        "url": "/api/effect-sources/manga-hoshino-katsura"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/hoshino-katsura/SKILL.md",
+          "sha256": "ea9c1a5251ebbbd2f9c00f2f052136015da1e6ad1b8609099346df42943cc99b"
+        },
+        {
+          "path": "manga-authors/authors/hoshino-katsura/drawing.md",
+          "sha256": "2dbf4e8edc16556c33bc5750473ba780be63ea81d53adf926fa9771b490c739c"
+        },
+        {
+          "path": "manga-authors/authors/hoshino-katsura/prompts.md",
+          "sha256": "48b957b9c8a688bfab1c122f071c5e8c060058fff503890c56b52d271c086aa5"
+        },
+        {
+          "path": "manga-authors/authors/hoshino-katsura/manifest.json",
+          "sha256": "4db7b0509f702f7f3db7aae938d1100eb7f3c9a5ad4105b1e2fa2536ce76c121"
+        }
+      ]
+    },
+    {
+      "id": "manga-takei-hiroyuki",
+      "file": "data/effect-sources/manga-takei-hiroyuki.md",
+      "sha256": "f1a3fed6b02ed139d84ec8fed9507d70b6e36cbf2b5f844f0cc8415c533e5a8e",
+      "source": {
+        "name": "武井宏之",
+        "path": "manga-authors/authors/takei-hiroyuki/SKILL.md",
+        "revision": "local-sha256:f1a3fed6b02ed139d84ec8fed9507d70b6e36cbf2b5f844f0cc8415c533e5a8e",
+        "url": "/api/effect-sources/manga-takei-hiroyuki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/takei-hiroyuki/SKILL.md",
+          "sha256": "b06a30c62445ddfcd2d98c4e6abbe35bb76d45e55b960e6d1a98873c7cc76b15"
+        },
+        {
+          "path": "manga-authors/authors/takei-hiroyuki/drawing.md",
+          "sha256": "83924f4090dd4cf1aef7c60c71bfdd432707c930d0607781d84c1b4175ce7e2a"
+        },
+        {
+          "path": "manga-authors/authors/takei-hiroyuki/prompts.md",
+          "sha256": "fe34fe233684810a91f1587f216dd087df676ea994f8b74807f2c870bd82d438"
+        },
+        {
+          "path": "manga-authors/authors/takei-hiroyuki/manifest.json",
+          "sha256": "85b4319a78a7e5e9c3014a8b552dc691fa4946c72f19b15eb90eb282db08ec06"
+        }
+      ]
+    },
+    {
+      "id": "manga-fujita-kazuhiro",
+      "file": "data/effect-sources/manga-fujita-kazuhiro.md",
+      "sha256": "dfcf8ef740284e2c2f9126d1caa982bd3ab8c0f2187cc1657519c86950d800c8",
+      "source": {
+        "name": "藤田和日郎",
+        "path": "manga-authors/authors/fujita-kazuhiro/SKILL.md",
+        "revision": "local-sha256:dfcf8ef740284e2c2f9126d1caa982bd3ab8c0f2187cc1657519c86950d800c8",
+        "url": "/api/effect-sources/manga-fujita-kazuhiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/fujita-kazuhiro/SKILL.md",
+          "sha256": "5cb581e930401d308c01c2082850fc84bce46383ffcd472c3cf474b842746cbc"
+        },
+        {
+          "path": "manga-authors/authors/fujita-kazuhiro/drawing.md",
+          "sha256": "9b10e32e65e4aa2881a71cbc8332d96d8d94658d05a2c7bcd00070d9fc2237dc"
+        },
+        {
+          "path": "manga-authors/authors/fujita-kazuhiro/prompts.md",
+          "sha256": "fa1ddb7e5bde8882779265ffea3c619f14787527e97fdd8b94c372419f69fc93"
+        },
+        {
+          "path": "manga-authors/authors/fujita-kazuhiro/manifest.json",
+          "sha256": "f6c2437d84c0618cf4fdca5b658cf48e957447ab95c29084cb03187e47b8181d"
+        }
+      ]
+    },
+    {
+      "id": "manga-ohtaka-shinobu",
+      "file": "data/effect-sources/manga-ohtaka-shinobu.md",
+      "sha256": "17602c72fd01b751d42002c2a3761320c999d42c8f1656cfb69087285bd4f208",
+      "source": {
+        "name": "大高忍",
+        "path": "manga-authors/authors/ohtaka-shinobu/SKILL.md",
+        "revision": "local-sha256:17602c72fd01b751d42002c2a3761320c999d42c8f1656cfb69087285bd4f208",
+        "url": "/api/effect-sources/manga-ohtaka-shinobu"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/ohtaka-shinobu/SKILL.md",
+          "sha256": "3b593100b1169064e864bc9d981f309f3872c4049a7b905cbe3b233e16fb3a30"
+        },
+        {
+          "path": "manga-authors/authors/ohtaka-shinobu/drawing.md",
+          "sha256": "294bbf31983f25878b5331878c33858008535c08cde93e8e352f0a08f8a3cd60"
+        },
+        {
+          "path": "manga-authors/authors/ohtaka-shinobu/prompts.md",
+          "sha256": "c8d97574b546b356f1344728a0744fd6665560875a97fe249d417bda34ecfc95"
+        },
+        {
+          "path": "manga-authors/authors/ohtaka-shinobu/manifest.json",
+          "sha256": "33a294a4ed23152680d60482380078f7b129b53e90c5cc36369803b6adee161c"
+        }
+      ]
+    },
+    {
+      "id": "manga-morikawa-george",
+      "file": "data/effect-sources/manga-morikawa-george.md",
+      "sha256": "a062bb0e29b0baee339febbb655b1e3108105714ea84795ace53762929b63963",
+      "source": {
+        "name": "森川让次",
+        "path": "manga-authors/authors/morikawa-george/SKILL.md",
+        "revision": "local-sha256:a062bb0e29b0baee339febbb655b1e3108105714ea84795ace53762929b63963",
+        "url": "/api/effect-sources/manga-morikawa-george"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/morikawa-george/SKILL.md",
+          "sha256": "ee406080d3661aec23fcd0ce62f946e1179d592432d178904c8282cd22c5f8b8"
+        },
+        {
+          "path": "manga-authors/authors/morikawa-george/drawing.md",
+          "sha256": "832bffc0108e35dcd90ac8efce61d50867cdabf75516453e0bb9d30905634fc4"
+        },
+        {
+          "path": "manga-authors/authors/morikawa-george/prompts.md",
+          "sha256": "d520b69dd424fc5f457e226b9fd44fefba71e240740985c5b224261d937f439e"
+        },
+        {
+          "path": "manga-authors/authors/morikawa-george/manifest.json",
+          "sha256": "9a322a1967766a64f5f6362feeb5c80425cca6121911ed8105297aec9460e039"
+        }
+      ]
+    },
+    {
+      "id": "manga-yukimura-makoto",
+      "file": "data/effect-sources/manga-yukimura-makoto.md",
+      "sha256": "d342c4ad86f79c3ff6dd4442c8a44308f648fd4a19309836ad85f1161b2260ca",
+      "source": {
+        "name": "幸村诚",
+        "path": "manga-authors/authors/yukimura-makoto/SKILL.md",
+        "revision": "local-sha256:d342c4ad86f79c3ff6dd4442c8a44308f648fd4a19309836ad85f1161b2260ca",
+        "url": "/api/effect-sources/manga-yukimura-makoto"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yukimura-makoto/SKILL.md",
+          "sha256": "96bc1fff394a94861fd97feacee7d07968ce2f363c8a61517da093b1efc8d1a8"
+        },
+        {
+          "path": "manga-authors/authors/yukimura-makoto/drawing.md",
+          "sha256": "5cc6e00f8e3cc0e3c7cfba1eca8687812924c8ad8018e67edebc66a9efa4f934"
+        },
+        {
+          "path": "manga-authors/authors/yukimura-makoto/prompts.md",
+          "sha256": "f7f158cf4429809214fc8ebc072e86cff84a380456811f283acd6b0dff3a2147"
+        },
+        {
+          "path": "manga-authors/authors/yukimura-makoto/manifest.json",
+          "sha256": "40b8cec95acea856a5e47f3f117b5c978de4fcb8e66547996076505ab1cb1cfd"
+        }
+      ]
+    },
+    {
+      "id": "manga-iwaaki-hitoshi",
+      "file": "data/effect-sources/manga-iwaaki-hitoshi.md",
+      "sha256": "482b2748973b3923a462de4ee79df73ece47a772aefa33361cde29c06859e5e5",
+      "source": {
+        "name": "岩明均",
+        "path": "manga-authors/authors/iwaaki-hitoshi/SKILL.md",
+        "revision": "local-sha256:482b2748973b3923a462de4ee79df73ece47a772aefa33361cde29c06859e5e5",
+        "url": "/api/effect-sources/manga-iwaaki-hitoshi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/iwaaki-hitoshi/SKILL.md",
+          "sha256": "a30cae1ea1ad5af94e5344905493a9aac1155a8f6e5975a4722e939c3b3f41a6"
+        },
+        {
+          "path": "manga-authors/authors/iwaaki-hitoshi/drawing.md",
+          "sha256": "23cb344f4d671e7f3e6f2a16e012676646e1b2912659f4e846d589eb26982a52"
+        },
+        {
+          "path": "manga-authors/authors/iwaaki-hitoshi/prompts.md",
+          "sha256": "5b64b95c412acfdafda56462c1670204b46e840c71aa67b56669cf5a21568259"
+        },
+        {
+          "path": "manga-authors/authors/iwaaki-hitoshi/manifest.json",
+          "sha256": "803addcfd6e67285cc95b5b2cc1c5c6c95a40df4e90053538b692396136be4a1"
+        }
+      ]
+    },
+    {
+      "id": "manga-samura-hiroaki",
+      "file": "data/effect-sources/manga-samura-hiroaki.md",
+      "sha256": "035856dc738c9ebae3f7aa4a6beb6461b76ac52003cb72e49190969ae7a8f655",
+      "source": {
+        "name": "沙村广明",
+        "path": "manga-authors/authors/samura-hiroaki/SKILL.md",
+        "revision": "local-sha256:035856dc738c9ebae3f7aa4a6beb6461b76ac52003cb72e49190969ae7a8f655",
+        "url": "/api/effect-sources/manga-samura-hiroaki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/samura-hiroaki/SKILL.md",
+          "sha256": "6cf5d678823089d0879b753143c88b7578b411907aff959764e14dcdde70fa2a"
+        },
+        {
+          "path": "manga-authors/authors/samura-hiroaki/drawing.md",
+          "sha256": "02a39b5ea3bc91b4d348fd70e37de39a694929917a16734ad8d0bc91fea39116"
+        },
+        {
+          "path": "manga-authors/authors/samura-hiroaki/prompts.md",
+          "sha256": "41a7a9dbe155f5df2ab49fde4f2ae11ccac697baed804a84c1c2b27d6c0baf84"
+        },
+        {
+          "path": "manga-authors/authors/samura-hiroaki/manifest.json",
+          "sha256": "96d1f969d26cad812199c233840e7bf08678dbb3ddd4e32a4577688bc60a0804"
+        }
+      ]
+    },
+    {
+      "id": "manga-nihei-tsutomu",
+      "file": "data/effect-sources/manga-nihei-tsutomu.md",
+      "sha256": "de9ee9f56b697fb140b5c8d9e15c6f6a32804b4482bf2bfc9c89c038467040bb",
+      "source": {
+        "name": "贰瓶勉",
+        "path": "manga-authors/authors/nihei-tsutomu/SKILL.md",
+        "revision": "local-sha256:de9ee9f56b697fb140b5c8d9e15c6f6a32804b4482bf2bfc9c89c038467040bb",
+        "url": "/api/effect-sources/manga-nihei-tsutomu"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/nihei-tsutomu/SKILL.md",
+          "sha256": "ba158b91a9bc1c48be7c842ff6643d9a674411961bac0db7a7bfa140534d4b1b"
+        },
+        {
+          "path": "manga-authors/authors/nihei-tsutomu/drawing.md",
+          "sha256": "8146cd8e74ff78ebae47cdf2cdfe6fd6aff5681778f87810e7cf3c76a1e33294"
+        },
+        {
+          "path": "manga-authors/authors/nihei-tsutomu/prompts.md",
+          "sha256": "2432f4e3a2dc2b5bfb25f6520a3283b2568843212ab7d6433ae5c63dcdfdadbf"
+        },
+        {
+          "path": "manga-authors/authors/nihei-tsutomu/manifest.json",
+          "sha256": "b5e0d0f58d67e628a267803341c279ba60a40a4b9ff7417cd9724a6eda965579"
+        }
+      ]
+    },
+    {
+      "id": "manga-nightow-yasuhiro",
+      "file": "data/effect-sources/manga-nightow-yasuhiro.md",
+      "sha256": "bb6bc7686795d5c005e83adc724dbf4f40eea1c5b375e2cb19e756ddbd89358d",
+      "source": {
+        "name": "内藤泰弘",
+        "path": "manga-authors/authors/nightow-yasuhiro/SKILL.md",
+        "revision": "local-sha256:bb6bc7686795d5c005e83adc724dbf4f40eea1c5b375e2cb19e756ddbd89358d",
+        "url": "/api/effect-sources/manga-nightow-yasuhiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/nightow-yasuhiro/SKILL.md",
+          "sha256": "6356a4738fd1bdf75a80995bbb9688e30eaf42ff6626bb832cc710909d95d373"
+        },
+        {
+          "path": "manga-authors/authors/nightow-yasuhiro/drawing.md",
+          "sha256": "f970cea33b732595e5d985030a16606c76cdfbc7209824fa46c35d44d6c27243"
+        },
+        {
+          "path": "manga-authors/authors/nightow-yasuhiro/prompts.md",
+          "sha256": "dd45dcc346a034908ea47f6c402da04cb51110e9a0a309cc67ed2f883069ab8f"
+        },
+        {
+          "path": "manga-authors/authors/nightow-yasuhiro/manifest.json",
+          "sha256": "d6d26d3766917e2cab2baa4a33e910ce95aa2c179113119043a5f45d5c3e04cc"
+        }
+      ]
+    },
+    {
+      "id": "manga-hayashida-q",
+      "file": "data/effect-sources/manga-hayashida-q.md",
+      "sha256": "225cef4ca878ff623e0843a35e2f29999cb1220d4911def204a8abd2f2c3df64",
+      "source": {
+        "name": "林田球",
+        "path": "manga-authors/authors/hayashida-q/SKILL.md",
+        "revision": "local-sha256:225cef4ca878ff623e0843a35e2f29999cb1220d4911def204a8abd2f2c3df64",
+        "url": "/api/effect-sources/manga-hayashida-q"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/hayashida-q/SKILL.md",
+          "sha256": "ef334044a2a80bcefd1e58704efdf84bac53f6cb7c76ce5d56634ea939aee0c2"
+        },
+        {
+          "path": "manga-authors/authors/hayashida-q/drawing.md",
+          "sha256": "6ec414721e06f9552db5ccf65c364c70f0cec04e38aa993a64c9967a92ec7c6e"
+        },
+        {
+          "path": "manga-authors/authors/hayashida-q/prompts.md",
+          "sha256": "0e14a6420b25434125d682b55f365a33cc94e54554653ad2170d8f83bccbb3a5"
+        },
+        {
+          "path": "manga-authors/authors/hayashida-q/manifest.json",
+          "sha256": "c92aa252a8130faebba3fe468a82511e9b8b7c90167d33f11a994b32b645bab1"
+        }
+      ]
+    },
+    {
+      "id": "manga-ishida-sui",
+      "file": "data/effect-sources/manga-ishida-sui.md",
+      "sha256": "1370b1f1cc0c7acfa88969d95d032360388d835ac1e799c4993915084faf3024",
+      "source": {
+        "name": "石田翠",
+        "path": "manga-authors/authors/ishida-sui/SKILL.md",
+        "revision": "local-sha256:1370b1f1cc0c7acfa88969d95d032360388d835ac1e799c4993915084faf3024",
+        "url": "/api/effect-sources/manga-ishida-sui"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/ishida-sui/SKILL.md",
+          "sha256": "4ab18c7eab48f9b0118da65952d0050662e1a7d65c4af215c90f39aff835624b"
+        },
+        {
+          "path": "manga-authors/authors/ishida-sui/drawing.md",
+          "sha256": "f2afa85a8237b41b6fa70fb67357ad88cf150666cad610a0839ef209f9930bfe"
+        },
+        {
+          "path": "manga-authors/authors/ishida-sui/prompts.md",
+          "sha256": "aed5bf7d41ce7282d5461dccc8b780b74b9462bbc2c033cf452a659d1a5a8e6a"
+        },
+        {
+          "path": "manga-authors/authors/ishida-sui/manifest.json",
+          "sha256": "5b4158b8f686c78f3c619978954793ae2f8c17970184c8121626d7efa1012dd5"
+        }
+      ]
+    },
+    {
+      "id": "manga-asano-inio",
+      "file": "data/effect-sources/manga-asano-inio.md",
+      "sha256": "6d26e19023c3b7669b849461d19fe1f541a8e0418b045a30559f601ad2c14835",
+      "source": {
+        "name": "浅野一二〇",
+        "path": "manga-authors/authors/asano-inio/SKILL.md",
+        "revision": "local-sha256:6d26e19023c3b7669b849461d19fe1f541a8e0418b045a30559f601ad2c14835",
+        "url": "/api/effect-sources/manga-asano-inio"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/asano-inio/SKILL.md",
+          "sha256": "a52d8c1f535ecc4b545b261dbb921248198ad1704becb5c15d8edb8ad735ae87"
+        },
+        {
+          "path": "manga-authors/authors/asano-inio/drawing.md",
+          "sha256": "44882bdcf96c3d3ba9cf9bce78c03dd37fb7fe402666e32ff266381d2d5e9d90"
+        },
+        {
+          "path": "manga-authors/authors/asano-inio/prompts.md",
+          "sha256": "62171567d5c1e321b40feed22fc4dfe821291a300c70c5d01fa5cbc56aac2150"
+        },
+        {
+          "path": "manga-authors/authors/asano-inio/manifest.json",
+          "sha256": "396aeabc8fdd3e4056e29fd7e19c84b2604f5a6d4834a65d877a8aa705adad2b"
+        }
+      ]
+    },
+    {
+      "id": "manga-matsumoto-taiyo",
+      "file": "data/effect-sources/manga-matsumoto-taiyo.md",
+      "sha256": "b198143ff48116a57aaeb793a1371b4c0b15a56d7064527ee4cf0dd2edc7ee92",
+      "source": {
+        "name": "松本大洋",
+        "path": "manga-authors/authors/matsumoto-taiyo/SKILL.md",
+        "revision": "local-sha256:b198143ff48116a57aaeb793a1371b4c0b15a56d7064527ee4cf0dd2edc7ee92",
+        "url": "/api/effect-sources/manga-matsumoto-taiyo"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/matsumoto-taiyo/SKILL.md",
+          "sha256": "cee1d7c07dbb1c63e64b947eac194755a2c9843a4cd4739beedbf4dc1ef53474"
+        },
+        {
+          "path": "manga-authors/authors/matsumoto-taiyo/drawing.md",
+          "sha256": "b29f0082690477875357b3b73b9beece2f9e5e5fdcdab6c93b0671d5a946a8e4"
+        },
+        {
+          "path": "manga-authors/authors/matsumoto-taiyo/prompts.md",
+          "sha256": "4f5af25bc142382bf5605aa299257716773e332dedf397aa663d8adae7e5b887"
+        },
+        {
+          "path": "manga-authors/authors/matsumoto-taiyo/manifest.json",
+          "sha256": "22a4ae7c51ad70358b3e8db71d1d4235d486aa3773bdaa8bb7b9b7e6ad701fba"
+        }
+      ]
+    },
+    {
+      "id": "manga-sakamoto-shinichi",
+      "file": "data/effect-sources/manga-sakamoto-shinichi.md",
+      "sha256": "229ae920fec1a7f7e7891cc7d8df6d59103ba44b7078f7b90f3811f299ef5250",
+      "source": {
+        "name": "坂本真一",
+        "path": "manga-authors/authors/sakamoto-shinichi/SKILL.md",
+        "revision": "local-sha256:229ae920fec1a7f7e7891cc7d8df6d59103ba44b7078f7b90f3811f299ef5250",
+        "url": "/api/effect-sources/manga-sakamoto-shinichi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/sakamoto-shinichi/SKILL.md",
+          "sha256": "cd76e8ac5e44ad8bec58d5fbfdb0a047b4472578511987d08f69bdda7c4cbc5f"
+        },
+        {
+          "path": "manga-authors/authors/sakamoto-shinichi/drawing.md",
+          "sha256": "1b61cb3b68290e35c78a3ef450787d8648a47b633aace71d5f5e2c5ccc370ea8"
+        },
+        {
+          "path": "manga-authors/authors/sakamoto-shinichi/prompts.md",
+          "sha256": "26b7fd8cebda7f010f541c6058cadc45c33099cece2b51631036a2a5518b2830"
+        },
+        {
+          "path": "manga-authors/authors/sakamoto-shinichi/manifest.json",
+          "sha256": "55f8c40a6c91aa74a16f86d01d37529d53faea5c0610e449649cbf7a676bc372"
+        }
+      ]
+    },
+    {
+      "id": "manga-mori-kaoru",
+      "file": "data/effect-sources/manga-mori-kaoru.md",
+      "sha256": "2febd4c74cb56e2db8b913d80a6d771c1e8234ca35b5b69f06b3672bd80c93ca",
+      "source": {
+        "name": "森薰",
+        "path": "manga-authors/authors/mori-kaoru/SKILL.md",
+        "revision": "local-sha256:2febd4c74cb56e2db8b913d80a6d771c1e8234ca35b5b69f06b3672bd80c93ca",
+        "url": "/api/effect-sources/manga-mori-kaoru"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/mori-kaoru/SKILL.md",
+          "sha256": "d2353c0f2c7e015a2bf47cefdcb2246ea6285c53fe6c3a123fca882d68b5be7a"
+        },
+        {
+          "path": "manga-authors/authors/mori-kaoru/drawing.md",
+          "sha256": "1b462d2e4003bee7284c7e3c9f461a3dc75c92142b6357bd82f3852e84f757b3"
+        },
+        {
+          "path": "manga-authors/authors/mori-kaoru/prompts.md",
+          "sha256": "fa4f6a5585dd89d849e13c16b1132d73f8a05e2650e648a888ec2dc4a488a496"
+        },
+        {
+          "path": "manga-authors/authors/mori-kaoru/manifest.json",
+          "sha256": "04d5e6f0d80faf7ba67d79975d5a6a78c1d65713da3e11a54b5117074989d296"
+        }
+      ]
+    },
+    {
+      "id": "manga-kui-ryoko",
+      "file": "data/effect-sources/manga-kui-ryoko.md",
+      "sha256": "91c0bef38f81a9e80936bb10511a69273b07ec2682292b9365c32434c69f4446",
+      "source": {
+        "name": "九井谅子",
+        "path": "manga-authors/authors/kui-ryoko/SKILL.md",
+        "revision": "local-sha256:91c0bef38f81a9e80936bb10511a69273b07ec2682292b9365c32434c69f4446",
+        "url": "/api/effect-sources/manga-kui-ryoko"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/kui-ryoko/SKILL.md",
+          "sha256": "1a47a1cab02952c9084aa5bdc95b241c568885f5600e1e45f8f59d63c497f801"
+        },
+        {
+          "path": "manga-authors/authors/kui-ryoko/drawing.md",
+          "sha256": "b43a5079ea132db79e969c10e27776e3a3ce5ed47bd86ea3b87ce93bbfef2489"
+        },
+        {
+          "path": "manga-authors/authors/kui-ryoko/prompts.md",
+          "sha256": "6964e2ebdd53175b59dc85d7ba060fe29a4d132a8ed4273fba56dd1739baf679"
+        },
+        {
+          "path": "manga-authors/authors/kui-ryoko/manifest.json",
+          "sha256": "c9330d1d8dbc646535294aacd64918fa7ed8bc014d56e10ddc7640ab98b73e37"
+        }
+      ]
+    },
+    {
+      "id": "manga-shirahama-kamome",
+      "file": "data/effect-sources/manga-shirahama-kamome.md",
+      "sha256": "6ed930c6a53dbaf3bfe34ad084d7d04c1a2a08041b014088f11c6eaf2bb8ba1a",
+      "source": {
+        "name": "白滨鸥",
+        "path": "manga-authors/authors/shirahama-kamome/SKILL.md",
+        "revision": "local-sha256:6ed930c6a53dbaf3bfe34ad084d7d04c1a2a08041b014088f11c6eaf2bb8ba1a",
+        "url": "/api/effect-sources/manga-shirahama-kamome"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/shirahama-kamome/SKILL.md",
+          "sha256": "841bc9d73ae1531284ac957cd5d9ea01094d6dc9b0a80e4ff3cc275ff3f04bdc"
+        },
+        {
+          "path": "manga-authors/authors/shirahama-kamome/drawing.md",
+          "sha256": "05cda957f00c9afe064ebdf77bc67897771723cc7885c530be47653587f6f28b"
+        },
+        {
+          "path": "manga-authors/authors/shirahama-kamome/prompts.md",
+          "sha256": "6bcc694dea4929ea82651f69fe2596abf8d58d1c7168b0f5234e88cd038fd941"
+        },
+        {
+          "path": "manga-authors/authors/shirahama-kamome/manifest.json",
+          "sha256": "a8d9783ed22adaf0bb1a0d7b3b1fc288edb2d8eebd3c8ab9e8b07e3354afca68"
+        }
+      ]
+    },
+    {
+      "id": "manga-urushibara-yuki",
+      "file": "data/effect-sources/manga-urushibara-yuki.md",
+      "sha256": "a0e298c1b12a0583c4cf4ea4f7c1b0492af9800d16505ba30b56ad0b5cc47879",
+      "source": {
+        "name": "漆原友纪",
+        "path": "manga-authors/authors/urushibara-yuki/SKILL.md",
+        "revision": "local-sha256:a0e298c1b12a0583c4cf4ea4f7c1b0492af9800d16505ba30b56ad0b5cc47879",
+        "url": "/api/effect-sources/manga-urushibara-yuki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/urushibara-yuki/SKILL.md",
+          "sha256": "9bc5824c34d36a55752bf5d3a38bbf86e29766fc6f2d3a5e48fcb3640c3236a9"
+        },
+        {
+          "path": "manga-authors/authors/urushibara-yuki/drawing.md",
+          "sha256": "f82d3fcbb5afda99954e9f74e663a9711a6690778919444ffea43ab4626e3ad5"
+        },
+        {
+          "path": "manga-authors/authors/urushibara-yuki/prompts.md",
+          "sha256": "ea616bca9e789d823db6f6672cb3acb4ffe90877d461606a291430bf2dc671bc"
+        },
+        {
+          "path": "manga-authors/authors/urushibara-yuki/manifest.json",
+          "sha256": "a56c49a63e86a005b30c187c38c6c332cdd4942141949435ca5362aa6f9f005b"
+        }
+      ]
+    },
+    {
+      "id": "manga-tsukushi-akihito",
+      "file": "data/effect-sources/manga-tsukushi-akihito.md",
+      "sha256": "6a80f9de3bda8a13fb38066367a02e9c707e9af1324bfc405adc8263cf0ed3eb",
+      "source": {
+        "name": "土笔章人",
+        "path": "manga-authors/authors/tsukushi-akihito/SKILL.md",
+        "revision": "local-sha256:6a80f9de3bda8a13fb38066367a02e9c707e9af1324bfc405adc8263cf0ed3eb",
+        "url": "/api/effect-sources/manga-tsukushi-akihito"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/tsukushi-akihito/SKILL.md",
+          "sha256": "b8a525ec6cafff6662788cecc900993f3b20f32ed75d66ee692ed68210e1fcb6"
+        },
+        {
+          "path": "manga-authors/authors/tsukushi-akihito/drawing.md",
+          "sha256": "b3ad14c9262fa6017f0c3aa06dab2346cdb2f720bbcaf74bef8fd820f075b199"
+        },
+        {
+          "path": "manga-authors/authors/tsukushi-akihito/prompts.md",
+          "sha256": "c8d02791d68c5a5ce46b1dbfb25b80704d323a8276a2a2cf72b940647ac71463"
+        },
+        {
+          "path": "manga-authors/authors/tsukushi-akihito/manifest.json",
+          "sha256": "c8dea9ccc5f6bf9ca73a2e2ed114de9a926a69636d9b7adaf58cc9cce3d6c105"
+        }
+      ]
+    },
+    {
+      "id": "manga-yuki-kaori",
+      "file": "data/effect-sources/manga-yuki-kaori.md",
+      "sha256": "9cd76b429b33cabe5db4266c25c822081026f8eaeebad617364a9d3a7d0b81f7",
+      "source": {
+        "name": "由贵香织里",
+        "path": "manga-authors/authors/yuki-kaori/SKILL.md",
+        "revision": "local-sha256:9cd76b429b33cabe5db4266c25c822081026f8eaeebad617364a9d3a7d0b81f7",
+        "url": "/api/effect-sources/manga-yuki-kaori"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yuki-kaori/SKILL.md",
+          "sha256": "6e9c940eba5f82c533849b399067a27550ddafd1b8b6688bc66710a72812f0da"
+        },
+        {
+          "path": "manga-authors/authors/yuki-kaori/drawing.md",
+          "sha256": "d583dd3be611fe778b68111beea18d09515b1e36ab5d55e00ec18842cefd68d5"
+        },
+        {
+          "path": "manga-authors/authors/yuki-kaori/prompts.md",
+          "sha256": "d9d86bff210a47982e0e5e06c722cbf04131768af4512267d498534a673119f9"
+        },
+        {
+          "path": "manga-authors/authors/yuki-kaori/manifest.json",
+          "sha256": "d16e47d10f06912b4798658d361deca396250eaf65604d025ce54c85d9fda09b"
+        }
+      ]
+    },
+    {
+      "id": "manga-hino-matsuri",
+      "file": "data/effect-sources/manga-hino-matsuri.md",
+      "sha256": "3fcaf3d763246aa6e6082755158e6b1e824ec91560b73cbbddc7e4a40242eccd",
+      "source": {
+        "name": "樋野茉理",
+        "path": "manga-authors/authors/hino-matsuri/SKILL.md",
+        "revision": "local-sha256:3fcaf3d763246aa6e6082755158e6b1e824ec91560b73cbbddc7e4a40242eccd",
+        "url": "/api/effect-sources/manga-hino-matsuri"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/hino-matsuri/SKILL.md",
+          "sha256": "7f59538f161cb930d6130ee0e00612932053baf7140f3a53fc3faadc9314588b"
+        },
+        {
+          "path": "manga-authors/authors/hino-matsuri/drawing.md",
+          "sha256": "2b4d1e5aec4af93cd1755d25a58be64d2f65272b016c6ba42ae6cd42345cdf16"
+        },
+        {
+          "path": "manga-authors/authors/hino-matsuri/prompts.md",
+          "sha256": "ee95026b597110a7817e62b2700f19113ad5890c250af79b838141def821939f"
+        },
+        {
+          "path": "manga-authors/authors/hino-matsuri/manifest.json",
+          "sha256": "383336849a4dbb092ac0d2dbd7492a4a146111dff8ac79027272a20aca8f5caa"
+        }
+      ]
+    },
+    {
+      "id": "manga-umino-chica",
+      "file": "data/effect-sources/manga-umino-chica.md",
+      "sha256": "11576368164e8727aa1b9a7c0f48bb10ed65f6df4e024aaf7dc7c16f5246c82a",
+      "source": {
+        "name": "羽海野千花",
+        "path": "manga-authors/authors/umino-chica/SKILL.md",
+        "revision": "local-sha256:11576368164e8727aa1b9a7c0f48bb10ed65f6df4e024aaf7dc7c16f5246c82a",
+        "url": "/api/effect-sources/manga-umino-chica"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/umino-chica/SKILL.md",
+          "sha256": "a39d84ed4dcbea2e2670452aaee87d211060a804a4bd4bfe55a6a2ed80672dab"
+        },
+        {
+          "path": "manga-authors/authors/umino-chica/drawing.md",
+          "sha256": "449b0718b47ed12ca552cb46982cb99fe5bacdfbdd5d42b6e331f0a75d3b478f"
+        },
+        {
+          "path": "manga-authors/authors/umino-chica/prompts.md",
+          "sha256": "894bab37d81cca4de22312dd93db846fdb35e4148c1debc4785d8a527ef7d672"
+        },
+        {
+          "path": "manga-authors/authors/umino-chica/manifest.json",
+          "sha256": "6b1e751b3212d2d5ff60a614d1aff9bf0055b6ef73fda5babef39eec378e2ad3"
+        }
+      ]
+    },
+    {
+      "id": "manga-higashimura-akiko",
+      "file": "data/effect-sources/manga-higashimura-akiko.md",
+      "sha256": "d4429e4f332ca15156d18f9022ec158e76f92fd4a0e58ea4693eea6bea59e152",
+      "source": {
+        "name": "东村明子",
+        "path": "manga-authors/authors/higashimura-akiko/SKILL.md",
+        "revision": "local-sha256:d4429e4f332ca15156d18f9022ec158e76f92fd4a0e58ea4693eea6bea59e152",
+        "url": "/api/effect-sources/manga-higashimura-akiko"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/higashimura-akiko/SKILL.md",
+          "sha256": "f137bb9baf5f18f86dd4453a7c687ff620220f205cd64930f481672add5ad8dc"
+        },
+        {
+          "path": "manga-authors/authors/higashimura-akiko/drawing.md",
+          "sha256": "c771724d205e2876fd6f7789c9ae56a7ead4a55669718aed69664d0704194de2"
+        },
+        {
+          "path": "manga-authors/authors/higashimura-akiko/prompts.md",
+          "sha256": "5092660a691d8c7c463b59d248abd360230dbfa52f3df17b07f7bb78deb9019b"
+        },
+        {
+          "path": "manga-authors/authors/higashimura-akiko/manifest.json",
+          "sha256": "aac449db4d5136131850d64368d43e61aa15a9051805b5f8b925c57ac168a3b1"
+        }
+      ]
+    },
+    {
+      "id": "manga-yoshida-akimi",
+      "file": "data/effect-sources/manga-yoshida-akimi.md",
+      "sha256": "fbc775c22b64391b5e8473d93efb56cceb2c7e29a187f626956ec0f42d01f6e2",
+      "source": {
+        "name": "吉田秋生",
+        "path": "manga-authors/authors/yoshida-akimi/SKILL.md",
+        "revision": "local-sha256:fbc775c22b64391b5e8473d93efb56cceb2c7e29a187f626956ec0f42d01f6e2",
+        "url": "/api/effect-sources/manga-yoshida-akimi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yoshida-akimi/SKILL.md",
+          "sha256": "25c7294ab20fc870921c8a145b1de5dd862d296035e5d262204ae55eaa94360c"
+        },
+        {
+          "path": "manga-authors/authors/yoshida-akimi/drawing.md",
+          "sha256": "be2c711e08da563b99528e96b97fb54ec1e214c9cccce0d6d5bdb9056f860cfe"
+        },
+        {
+          "path": "manga-authors/authors/yoshida-akimi/prompts.md",
+          "sha256": "45b154b180e6fe4ff4cb2a9621eea7644e71dd3594f487d60a5c5d381e224b21"
+        },
+        {
+          "path": "manga-authors/authors/yoshida-akimi/manifest.json",
+          "sha256": "f756cabb6f81ea7e462af0ceb5442218e4e8a0744afa1f89f12a9c8455c11689"
+        }
+      ]
+    },
+    {
+      "id": "manga-yamazaki-mari",
+      "file": "data/effect-sources/manga-yamazaki-mari.md",
+      "sha256": "4eb444a21a9ccf586d3b7a1ffd6c937a0f7e2f91566f3b3fd5a82f05e42feff3",
+      "source": {
+        "name": "山崎麻里",
+        "path": "manga-authors/authors/yamazaki-mari/SKILL.md",
+        "revision": "local-sha256:4eb444a21a9ccf586d3b7a1ffd6c937a0f7e2f91566f3b3fd5a82f05e42feff3",
+        "url": "/api/effect-sources/manga-yamazaki-mari"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yamazaki-mari/SKILL.md",
+          "sha256": "05fc79fd9320ffcbc9f20ebe91958a345b4d2942578157b1f223ea8ae0ab0cfa"
+        },
+        {
+          "path": "manga-authors/authors/yamazaki-mari/drawing.md",
+          "sha256": "3827f7b5d102c5b2da24d4eafb934e9d923ab59a99f6765ff0fc9ed7a3a89985"
+        },
+        {
+          "path": "manga-authors/authors/yamazaki-mari/prompts.md",
+          "sha256": "ae1e294ec7282db9cf85059de3b869676d28e82f966e461112cedefe34aef547"
+        },
+        {
+          "path": "manga-authors/authors/yamazaki-mari/manifest.json",
+          "sha256": "bf42ba14e9d6353b85569dc7ee4bc8812034d75209ec2cfb21bc36405ba5b62c"
+        }
+      ]
+    },
+    {
+      "id": "manga-ninomiya-tomoko",
+      "file": "data/effect-sources/manga-ninomiya-tomoko.md",
+      "sha256": "3b05f3e91feb094c6bc97564a528bd05dd0aa16a911f922ce2816c8392569bca",
+      "source": {
+        "name": "二之宫知子",
+        "path": "manga-authors/authors/ninomiya-tomoko/SKILL.md",
+        "revision": "local-sha256:3b05f3e91feb094c6bc97564a528bd05dd0aa16a911f922ce2816c8392569bca",
+        "url": "/api/effect-sources/manga-ninomiya-tomoko"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/ninomiya-tomoko/SKILL.md",
+          "sha256": "f3fc7957d707ccd35c8d41aaf85b8091dfc2383de6df817f46fabe56a1cb5892"
+        },
+        {
+          "path": "manga-authors/authors/ninomiya-tomoko/drawing.md",
+          "sha256": "7fa77b17c17c140355e14947c5ef3898334dbcf711ad00e448eb36efddc6eb76"
+        },
+        {
+          "path": "manga-authors/authors/ninomiya-tomoko/prompts.md",
+          "sha256": "a9b20fc3f3d8b3ade8eb7cb15d4b6c34f741cc33f6ffa02a13a87b8b38691b24"
+        },
+        {
+          "path": "manga-authors/authors/ninomiya-tomoko/manifest.json",
+          "sha256": "e2635e3b2545c10312b05a7ba502c8b1fffccd2538453f29e1edc1845f340c6e"
+        }
+      ]
+    },
+    {
+      "id": "manga-shiina-karuho",
+      "file": "data/effect-sources/manga-shiina-karuho.md",
+      "sha256": "53cdca7b6cd26b26d1cac2c4332eb9396556e731b14f67cdc9c8bf77fdeb4b5c",
+      "source": {
+        "name": "椎名轻穗",
+        "path": "manga-authors/authors/shiina-karuho/SKILL.md",
+        "revision": "local-sha256:53cdca7b6cd26b26d1cac2c4332eb9396556e731b14f67cdc9c8bf77fdeb4b5c",
+        "url": "/api/effect-sources/manga-shiina-karuho"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/shiina-karuho/SKILL.md",
+          "sha256": "6b45dbf24e3abfcdb28de61c7340141568e43b79be2594d80b78552f54a185ce"
+        },
+        {
+          "path": "manga-authors/authors/shiina-karuho/drawing.md",
+          "sha256": "ae37f15730533b1bc4c83fd42104f6751640a9ea8264619927f196899d396e96"
+        },
+        {
+          "path": "manga-authors/authors/shiina-karuho/prompts.md",
+          "sha256": "7b93e207998a1623f29c7acdae4dcc5b31c94001e1728f2a52ef314592cd1d9c"
+        },
+        {
+          "path": "manga-authors/authors/shiina-karuho/manifest.json",
+          "sha256": "0f2d8eead3a69cd51d5d721ecc7577674948a2bbb82bac41931fdb72f05d90c7"
+        }
+      ]
+    },
+    {
+      "id": "manga-sakisaka-io",
+      "file": "data/effect-sources/manga-sakisaka-io.md",
+      "sha256": "87b08fa1b21d7d7024733baaa98c7048595ccf034a6aa5c6fc699571dbc5f1a0",
+      "source": {
+        "name": "咲坂伊绪",
+        "path": "manga-authors/authors/sakisaka-io/SKILL.md",
+        "revision": "local-sha256:87b08fa1b21d7d7024733baaa98c7048595ccf034a6aa5c6fc699571dbc5f1a0",
+        "url": "/api/effect-sources/manga-sakisaka-io"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/sakisaka-io/SKILL.md",
+          "sha256": "3284a6f1dfee2314f0c064cd3b98d62fbd5413a18f608f6d840193ee9d609907"
+        },
+        {
+          "path": "manga-authors/authors/sakisaka-io/drawing.md",
+          "sha256": "900a36be02ed007551fa3ae9427a803b70bf59b49ba59e5956df25826c5c7f2b"
+        },
+        {
+          "path": "manga-authors/authors/sakisaka-io/prompts.md",
+          "sha256": "7549d093971a4a9ccf1d8fb1b492f779a68da96fb977224633cd65df891bc10e"
+        },
+        {
+          "path": "manga-authors/authors/sakisaka-io/manifest.json",
+          "sha256": "0995010b4f0091750bd8fc74606430e483fe02068fad7d1f1f4ceff21a3e3b97"
+        }
+      ]
+    },
+    {
+      "id": "manga-yamamori-mika",
+      "file": "data/effect-sources/manga-yamamori-mika.md",
+      "sha256": "e9a80f7684910b68a5f3570626e7680465837a319e65b7c0aa83d70f624706e2",
+      "source": {
+        "name": "山森三香",
+        "path": "manga-authors/authors/yamamori-mika/SKILL.md",
+        "revision": "local-sha256:e9a80f7684910b68a5f3570626e7680465837a319e65b7c0aa83d70f624706e2",
+        "url": "/api/effect-sources/manga-yamamori-mika"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yamamori-mika/SKILL.md",
+          "sha256": "e392eea79f81dc471832eb2f1c54e407ddf79aa02c7ab45403859bcc89b92886"
+        },
+        {
+          "path": "manga-authors/authors/yamamori-mika/drawing.md",
+          "sha256": "90d7e39a5d2e2fded719dcd41532f0a6b1ddf8e6ccc29d66c6aa0fb025333098"
+        },
+        {
+          "path": "manga-authors/authors/yamamori-mika/prompts.md",
+          "sha256": "076c80b160966455edcaad8cf5a2160f790a83ad7b69cac55a9c28cc77c77a08"
+        },
+        {
+          "path": "manga-authors/authors/yamamori-mika/manifest.json",
+          "sha256": "e5f513827e2b0254b6767ed7a4a099847684d2afd5a0fafbdfcc2e2182992cdf"
+        }
+      ]
+    },
+    {
+      "id": "manga-anno-moyoco",
+      "file": "data/effect-sources/manga-anno-moyoco.md",
+      "sha256": "efeb6629d4e95bd964d4cca9a6dee28ca6047af00969beaaacfac7bdd05b1aa9",
+      "source": {
+        "name": "安野梦洋子",
+        "path": "manga-authors/authors/anno-moyoco/SKILL.md",
+        "revision": "local-sha256:efeb6629d4e95bd964d4cca9a6dee28ca6047af00969beaaacfac7bdd05b1aa9",
+        "url": "/api/effect-sources/manga-anno-moyoco"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/anno-moyoco/SKILL.md",
+          "sha256": "12e759a95c6cbdf3ef4cf4973c3148c3247e4fe71a72206c4bf400c77af74f8a"
+        },
+        {
+          "path": "manga-authors/authors/anno-moyoco/drawing.md",
+          "sha256": "907ece2261621dc57e940246c6465ee11f45b4e50726530e1f89909710c82d4a"
+        },
+        {
+          "path": "manga-authors/authors/anno-moyoco/prompts.md",
+          "sha256": "210fcf90a31f49f9f982071259489f829212e56d579e63dc21a92807d0c48122"
+        },
+        {
+          "path": "manga-authors/authors/anno-moyoco/manifest.json",
+          "sha256": "6512c20ae1e1d281131b6530b793fb23e814748082519751ac6d92fe606fd034"
+        }
+      ]
+    },
+    {
+      "id": "manga-mochizuki-minetaro",
+      "file": "data/effect-sources/manga-mochizuki-minetaro.md",
+      "sha256": "556616461f16e4d06e818e23f94d25130a8499f37f5e814c1aa06ab8baaa2e33",
+      "source": {
+        "name": "望月峰太郎",
+        "path": "manga-authors/authors/mochizuki-minetaro/SKILL.md",
+        "revision": "local-sha256:556616461f16e4d06e818e23f94d25130a8499f37f5e814c1aa06ab8baaa2e33",
+        "url": "/api/effect-sources/manga-mochizuki-minetaro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/mochizuki-minetaro/SKILL.md",
+          "sha256": "a437d6e0094a5f10bc0549812c5e8c9deabd8b73f7aca19aa089393842cedb20"
+        },
+        {
+          "path": "manga-authors/authors/mochizuki-minetaro/drawing.md",
+          "sha256": "4bd06f024c91bd5f46151bce856d5ee9f5db1ed27a2cc63af837548a1f2d7cbb"
+        },
+        {
+          "path": "manga-authors/authors/mochizuki-minetaro/prompts.md",
+          "sha256": "0e97c47519dec83fe508275767e3d7f8411876634348433a452f267bdeb71092"
+        },
+        {
+          "path": "manga-authors/authors/mochizuki-minetaro/manifest.json",
+          "sha256": "abf3482ec03384e03b94082c2c659ad3090e3373d5fc02ef3314e06c910cc7f0"
+        }
+      ]
+    },
+    {
+      "id": "manga-igarashi-daisuke",
+      "file": "data/effect-sources/manga-igarashi-daisuke.md",
+      "sha256": "2eb2dbbb43623d5f0ab3da3e8de5a07536fb372c0dc4f12dab07e63389ca78d0",
+      "source": {
+        "name": "五十岚大介",
+        "path": "manga-authors/authors/igarashi-daisuke/SKILL.md",
+        "revision": "local-sha256:2eb2dbbb43623d5f0ab3da3e8de5a07536fb372c0dc4f12dab07e63389ca78d0",
+        "url": "/api/effect-sources/manga-igarashi-daisuke"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/igarashi-daisuke/SKILL.md",
+          "sha256": "860d0d1b6fcc188ad56acd357aaca2acbef953e8c949cb0ce14228dcd3eab2eb"
+        },
+        {
+          "path": "manga-authors/authors/igarashi-daisuke/drawing.md",
+          "sha256": "253ad8331d52079e48eef0ca3399ccd3938c63168b42eb08605b3db07595f458"
+        },
+        {
+          "path": "manga-authors/authors/igarashi-daisuke/prompts.md",
+          "sha256": "3cdcc3af10bbce9e8fded4bbf9513d8e2c55806b6481e5a071b751dac1ee0c9c"
+        },
+        {
+          "path": "manga-authors/authors/igarashi-daisuke/manifest.json",
+          "sha256": "20fe77758552d44a2a02bf35b46a400602c01d8fadaaa496d253b75d2f061eb7"
+        }
+      ]
+    },
+    {
+      "id": "manga-azuma-kiyohiko",
+      "file": "data/effect-sources/manga-azuma-kiyohiko.md",
+      "sha256": "601c760cbc0d4bcdab8759bd0b582459fcc156eda803d5956281ed8e2bca2fcf",
+      "source": {
+        "name": "东清彦",
+        "path": "manga-authors/authors/azuma-kiyohiko/SKILL.md",
+        "revision": "local-sha256:601c760cbc0d4bcdab8759bd0b582459fcc156eda803d5956281ed8e2bca2fcf",
+        "url": "/api/effect-sources/manga-azuma-kiyohiko"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/azuma-kiyohiko/SKILL.md",
+          "sha256": "2b0934acba702af7375c8144798192aa0ee835130b40e457d5954b24c6352bbf"
+        },
+        {
+          "path": "manga-authors/authors/azuma-kiyohiko/drawing.md",
+          "sha256": "e84e0c1e04cdb03ad9ad13d0a77047ab98d11b639eb1fce7312f7dc29d7a4152"
+        },
+        {
+          "path": "manga-authors/authors/azuma-kiyohiko/prompts.md",
+          "sha256": "bbfcff7a63b3d2a316a1c8e03871232fe473084d302249083c1b7e0e7b938e2c"
+        },
+        {
+          "path": "manga-authors/authors/azuma-kiyohiko/manifest.json",
+          "sha256": "c471e89d83d8d18b2f86a415e47a1e48beccfffe93551286c25df00738a8181f"
+        }
+      ]
+    },
+    {
+      "id": "manga-oima-yoshitoki",
+      "file": "data/effect-sources/manga-oima-yoshitoki.md",
+      "sha256": "c72e371a808314e87c4a00bf2990b6fe3d5a71f024d4feff1798bc7f79f4eebb",
+      "source": {
+        "name": "大今良时",
+        "path": "manga-authors/authors/oima-yoshitoki/SKILL.md",
+        "revision": "local-sha256:c72e371a808314e87c4a00bf2990b6fe3d5a71f024d4feff1798bc7f79f4eebb",
+        "url": "/api/effect-sources/manga-oima-yoshitoki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/oima-yoshitoki/SKILL.md",
+          "sha256": "adf81591d1c801f53b639c89003b9a4ff952f723adf3f1c3a3e9acb4e5bd1b22"
+        },
+        {
+          "path": "manga-authors/authors/oima-yoshitoki/drawing.md",
+          "sha256": "747aa6f937cfa10634f229a7f9c724307bbff215340f295f873e05931d67af5c"
+        },
+        {
+          "path": "manga-authors/authors/oima-yoshitoki/prompts.md",
+          "sha256": "933d2cb8d137c414e9df65e1d6613ac45c80c6a116a978d9454cf8fb764a2418"
+        },
+        {
+          "path": "manga-authors/authors/oima-yoshitoki/manifest.json",
+          "sha256": "834ce5588d89dc233deb7249e3c177025d4badf48e8926556b2b2daa35f7d264"
+        }
+      ]
+    },
+    {
+      "id": "manga-akasaka-aka",
+      "file": "data/effect-sources/manga-akasaka-aka.md",
+      "sha256": "cd171468a39040b45b9dd3c17ac532cfd11c9116cac7ce32151addf1ce325c9a",
+      "source": {
+        "name": "赤坂明",
+        "path": "manga-authors/authors/akasaka-aka/SKILL.md",
+        "revision": "local-sha256:cd171468a39040b45b9dd3c17ac532cfd11c9116cac7ce32151addf1ce325c9a",
+        "url": "/api/effect-sources/manga-akasaka-aka"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/akasaka-aka/SKILL.md",
+          "sha256": "7f20ebedb043bb1a3fee17f2d280e01bb458c29f5f13d75f07f0507bb48a0c97"
+        },
+        {
+          "path": "manga-authors/authors/akasaka-aka/drawing.md",
+          "sha256": "ad1514fb27bf6341c0f49b23bcb0a79bb205f09a5ef883ff4e15936e6e434ce8"
+        },
+        {
+          "path": "manga-authors/authors/akasaka-aka/prompts.md",
+          "sha256": "a0e3d4bb0aa26b6cb8fc5a5cc62828c1d9fb4c5adf31928087ccb5e660d5130d"
+        },
+        {
+          "path": "manga-authors/authors/akasaka-aka/manifest.json",
+          "sha256": "dd6e5d3b0ec1a1b582daadd41baf0b0dc59ddc2bb9dd84502c1505aeac982034"
+        }
+      ]
+    },
+    {
+      "id": "manga-yokoyari-mengo",
+      "file": "data/effect-sources/manga-yokoyari-mengo.md",
+      "sha256": "b3266152c9f111b3e746b87258f09c04060907eae19c24f5016180f94592845e",
+      "source": {
+        "name": "横枪萌果",
+        "path": "manga-authors/authors/yokoyari-mengo/SKILL.md",
+        "revision": "local-sha256:b3266152c9f111b3e746b87258f09c04060907eae19c24f5016180f94592845e",
+        "url": "/api/effect-sources/manga-yokoyari-mengo"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yokoyari-mengo/SKILL.md",
+          "sha256": "ae1c3d93d1fdfd45479ea43c0ad578f5d7efc690b407e830d5ed897413a9eb96"
+        },
+        {
+          "path": "manga-authors/authors/yokoyari-mengo/drawing.md",
+          "sha256": "50cb2e4362f54b6588f927950dce2ed5d64b4a21a05088fd65b45b301751f5ab"
+        },
+        {
+          "path": "manga-authors/authors/yokoyari-mengo/prompts.md",
+          "sha256": "870b16d6fda94ec3cf01be218812c886fba83e0156d71d4b8f42817c74626761"
+        },
+        {
+          "path": "manga-authors/authors/yokoyari-mengo/manifest.json",
+          "sha256": "1afe3e8850933316b030f69e37bba16959a718924eb9dc0af65804a8e4d534f6"
+        }
+      ]
+    },
+    {
+      "id": "manga-urana-kei",
+      "file": "data/effect-sources/manga-urana-kei.md",
+      "sha256": "6e8c3a85d48fe6b0a7a9184f1e1e52b5596991fb4a33484977ddc6e4b87c5e1e",
+      "source": {
+        "name": "里那圭",
+        "path": "manga-authors/authors/urana-kei/SKILL.md",
+        "revision": "local-sha256:6e8c3a85d48fe6b0a7a9184f1e1e52b5596991fb4a33484977ddc6e4b87c5e1e",
+        "url": "/api/effect-sources/manga-urana-kei"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/urana-kei/SKILL.md",
+          "sha256": "11a19aecf53711875f765b3f2b096d65ee1094e678a24eb893677fc6a7675f6f"
+        },
+        {
+          "path": "manga-authors/authors/urana-kei/drawing.md",
+          "sha256": "7af937d3cc5cd1c86e5e8aebd38a387aae880539eef6592b327795e0d7a9aef9"
+        },
+        {
+          "path": "manga-authors/authors/urana-kei/prompts.md",
+          "sha256": "679e471d012f81b8b616e653689faab7c2b80867362f7da8ddf29f45ad09f5d4"
+        },
+        {
+          "path": "manga-authors/authors/urana-kei/manifest.json",
+          "sha256": "ade83058ec50929a61476f5a67c969f7706ce8237f9331ed34854c941349d5f6"
+        }
+      ]
+    },
+    {
+      "id": "manga-hokazono-takeru",
+      "file": "data/effect-sources/manga-hokazono-takeru.md",
+      "sha256": "9ebb832eff399513943a5f384f089f710d239d20318cb695a1d8df46109a339b",
+      "source": {
+        "name": "外薗健",
+        "path": "manga-authors/authors/hokazono-takeru/SKILL.md",
+        "revision": "local-sha256:9ebb832eff399513943a5f384f089f710d239d20318cb695a1d8df46109a339b",
+        "url": "/api/effect-sources/manga-hokazono-takeru"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/hokazono-takeru/SKILL.md",
+          "sha256": "1c16115ba303262b233ef86fc9a79f8f35f8d3b24b5ec5b704ebdad257a228ef"
+        },
+        {
+          "path": "manga-authors/authors/hokazono-takeru/drawing.md",
+          "sha256": "dc125b1b02ac5d02edfc833fe91745822c2b481ddb5e60030f98cd278f420a18"
+        },
+        {
+          "path": "manga-authors/authors/hokazono-takeru/prompts.md",
+          "sha256": "243ac2e1526ee251929534de100804a97b33057c1d91ac4d003678df0c408ea6"
+        },
+        {
+          "path": "manga-authors/authors/hokazono-takeru/manifest.json",
+          "sha256": "1c1ce1c3a1b2cabdcad8c45637e3a142c0c4a2e367660faf697d75f694d616c2"
+        }
+      ]
+    },
+    {
+      "id": "manga-sano-yuto",
+      "file": "data/effect-sources/manga-sano-yuto.md",
+      "sha256": "a8dd22a0ad3d164c7f45bc729841889462e090cda647e590c9037c8d2669982a",
+      "source": {
+        "name": "佐乃夕斗",
+        "path": "manga-authors/authors/sano-yuto/SKILL.md",
+        "revision": "local-sha256:a8dd22a0ad3d164c7f45bc729841889462e090cda647e590c9037c8d2669982a",
+        "url": "/api/effect-sources/manga-sano-yuto"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/sano-yuto/SKILL.md",
+          "sha256": "83feeb17a9bc298cee1d1c767fe7c4c785082a3acaafbb16c16937bdb9a97f71"
+        },
+        {
+          "path": "manga-authors/authors/sano-yuto/drawing.md",
+          "sha256": "116b0971a132e84f84b9c810731a5eb5dc06a649084d02d5d1875cb27129ef46"
+        },
+        {
+          "path": "manga-authors/authors/sano-yuto/prompts.md",
+          "sha256": "d3f82ac97e0027ac6cc3fa1ce69b888cf9bc66a0d6a5b8241cea004fdf285ea9"
+        },
+        {
+          "path": "manga-authors/authors/sano-yuto/manifest.json",
+          "sha256": "997fdc631bc264a4668b7efe65dad76851f49bb67833a7d92ca096d9f7e2802a"
+        }
+      ]
+    },
+    {
+      "id": "manga-abe-tsukasa",
+      "file": "data/effect-sources/manga-abe-tsukasa.md",
+      "sha256": "a7559f961793b6aceb0cbc0c0bc21d7d7a8d47932dd8299caf96ecc7c66b5b9d",
+      "source": {
+        "name": "アベツカサ",
+        "path": "manga-authors/authors/abe-tsukasa/SKILL.md",
+        "revision": "local-sha256:a7559f961793b6aceb0cbc0c0bc21d7d7a8d47932dd8299caf96ecc7c66b5b9d",
+        "url": "/api/effect-sources/manga-abe-tsukasa"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/abe-tsukasa/SKILL.md",
+          "sha256": "c3a9d891103d428fd0aea05519dc7e12a21f9d87575decdd57cc94c16b354853"
+        },
+        {
+          "path": "manga-authors/authors/abe-tsukasa/drawing.md",
+          "sha256": "813bd96bcc77c83cbb7c82679459967d6bb6ae173e2be8031f6349af7e5dfd99"
+        },
+        {
+          "path": "manga-authors/authors/abe-tsukasa/prompts.md",
+          "sha256": "55c2f0de7694735a43f0e0238f7f8b21074ce0602cf20984e9c6aa1a82219db8"
+        },
+        {
+          "path": "manga-authors/authors/abe-tsukasa/manifest.json",
+          "sha256": "126578809cce1b59fc8cddc733f78e941bcb07a83eb4434ba8bef6ca6f14f0ba"
+        }
+      ]
+    },
+    {
+      "id": "manga-yamamoto-soichiro",
+      "file": "data/effect-sources/manga-yamamoto-soichiro.md",
+      "sha256": "d0d5e1439ff7d7b63a554fbdac3edffc402756074f018cffda4382088066ac1a",
+      "source": {
+        "name": "山本崇一朗",
+        "path": "manga-authors/authors/yamamoto-soichiro/SKILL.md",
+        "revision": "local-sha256:d0d5e1439ff7d7b63a554fbdac3edffc402756074f018cffda4382088066ac1a",
+        "url": "/api/effect-sources/manga-yamamoto-soichiro"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yamamoto-soichiro/SKILL.md",
+          "sha256": "0b33b7208fc400474c98f621ce7322e79c0125c772a8eb8f8ccef6e3f8d006bc"
+        },
+        {
+          "path": "manga-authors/authors/yamamoto-soichiro/drawing.md",
+          "sha256": "43a74644513a08853305a009ecb4d39fc0e4c5b9596e5dbd8350d2b270b08819"
+        },
+        {
+          "path": "manga-authors/authors/yamamoto-soichiro/prompts.md",
+          "sha256": "239651f866f8ed2a15ac67fc485e83b1de0a796adc11f7aea1d99e98601a3bb1"
+        },
+        {
+          "path": "manga-authors/authors/yamamoto-soichiro/manifest.json",
+          "sha256": "e73922932f7a142dda05cd151aaa7a9484907c96c5ce6a8bed6a1265756b3bd3"
+        }
+      ]
+    },
+    {
+      "id": "manga-oda-tomohito",
+      "file": "data/effect-sources/manga-oda-tomohito.md",
+      "sha256": "7c1452ce6da328b14bb8549619f0c9eeff864b476320861b8193d23b74e508c9",
+      "source": {
+        "name": "小田智仁",
+        "path": "manga-authors/authors/oda-tomohito/SKILL.md",
+        "revision": "local-sha256:7c1452ce6da328b14bb8549619f0c9eeff864b476320861b8193d23b74e508c9",
+        "url": "/api/effect-sources/manga-oda-tomohito"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/oda-tomohito/SKILL.md",
+          "sha256": "cd69138192032fdd0ba80d6c83516a07ba19c60216703bd91c2e08dc30d55cdc"
+        },
+        {
+          "path": "manga-authors/authors/oda-tomohito/drawing.md",
+          "sha256": "a1145f2944648714aa1959c0d55860c8fd2cc29d52b0bc9ccda4b661cf8a302d"
+        },
+        {
+          "path": "manga-authors/authors/oda-tomohito/prompts.md",
+          "sha256": "6a674feb1ea58bc124523075c2153de18aacc66ef1c620e5b93aa9db02ff0d61"
+        },
+        {
+          "path": "manga-authors/authors/oda-tomohito/manifest.json",
+          "sha256": "823afb26d399b519713e4edaadfe8c6e5601b9e9647c81e67ffa5a225b6d73ad"
+        }
+      ]
+    },
+    {
+      "id": "manga-sakurai-norio",
+      "file": "data/effect-sources/manga-sakurai-norio.md",
+      "sha256": "a3bd5bf9206d06ba947cd229ddcd9fdf83d643d41182c2eb2313f82bc9d14e53",
+      "source": {
+        "name": "樱井纪雄",
+        "path": "manga-authors/authors/sakurai-norio/SKILL.md",
+        "revision": "local-sha256:a3bd5bf9206d06ba947cd229ddcd9fdf83d643d41182c2eb2313f82bc9d14e53",
+        "url": "/api/effect-sources/manga-sakurai-norio"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/sakurai-norio/SKILL.md",
+          "sha256": "fd617762a60465fadc8e3a70a078c9dbc5879816dedaa45e0715f396a0791246"
+        },
+        {
+          "path": "manga-authors/authors/sakurai-norio/drawing.md",
+          "sha256": "a73fdc47a47137c28a61d50f014046e4bcfff5d5dcb33b1ae7f51f95c7a169fc"
+        },
+        {
+          "path": "manga-authors/authors/sakurai-norio/prompts.md",
+          "sha256": "630e85d795a9918cca497e616980c9b15ec9ae3f1eda690300c44a013e9c1294"
+        },
+        {
+          "path": "manga-authors/authors/sakurai-norio/manifest.json",
+          "sha256": "874009b3cb3b6a16d243b65601f04c563688224a61a5689751cde3568d5fe651"
+        }
+      ]
+    },
+    {
+      "id": "manga-fukuda-shinichi",
+      "file": "data/effect-sources/manga-fukuda-shinichi.md",
+      "sha256": "842645fd5c3be0db316fb4b410afcd9d08345e5d501665f6c2fabb6fbe8182e0",
+      "source": {
+        "name": "福田晋一",
+        "path": "manga-authors/authors/fukuda-shinichi/SKILL.md",
+        "revision": "local-sha256:842645fd5c3be0db316fb4b410afcd9d08345e5d501665f6c2fabb6fbe8182e0",
+        "url": "/api/effect-sources/manga-fukuda-shinichi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/fukuda-shinichi/SKILL.md",
+          "sha256": "5b6630ab85b0c282a7f8136fd921dff053dbb9c2c6f854f117f7f568628d0d83"
+        },
+        {
+          "path": "manga-authors/authors/fukuda-shinichi/drawing.md",
+          "sha256": "58a6a0a3efbae655ddf76106db3f658840ebe212170df36d7328467a4083acb4"
+        },
+        {
+          "path": "manga-authors/authors/fukuda-shinichi/prompts.md",
+          "sha256": "500d239b1cef426935d70a2860535317f88566ccf54dcc2cad21d7702e738e45"
+        },
+        {
+          "path": "manga-authors/authors/fukuda-shinichi/manifest.json",
+          "sha256": "2e8abe8152f9cc496c86520c536b6c9b42fd803d7758b33b4cd66eac0c584dc3"
+        }
+      ]
+    },
+    {
+      "id": "manga-hamaji-aki",
+      "file": "data/effect-sources/manga-hamaji-aki.md",
+      "sha256": "8028d3173e54cd29292f2b83dd3aadf67739a1edee893a62a106980b60ef85f0",
+      "source": {
+        "name": "はまじあき",
+        "path": "manga-authors/authors/hamaji-aki/SKILL.md",
+        "revision": "local-sha256:8028d3173e54cd29292f2b83dd3aadf67739a1edee893a62a106980b60ef85f0",
+        "url": "/api/effect-sources/manga-hamaji-aki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/hamaji-aki/SKILL.md",
+          "sha256": "e77fee514a07afbb18723afc5e1a2d48dac785ae3776b66cd70f605b802993cf"
+        },
+        {
+          "path": "manga-authors/authors/hamaji-aki/drawing.md",
+          "sha256": "b2d378a44b70fad23f85e991c6d61763ed755c556a7af64d7c8f3cb124f3662b"
+        },
+        {
+          "path": "manga-authors/authors/hamaji-aki/prompts.md",
+          "sha256": "4d5cb9b05ac06d3ffacaef7521c8dbe7f113f0f78d9ac2cd34110694c50d6378"
+        },
+        {
+          "path": "manga-authors/authors/hamaji-aki/manifest.json",
+          "sha256": "56399882d17a09de0f4580b62d85f587cc0c0c9af8e0a20dcd91986326f6d944"
+        }
+      ]
+    },
+    {
+      "id": "manga-takeshima-eku",
+      "file": "data/effect-sources/manga-takeshima-eku.md",
+      "sha256": "4ca2cadde44f4629ad53f7ef9b66ac17ee31480f0e1f2a4b0b18b92fb71cc44b",
+      "source": {
+        "name": "竹嶋えく",
+        "path": "manga-authors/authors/takeshima-eku/SKILL.md",
+        "revision": "local-sha256:4ca2cadde44f4629ad53f7ef9b66ac17ee31480f0e1f2a4b0b18b92fb71cc44b",
+        "url": "/api/effect-sources/manga-takeshima-eku"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/takeshima-eku/SKILL.md",
+          "sha256": "74b04ec6f347e2c1575cff5f909d247e518b4e9961873ef985135de353e37a18"
+        },
+        {
+          "path": "manga-authors/authors/takeshima-eku/drawing.md",
+          "sha256": "4a89da99bc730137f6bb3961a9b13df17af0c7edecd87bbc92253d0848c7bfde"
+        },
+        {
+          "path": "manga-authors/authors/takeshima-eku/prompts.md",
+          "sha256": "109fc82053fcd9d5a036e46a712b6410d01cbaa3c8c12419e9ddb68a1183dcb6"
+        },
+        {
+          "path": "manga-authors/authors/takeshima-eku/manifest.json",
+          "sha256": "88329349caf66ca6fbda57f3fe50666bebb8428501152869464a0554439b394b"
+        }
+      ]
+    },
+    {
+      "id": "manga-tamura-yumi",
+      "file": "data/effect-sources/manga-tamura-yumi.md",
+      "sha256": "796100cfc0d45a735a4f8e16a3259751b068497ec44261b31ee1a222e1d6f517",
+      "source": {
+        "name": "田村由美",
+        "path": "manga-authors/authors/tamura-yumi/SKILL.md",
+        "revision": "local-sha256:796100cfc0d45a735a4f8e16a3259751b068497ec44261b31ee1a222e1d6f517",
+        "url": "/api/effect-sources/manga-tamura-yumi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/tamura-yumi/SKILL.md",
+          "sha256": "9275b5e8e919fa571ce1ee2b886a1418a1c97fa461b7b14d055cbc5f444892f3"
+        },
+        {
+          "path": "manga-authors/authors/tamura-yumi/drawing.md",
+          "sha256": "831ab86fa4f4b3f710972b6381ab52e057dfac2c0d4bbd65d4a44a39790091c0"
+        },
+        {
+          "path": "manga-authors/authors/tamura-yumi/prompts.md",
+          "sha256": "4655ec6c8b76b8f1fc92520b1354dd285964d0911d6d1806b9cb715ed87d6b2e"
+        },
+        {
+          "path": "manga-authors/authors/tamura-yumi/manifest.json",
+          "sha256": "a31531ad1458b2e4e8c0346ee44aa5ba352eda7e146ca9f1b9a78536e4f7e061"
+        }
+      ]
+    },
+    {
+      "id": "manga-takamatsu-misaki",
+      "file": "data/effect-sources/manga-takamatsu-misaki.md",
+      "sha256": "4e9fc1c4b78baefca41e13986f153574539c19f0f5fd2df70930b1290aeb5760",
+      "source": {
+        "name": "高松美咲",
+        "path": "manga-authors/authors/takamatsu-misaki/SKILL.md",
+        "revision": "local-sha256:4e9fc1c4b78baefca41e13986f153574539c19f0f5fd2df70930b1290aeb5760",
+        "url": "/api/effect-sources/manga-takamatsu-misaki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/takamatsu-misaki/SKILL.md",
+          "sha256": "85c9efc655aab9b6d139138e662d413088127fa7a5424fcedb8d49b62199cd65"
+        },
+        {
+          "path": "manga-authors/authors/takamatsu-misaki/drawing.md",
+          "sha256": "89034728ffd9e0db117a9534fd0a3226fb204e7caff18523ba22e4aeed475e83"
+        },
+        {
+          "path": "manga-authors/authors/takamatsu-misaki/prompts.md",
+          "sha256": "c7dfe062fe6f2fe09a3fa28a59503323026bffb21b79f2fde31fd43504a746a6"
+        },
+        {
+          "path": "manga-authors/authors/takamatsu-misaki/manifest.json",
+          "sha256": "a521ebf456d58590c53a533a71fd92b3285ad79974c09439ca0c363f95e0b75d"
+        }
+      ]
+    },
+    {
+      "id": "manga-wayama-yama",
+      "file": "data/effect-sources/manga-wayama-yama.md",
+      "sha256": "4aca20375565e6aa9342608829a2926690467a84484d3b554b61ef1b9da51b7a",
+      "source": {
+        "name": "和山やま",
+        "path": "manga-authors/authors/wayama-yama/SKILL.md",
+        "revision": "local-sha256:4aca20375565e6aa9342608829a2926690467a84484d3b554b61ef1b9da51b7a",
+        "url": "/api/effect-sources/manga-wayama-yama"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/wayama-yama/SKILL.md",
+          "sha256": "8445ca86832f388e6d34d014949e6e36cec9222a82e0f6328ae78abded839ae4"
+        },
+        {
+          "path": "manga-authors/authors/wayama-yama/drawing.md",
+          "sha256": "0825dbb94e1a71a277cef9d9ca5106dedd60d1026c46f3d2de18e428e3c33263"
+        },
+        {
+          "path": "manga-authors/authors/wayama-yama/prompts.md",
+          "sha256": "2176e930cb65904a119240e4098964b2b1528c2b278cd46bc0d073727a0d54b9"
+        },
+        {
+          "path": "manga-authors/authors/wayama-yama/manifest.json",
+          "sha256": "bbe6d37f045d2af1f4450928bb99c6eabd2fdfe3e6c476fd30b8f3b4ff1864b4"
+        }
+      ]
+    },
+    {
+      "id": "manga-shindo-masaoki",
+      "file": "data/effect-sources/manga-shindo-masaoki.md",
+      "sha256": "c413b5f56669f86f5cda576757315f5af7fcf6c2dbbf43cfd422931eba39324c",
+      "source": {
+        "name": "真藤雅兴",
+        "path": "manga-authors/authors/shindo-masaoki/SKILL.md",
+        "revision": "local-sha256:c413b5f56669f86f5cda576757315f5af7fcf6c2dbbf43cfd422931eba39324c",
+        "url": "/api/effect-sources/manga-shindo-masaoki"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/shindo-masaoki/SKILL.md",
+          "sha256": "94df0d70ce3fe23b191f0e41881817b15f7f01b5532753b605470a1321fc6bfa"
+        },
+        {
+          "path": "manga-authors/authors/shindo-masaoki/drawing.md",
+          "sha256": "1a270feba8927f149b0b1e453c132bc86b653d123bbae9b889df81082c71fd01"
+        },
+        {
+          "path": "manga-authors/authors/shindo-masaoki/prompts.md",
+          "sha256": "70bba2af77c2e9a663977913a0cdc7d19ed28ae97601afb2eaaf544653739d95"
+        },
+        {
+          "path": "manga-authors/authors/shindo-masaoki/manifest.json",
+          "sha256": "b4207643d86c81bc1c1129d0f56caad680826b35e6da478fa359829fe31c8e77"
+        }
+      ]
+    },
+    {
+      "id": "manga-nii-satoru",
+      "file": "data/effect-sources/manga-nii-satoru.md",
+      "sha256": "0808976655130551dbb08cca9684b9182cecd97b7af46e5a319649e644501864",
+      "source": {
+        "name": "にいさとる",
+        "path": "manga-authors/authors/nii-satoru/SKILL.md",
+        "revision": "local-sha256:0808976655130551dbb08cca9684b9182cecd97b7af46e5a319649e644501864",
+        "url": "/api/effect-sources/manga-nii-satoru"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/nii-satoru/SKILL.md",
+          "sha256": "080fada73d27483fd3e15a72cd239a5f6fc62c6aae9b826f8f6c521cc49ecab6"
+        },
+        {
+          "path": "manga-authors/authors/nii-satoru/drawing.md",
+          "sha256": "785536beaf648efa90b936ca37dc1b46e55581ff1fa19e0fe60b86e7df841d82"
+        },
+        {
+          "path": "manga-authors/authors/nii-satoru/prompts.md",
+          "sha256": "56b10e8b466940203cce7b742fee748a571cd5e8dbc7a7518e9c1b9db965f76c"
+        },
+        {
+          "path": "manga-authors/authors/nii-satoru/manifest.json",
+          "sha256": "2b325725ac18e8b22e6d9d42dbca1efe302e29445d2360074a14fc10efab6dbd"
+        }
+      ]
+    },
+    {
+      "id": "manga-komoto-hajime",
+      "file": "data/effect-sources/manga-komoto-hajime.md",
+      "sha256": "a52d29796ceed089f358c628efa2e76991d53f57e4e12f57fa63a86daaf1998f",
+      "source": {
+        "name": "甲本一",
+        "path": "manga-authors/authors/komoto-hajime/SKILL.md",
+        "revision": "local-sha256:a52d29796ceed089f358c628efa2e76991d53f57e4e12f57fa63a86daaf1998f",
+        "url": "/api/effect-sources/manga-komoto-hajime"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/komoto-hajime/SKILL.md",
+          "sha256": "16f49cded55c0d92314fe784c00ee553332fe722ac993747033d55c5e9353644"
+        },
+        {
+          "path": "manga-authors/authors/komoto-hajime/drawing.md",
+          "sha256": "c3ee9caebdea23082bafe6d3d8956789ab3256270ba2974fd2bff056e6fa0059"
+        },
+        {
+          "path": "manga-authors/authors/komoto-hajime/prompts.md",
+          "sha256": "4c7663e3f6175b3809041f7a0b97aea973e36792a43f3824fd4f753635a5b7b9"
+        },
+        {
+          "path": "manga-authors/authors/komoto-hajime/manifest.json",
+          "sha256": "aa45b02ee58596c47782e9eefb56352e46843d0f81cb94dd96a9fd3371456e52"
+        }
+      ]
+    },
+    {
+      "id": "manga-aimoto-sho",
+      "file": "data/effect-sources/manga-aimoto-sho.md",
+      "sha256": "f39654c6c201519f3afd5d140cc98a1d76c6d0bce8dad91d14774499c2330a19",
+      "source": {
+        "name": "蓝本松",
+        "path": "manga-authors/authors/aimoto-sho/SKILL.md",
+        "revision": "local-sha256:f39654c6c201519f3afd5d140cc98a1d76c6d0bce8dad91d14774499c2330a19",
+        "url": "/api/effect-sources/manga-aimoto-sho"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/aimoto-sho/SKILL.md",
+          "sha256": "d6036cffe19b104cce676884226b91fef48dc1f74f3304b7b693c5a83991a558"
+        },
+        {
+          "path": "manga-authors/authors/aimoto-sho/drawing.md",
+          "sha256": "a3766288f761313a4763292bf4ce8816e5fb8ae596f59288caefc85e226171c6"
+        },
+        {
+          "path": "manga-authors/authors/aimoto-sho/prompts.md",
+          "sha256": "fb6a4f8cec23278ec321e7a257826dcf9af0bf9cc5312fd022dc877b61435682"
+        },
+        {
+          "path": "manga-authors/authors/aimoto-sho/manifest.json",
+          "sha256": "e7dd80671b24380bbd778c789fa535232a5e809b931e66e00758c4cae3b96201"
+        }
+      ]
+    },
+    {
+      "id": "manga-miura-koji",
+      "file": "data/effect-sources/manga-miura-koji.md",
+      "sha256": "c4a12f365895839ed8ceaa830cc8160abe2ea36fa8f09ec5af3a0588f4174eca",
+      "source": {
+        "name": "三浦糀",
+        "path": "manga-authors/authors/miura-koji/SKILL.md",
+        "revision": "local-sha256:c4a12f365895839ed8ceaa830cc8160abe2ea36fa8f09ec5af3a0588f4174eca",
+        "url": "/api/effect-sources/manga-miura-koji"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/miura-koji/SKILL.md",
+          "sha256": "343b3ccf5d707b744d193b6c3e7a9a0fb6cf58083a28eed68cb08409e71f9a21"
+        },
+        {
+          "path": "manga-authors/authors/miura-koji/drawing.md",
+          "sha256": "01d3e123d1a5f53e0f9d0ac2b9a43d22c07729f77a7e2fb8c633b4bdfe2f450f"
+        },
+        {
+          "path": "manga-authors/authors/miura-koji/prompts.md",
+          "sha256": "4f043a711eed5960ea432006e4a2505e31889df1dba914c79689a384f00cad11"
+        },
+        {
+          "path": "manga-authors/authors/miura-koji/manifest.json",
+          "sha256": "9b0cda48f2f188fbe49a00b130a0eb3582fd65201fa806bfb5284a5b71661d71"
+        }
+      ]
+    },
+    {
+      "id": "manga-kantoku",
+      "file": "data/effect-sources/manga-kantoku.md",
+      "sha256": "d5bbed80f741edde54f97f9c5f511c4e949fa4c09fea681607d053dd2aaf40fd",
+      "source": {
+        "name": "カントク",
+        "path": "manga-authors/authors/kantoku/SKILL.md",
+        "revision": "local-sha256:d5bbed80f741edde54f97f9c5f511c4e949fa4c09fea681607d053dd2aaf40fd",
+        "url": "/api/effect-sources/manga-kantoku"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/kantoku/SKILL.md",
+          "sha256": "a55681118dbb1856ff27aef8421d2e88a3e854e9731420eb02de29a05a75fdc2"
+        },
+        {
+          "path": "manga-authors/authors/kantoku/drawing.md",
+          "sha256": "e25885127b8b81013fcd2218248ad69c39940198bd2eedc8e0fca56b4f16d051"
+        },
+        {
+          "path": "manga-authors/authors/kantoku/prompts.md",
+          "sha256": "706453ca0ebeda4f3d753ca7ff0e0f185f6bdfafcc50deb577d5fcb0990a3624"
+        },
+        {
+          "path": "manga-authors/authors/kantoku/manifest.json",
+          "sha256": "1fff81c7e6217d5c4e6bcbf8170468aca0498903d781030a9b7a3a4815d205b5"
+        }
+      ]
+    },
+    {
+      "id": "manga-misaki-kurehito",
+      "file": "data/effect-sources/manga-misaki-kurehito.md",
+      "sha256": "42e19ca9f77f80e05e4d3ce27f6006e5372281223c0f4d9b4903b5376f16942e",
+      "source": {
+        "name": "深崎暮人",
+        "path": "manga-authors/authors/misaki-kurehito/SKILL.md",
+        "revision": "local-sha256:42e19ca9f77f80e05e4d3ce27f6006e5372281223c0f4d9b4903b5376f16942e",
+        "url": "/api/effect-sources/manga-misaki-kurehito"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/misaki-kurehito/SKILL.md",
+          "sha256": "292fb481243d5b5beef3677e762bd8503a001121186e35ca68c7f9ac643d78be"
+        },
+        {
+          "path": "manga-authors/authors/misaki-kurehito/drawing.md",
+          "sha256": "09bcbb5767f588c8d43b39a0b825025df5234797ace6a332f54c434da8be1a44"
+        },
+        {
+          "path": "manga-authors/authors/misaki-kurehito/prompts.md",
+          "sha256": "a824f1a1c54144c67b9a088cc84dcec769d37cb73d5a211551ec02ee6bc00d9b"
+        },
+        {
+          "path": "manga-authors/authors/misaki-kurehito/manifest.json",
+          "sha256": "d6a33f40ac585952e91e887c0930a03ec34d1c4e02076fa9a7fdddac9c3303a8"
+        }
+      ]
+    },
+    {
+      "id": "manga-kuroboshi-kohaku",
+      "file": "data/effect-sources/manga-kuroboshi-kohaku.md",
+      "sha256": "3fc1eb1c4d3e4586e929e8dc4ec2f205643b96e642a52de7288dad708c2ff003",
+      "source": {
+        "name": "黒星紅白",
+        "path": "manga-authors/authors/kuroboshi-kohaku/SKILL.md",
+        "revision": "local-sha256:3fc1eb1c4d3e4586e929e8dc4ec2f205643b96e642a52de7288dad708c2ff003",
+        "url": "/api/effect-sources/manga-kuroboshi-kohaku"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/kuroboshi-kohaku/SKILL.md",
+          "sha256": "c26ecaf4e2e5553a7043630dbf0bf9dd3f9091d7fefdef72d1e92ec59001fc35"
+        },
+        {
+          "path": "manga-authors/authors/kuroboshi-kohaku/drawing.md",
+          "sha256": "fdc3ec86e6ca9c8558e6116fc032df3dff1ab890b94304d66571e15d9bb50f0c"
+        },
+        {
+          "path": "manga-authors/authors/kuroboshi-kohaku/prompts.md",
+          "sha256": "18a14de12efa5542c9a93bd1eba94dea1cc993840471403e547d40e805db82b5"
+        },
+        {
+          "path": "manga-authors/authors/kuroboshi-kohaku/manifest.json",
+          "sha256": "9e2f0fad844aa0d5b51f01396776f704bc57e73fee4d719054aac6a7abb7f211"
+        }
+      ]
+    },
+    {
+      "id": "manga-abec-bunbun",
+      "file": "data/effect-sources/manga-abec-bunbun.md",
+      "sha256": "c6225e37f754e9fa69bc20aa39fce7b110d2d30f6725e3ea6d0ea805ac45eefe",
+      "source": {
+        "name": "abec／BUNBUN",
+        "path": "manga-authors/authors/abec-bunbun/SKILL.md",
+        "revision": "local-sha256:c6225e37f754e9fa69bc20aa39fce7b110d2d30f6725e3ea6d0ea805ac45eefe",
+        "url": "/api/effect-sources/manga-abec-bunbun"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/abec-bunbun/SKILL.md",
+          "sha256": "b298c43994d4203e5181da82838ea3a2e1c5dd6f15980098408da8ad9245e9dd"
+        },
+        {
+          "path": "manga-authors/authors/abec-bunbun/drawing.md",
+          "sha256": "33c1e9ae830bbcb91403c07ec6bb9e478202477d63183f1479ced0d24886d901"
+        },
+        {
+          "path": "manga-authors/authors/abec-bunbun/prompts.md",
+          "sha256": "975e7c36467c5122146dc95b65bc90a6ac945d6e60428e5994956d4ce417f7c7"
+        },
+        {
+          "path": "manga-authors/authors/abec-bunbun/manifest.json",
+          "sha256": "94fe15f80a1509bfb75ef273bed9753c0565018aeb39495d99879bf64bea4169"
+        }
+      ]
+    },
+    {
+      "id": "manga-hiten",
+      "file": "data/effect-sources/manga-hiten.md",
+      "sha256": "d1320d90b33ba0e45bb31fbb5b3c34bc10aee74157559f1089d15aa3bcd54801",
+      "source": {
+        "name": "Hiten",
+        "path": "manga-authors/authors/hiten/SKILL.md",
+        "revision": "local-sha256:d1320d90b33ba0e45bb31fbb5b3c34bc10aee74157559f1089d15aa3bcd54801",
+        "url": "/api/effect-sources/manga-hiten"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/hiten/SKILL.md",
+          "sha256": "da2e3094213e06cad300a666af1c2342b80dd804207e8a9265ce69b839c3a486"
+        },
+        {
+          "path": "manga-authors/authors/hiten/drawing.md",
+          "sha256": "cd8f7f6920a29fb9d9ef69ac12f5cd09f9da056c19fc33b94298aadfbfa26c24"
+        },
+        {
+          "path": "manga-authors/authors/hiten/prompts.md",
+          "sha256": "37daaf034e131110a4e23489f7b809f8f762f573fb55443b9e41b5dffe9fe154"
+        },
+        {
+          "path": "manga-authors/authors/hiten/manifest.json",
+          "sha256": "2803d7e1ce30db4a42caaf3839233143a2b2486e9bbbdb4ec99f5f2b0460fea7"
+        }
+      ]
+    },
+    {
+      "id": "manga-anmi",
+      "file": "data/effect-sources/manga-anmi.md",
+      "sha256": "96e04c1678bd69697e405f33849c18cf4fd2ef0874e06c844920d0ead17a4ab1",
+      "source": {
+        "name": "Anmi",
+        "path": "manga-authors/authors/anmi/SKILL.md",
+        "revision": "local-sha256:96e04c1678bd69697e405f33849c18cf4fd2ef0874e06c844920d0ead17a4ab1",
+        "url": "/api/effect-sources/manga-anmi"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/anmi/SKILL.md",
+          "sha256": "0dcbfa55083596e0e4b9f3b1d9e4b5f7bac16f95ec2c8fb8e27c78903f31e674"
+        },
+        {
+          "path": "manga-authors/authors/anmi/drawing.md",
+          "sha256": "38b9902a609dd05dc49d89914697569121ed59273cbb43acf3e89789f34d2171"
+        },
+        {
+          "path": "manga-authors/authors/anmi/prompts.md",
+          "sha256": "cdda3861886f1b8a1457e241a884ebca262bef8b2d76d5bf92a065a2c3fab343"
+        },
+        {
+          "path": "manga-authors/authors/anmi/manifest.json",
+          "sha256": "428b84f759575409c96f8790e2e6213bc40bfec2c9c97e4a6d956ea72df146ce"
+        }
+      ]
+    },
+    {
+      "id": "manga-shigure-ui",
+      "file": "data/effect-sources/manga-shigure-ui.md",
+      "sha256": "bc48a6ec95af1d3b541bfd494e7b08c65106622f533c75985073cc912b9b5126",
+      "source": {
+        "name": "时雨羽衣（しぐれうい）",
+        "path": "manga-authors/authors/shigure-ui/SKILL.md",
+        "revision": "local-sha256:bc48a6ec95af1d3b541bfd494e7b08c65106622f533c75985073cc912b9b5126",
+        "url": "/api/effect-sources/manga-shigure-ui"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/shigure-ui/SKILL.md",
+          "sha256": "3749d34d8aec17ae88789db61da63572390091ec293b3daef8a0ffc09e5cc466"
+        },
+        {
+          "path": "manga-authors/authors/shigure-ui/drawing.md",
+          "sha256": "361c23f5f7611d28ddccf5da4bd4d458da2c14ceb44a3a8b85b50cd69dfa2224"
+        },
+        {
+          "path": "manga-authors/authors/shigure-ui/prompts.md",
+          "sha256": "e4b7b64be78dac53d89599c242a90f94aac0a44c73bc371ab23cdd9fb328b016"
+        },
+        {
+          "path": "manga-authors/authors/shigure-ui/manifest.json",
+          "sha256": "d88f1f4882bc1388521dcabf551c89181fd950b376ed361312361a82ac6ac8aa"
+        }
+      ]
+    },
+    {
+      "id": "manga-fuzichoco",
+      "file": "data/effect-sources/manga-fuzichoco.md",
+      "sha256": "21a3c6a82f37fd3ce696600e820931b20597900e33c7e9bde5b7ea3d492a1efb",
+      "source": {
+        "name": "藤ちょこ",
+        "path": "manga-authors/authors/fuzichoco/SKILL.md",
+        "revision": "local-sha256:21a3c6a82f37fd3ce696600e820931b20597900e33c7e9bde5b7ea3d492a1efb",
+        "url": "/api/effect-sources/manga-fuzichoco"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/fuzichoco/SKILL.md",
+          "sha256": "184822b395f7fbb407e8102d9a01d145ed92c8ee2be1b117cfc7337d897ba680"
+        },
+        {
+          "path": "manga-authors/authors/fuzichoco/drawing.md",
+          "sha256": "0b0efcda57fcc9c49d2c07db23c192521bed975d0539bc942c1e55d7511f60b1"
+        },
+        {
+          "path": "manga-authors/authors/fuzichoco/prompts.md",
+          "sha256": "522c219ae30de82310f80f052d402c47d26f7d36f70aa13c74634c5d65fd27ac"
+        },
+        {
+          "path": "manga-authors/authors/fuzichoco/manifest.json",
+          "sha256": "327ccb73a844485471609042b09c0063f66a38b4d1fcdcd1067f6fd20f041a1a"
+        }
+      ]
+    },
+    {
+      "id": "manga-fukahire",
+      "file": "data/effect-sources/manga-fukahire.md",
+      "sha256": "9e3f0901cc5670fbeda97790c3d19256921937f929d4aacf57e1fafe80b1cf47",
+      "source": {
+        "name": "フカヒレ",
+        "path": "manga-authors/authors/fukahire/SKILL.md",
+        "revision": "local-sha256:9e3f0901cc5670fbeda97790c3d19256921937f929d4aacf57e1fafe80b1cf47",
+        "url": "/api/effect-sources/manga-fukahire"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/fukahire/SKILL.md",
+          "sha256": "86bb406ac8ac5a93c5ffdf710d11884f8554ec840222b1c31dd5d4de4de41920"
+        },
+        {
+          "path": "manga-authors/authors/fukahire/drawing.md",
+          "sha256": "9d6234e594fd603a5478cb7b6e4ca395bf3c7e24cde7dd2fbc23bd52e7fa1a0d"
+        },
+        {
+          "path": "manga-authors/authors/fukahire/prompts.md",
+          "sha256": "46a6c77d64eb0cae9d144e5d5c6a044cc917866315e366c51e117ca0ae5d9f59"
+        },
+        {
+          "path": "manga-authors/authors/fukahire/manifest.json",
+          "sha256": "f2b0943ecc72d5ae7406774ee980ff33a0bb78d00e3d7d94a5152ac6b28b6f89"
+        }
+      ]
+    },
+    {
+      "id": "manga-daisuke-richard",
+      "file": "data/effect-sources/manga-daisuke-richard.md",
+      "sha256": "f3c9d658c762b3ac2e216a11ba7f7301e565e9c7c5cc6e415737a40d3d5f6d0a",
+      "source": {
+        "name": "ダイスケリチャード",
+        "path": "manga-authors/authors/daisuke-richard/SKILL.md",
+        "revision": "local-sha256:f3c9d658c762b3ac2e216a11ba7f7301e565e9c7c5cc6e415737a40d3d5f6d0a",
+        "url": "/api/effect-sources/manga-daisuke-richard"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/daisuke-richard/SKILL.md",
+          "sha256": "8a19b345fd52d02f369e8f65a98afc5a71a68534b3e9ac1dead9b2053c849c3f"
+        },
+        {
+          "path": "manga-authors/authors/daisuke-richard/drawing.md",
+          "sha256": "b8b41fe57c368db8721ac0f75e29757428b2770661866cfc1e8dc6951bf533da"
+        },
+        {
+          "path": "manga-authors/authors/daisuke-richard/prompts.md",
+          "sha256": "0d0cffb924b71bd4aa818abadad110a4d2f03951fccbc2606a2296afdbde41da"
+        },
+        {
+          "path": "manga-authors/authors/daisuke-richard/manifest.json",
+          "sha256": "3b1a8b94721ba749837a63c1a45930343726a1c8db9a928ca8e9ecf1a156dc9e"
+        }
+      ]
+    },
+    {
+      "id": "manga-yoneyama-mai",
+      "file": "data/effect-sources/manga-yoneyama-mai.md",
+      "sha256": "9c15ef6e4483be10243ea756901ce308a0d415194c6d465f1a90f61421ec4cc9",
+      "source": {
+        "name": "米山舞",
+        "path": "manga-authors/authors/yoneyama-mai/SKILL.md",
+        "revision": "local-sha256:9c15ef6e4483be10243ea756901ce308a0d415194c6d465f1a90f61421ec4cc9",
+        "url": "/api/effect-sources/manga-yoneyama-mai"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/yoneyama-mai/SKILL.md",
+          "sha256": "2ead047a372c4091f280552fc71409f8f8186e68ddec9616b3646501b15ab612"
+        },
+        {
+          "path": "manga-authors/authors/yoneyama-mai/drawing.md",
+          "sha256": "ab6275d6060c80329f85b44f551ee0a8b4157cb5bc1b1baf550bd9b0e1c02d90"
+        },
+        {
+          "path": "manga-authors/authors/yoneyama-mai/prompts.md",
+          "sha256": "fbd97c1311255f64c0094d25542500ac607dd8eb4003115f825dd6a486538cac"
+        },
+        {
+          "path": "manga-authors/authors/yoneyama-mai/manifest.json",
+          "sha256": "a2f468b0158ab99a39d9a6f28beaf35ea733a14d33f36e84ee8688ef3df9d917"
+        }
+      ]
+    },
+    {
+      "id": "manga-lam",
+      "file": "data/effect-sources/manga-lam.md",
+      "sha256": "399978ca820e817a51b26e18e0405a503829f1c36dbae0f3286d8dc69572ea8e",
+      "source": {
+        "name": "LAM",
+        "path": "manga-authors/authors/lam/SKILL.md",
+        "revision": "local-sha256:399978ca820e817a51b26e18e0405a503829f1c36dbae0f3286d8dc69572ea8e",
+        "url": "/api/effect-sources/manga-lam"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/lam/SKILL.md",
+          "sha256": "8059db63c8da2d764261096e335565842d5007120a88bf161cbc950b35ad513e"
+        },
+        {
+          "path": "manga-authors/authors/lam/drawing.md",
+          "sha256": "b0e9acd085442ce4a70d3b9abe67522758b9ce7f0a6334aa6981c8be77fdb296"
+        },
+        {
+          "path": "manga-authors/authors/lam/prompts.md",
+          "sha256": "6ffd60feac075927c9ab62cbb9c22c5197951c6a6d079de5ef3d8a20af78ff3e"
+        },
+        {
+          "path": "manga-authors/authors/lam/manifest.json",
+          "sha256": "cf85503e0261d501e934d8814dc8f91902e11ef191c5003422fc72a5bd9a62d4"
+        }
+      ]
+    },
+    {
+      "id": "manga-mika-pikazo",
+      "file": "data/effect-sources/manga-mika-pikazo.md",
+      "sha256": "bbf118dc08956107793425385f6a5a76e5a42d0db47de4c97ae6e92f3aa60202",
+      "source": {
+        "name": "Mika Pikazo",
+        "path": "manga-authors/authors/mika-pikazo/SKILL.md",
+        "revision": "local-sha256:bbf118dc08956107793425385f6a5a76e5a42d0db47de4c97ae6e92f3aa60202",
+        "url": "/api/effect-sources/manga-mika-pikazo"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/mika-pikazo/SKILL.md",
+          "sha256": "0e25990d1a8d6c1d2e57ee426609ef3e929290cadee07ecba03cbedb5e162e6e"
+        },
+        {
+          "path": "manga-authors/authors/mika-pikazo/drawing.md",
+          "sha256": "0f7f71bb39c558ef9f02046c0db3a981cd6a97f4203f0fa330a9db50c83e7018"
+        },
+        {
+          "path": "manga-authors/authors/mika-pikazo/prompts.md",
+          "sha256": "5afbc94f090d802e552c1b59f36df523e4961f14741791e4a61f639ff83784e8"
+        },
+        {
+          "path": "manga-authors/authors/mika-pikazo/manifest.json",
+          "sha256": "af177f2affe1c8a754aa368192f87d910915076777e568c50ec34a4e9a49a1d4"
+        }
+      ]
+    },
+    {
+      "id": "manga-mochizuki-kei",
+      "file": "data/effect-sources/manga-mochizuki-kei.md",
+      "sha256": "762d8d9d4b0137cc7f0abf2b015bc19da3be5dfbea4da8174b722e8c4418417b",
+      "source": {
+        "name": "望月けい",
+        "path": "manga-authors/authors/mochizuki-kei/SKILL.md",
+        "revision": "local-sha256:762d8d9d4b0137cc7f0abf2b015bc19da3be5dfbea4da8174b722e8c4418417b",
+        "url": "/api/effect-sources/manga-mochizuki-kei"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/mochizuki-kei/SKILL.md",
+          "sha256": "c8a0312c6f7d05da8df30375a0fcf8c35f68ac7a708b89479303240bdfa9bad5"
+        },
+        {
+          "path": "manga-authors/authors/mochizuki-kei/drawing.md",
+          "sha256": "6288b88d8e479313df0c2ecf0867f97a3ab77d1a7fa43f26b93f07b85147de13"
+        },
+        {
+          "path": "manga-authors/authors/mochizuki-kei/prompts.md",
+          "sha256": "88ff4cc791f8f1bb41c77b9728e56a393418c59bc949920a81576bef7495ccfd"
+        },
+        {
+          "path": "manga-authors/authors/mochizuki-kei/manifest.json",
+          "sha256": "edfeb4528f29a0b88f2da23df25fb363b19fb3678c4271f318f4076aff7d7aab"
+        }
+      ]
+    },
+    {
+      "id": "manga-lack",
+      "file": "data/effect-sources/manga-lack.md",
+      "sha256": "889e239db67888684d753d1d1a7b7d509329688531af0e60b5f9ed2e69ac77cc",
+      "source": {
+        "name": "lack",
+        "path": "manga-authors/authors/lack/SKILL.md",
+        "revision": "local-sha256:889e239db67888684d753d1d1a7b7d509329688531af0e60b5f9ed2e69ac77cc",
+        "url": "/api/effect-sources/manga-lack"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/lack/SKILL.md",
+          "sha256": "9a91a323d8742327e44fc4e173a462e2c1194ecbc857e1ed49a136c538f17116"
+        },
+        {
+          "path": "manga-authors/authors/lack/drawing.md",
+          "sha256": "770449e80bd0c75278b22d83c4a927cf52bc4bfd0c68311ef7dd7821f9269d80"
+        },
+        {
+          "path": "manga-authors/authors/lack/prompts.md",
+          "sha256": "df201f9e24a35ccd81602059715bbf621cadb7220aace605babae1a0528ce54d"
+        },
+        {
+          "path": "manga-authors/authors/lack/manifest.json",
+          "sha256": "82c4e31f1e74ee85f15f4da8c5b3fd96ed28305bd183aa3b1a0450610bf9d535"
+        }
+      ]
+    },
+    {
+      "id": "manga-neco",
+      "file": "data/effect-sources/manga-neco.md",
+      "sha256": "2cd04cfea1492a53f02e02ca72eca4e7936fe21727b04a26bbbc5b38167ca399",
+      "source": {
+        "name": "neco",
+        "path": "manga-authors/authors/neco/SKILL.md",
+        "revision": "local-sha256:2cd04cfea1492a53f02e02ca72eca4e7936fe21727b04a26bbbc5b38167ca399",
+        "url": "/api/effect-sources/manga-neco"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/neco/SKILL.md",
+          "sha256": "19ee1bbd051671b9266da8485e6eee22719d21cae253b9a3f5a4de5a57e0cf82"
+        },
+        {
+          "path": "manga-authors/authors/neco/drawing.md",
+          "sha256": "747dbe411ed34f7ddf113b803f51175b2e20fd96da21433b2b4215a7a82a4e69"
+        },
+        {
+          "path": "manga-authors/authors/neco/prompts.md",
+          "sha256": "f7ecb180fd70d1a6219675aad76ee0ee4a4667cced82c143dc15c08b44d7f579"
+        },
+        {
+          "path": "manga-authors/authors/neco/manifest.json",
+          "sha256": "eebaaff83deae5ad2313e2fc459848c40c91ef08cd990f709d78c196c0a673de"
+        }
+      ]
+    },
+    {
+      "id": "manga-redjuice",
+      "file": "data/effect-sources/manga-redjuice.md",
+      "sha256": "416f93bc2cad3bb654d087013be1752864dbd8dec1eadaff9eff419e53cd9505",
+      "source": {
+        "name": "redjuice",
+        "path": "manga-authors/authors/redjuice/SKILL.md",
+        "revision": "local-sha256:416f93bc2cad3bb654d087013be1752864dbd8dec1eadaff9eff419e53cd9505",
+        "url": "/api/effect-sources/manga-redjuice"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/redjuice/SKILL.md",
+          "sha256": "3054ddd3e77f32c446c6b7afc1ec3e76cbfae78546739c7d2c2a669b606d45c2"
+        },
+        {
+          "path": "manga-authors/authors/redjuice/drawing.md",
+          "sha256": "c01d7a01a1d6639e95e237be889ecfb75f6fec07a8691c959fbe10dae78c8977"
+        },
+        {
+          "path": "manga-authors/authors/redjuice/prompts.md",
+          "sha256": "9c9e8c510ce04009ce7949e4459fdb57c4234bde9cd6b52cde7ea0b78a1d2037"
+        },
+        {
+          "path": "manga-authors/authors/redjuice/manifest.json",
+          "sha256": "9c5a3283749bf219f31600faf2ef71b0615491aa2a6e47f43923d3303f5cdc1d"
+        }
+      ]
+    },
+    {
+      "id": "manga-loundraw",
+      "file": "data/effect-sources/manga-loundraw.md",
+      "sha256": "9f3d47031b93a6da1b8326eea3dc337151329c2d3c1d74ecc967ebdb0912e163",
+      "source": {
+        "name": "loundraw",
+        "path": "manga-authors/authors/loundraw/SKILL.md",
+        "revision": "local-sha256:9f3d47031b93a6da1b8326eea3dc337151329c2d3c1d74ecc967ebdb0912e163",
+        "url": "/api/effect-sources/manga-loundraw"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/loundraw/SKILL.md",
+          "sha256": "b2de7083c1ae24a3db2aa28bc171ede799023ebec55018ff78b322bb28332e56"
+        },
+        {
+          "path": "manga-authors/authors/loundraw/drawing.md",
+          "sha256": "754fa1aba2a3c2df3fd8297cb4ea787d8fc387088ba51602fcf4bef81fedfbfa"
+        },
+        {
+          "path": "manga-authors/authors/loundraw/prompts.md",
+          "sha256": "505e5c2fa4a27d5e287d66df07271e4c7520b2a65cc7815b08490a96a2a0b77f"
+        },
+        {
+          "path": "manga-authors/authors/loundraw/manifest.json",
+          "sha256": "5675bea8a5c717e87ab8eb600cc9556b9d347211bf78df478678e4e492fedc46"
+        }
+      ]
+    },
+    {
+      "id": "manga-morikura-en",
+      "file": "data/effect-sources/manga-morikura-en.md",
+      "sha256": "2668ac72a4d51551aa5a413e0143bdf30e9cc442d1815a13ad55e6ecb3f5518f",
+      "source": {
+        "name": "森倉円",
+        "path": "manga-authors/authors/morikura-en/SKILL.md",
+        "revision": "local-sha256:2668ac72a4d51551aa5a413e0143bdf30e9cc442d1815a13ad55e6ecb3f5518f",
+        "url": "/api/effect-sources/manga-morikura-en"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/morikura-en/SKILL.md",
+          "sha256": "6a18a500879ba735890c7f05ce403aeb658c7e2067e7c2332901004046c50b51"
+        },
+        {
+          "path": "manga-authors/authors/morikura-en/drawing.md",
+          "sha256": "fde7c609089bf95180226631e7817111db3bb9faddbba3a04665b47bc1e79399"
+        },
+        {
+          "path": "manga-authors/authors/morikura-en/prompts.md",
+          "sha256": "d91fa50517bd1800079f7994bd9926e11ddafeb5bead97c89e45502c19227dc9"
+        },
+        {
+          "path": "manga-authors/authors/morikura-en/manifest.json",
+          "sha256": "3455cdc7d17c43034474cf98de26c90db1d83aae1a048201aa9101b82ccbee2a"
+        }
+      ]
+    },
+    {
+      "id": "manga-shirabii",
+      "file": "data/effect-sources/manga-shirabii.md",
+      "sha256": "e8264c39e4891fd64278b8e151c8d6ab071252826ef6885749442429fe9b58bc",
+      "source": {
+        "name": "しらび",
+        "path": "manga-authors/authors/shirabii/SKILL.md",
+        "revision": "local-sha256:e8264c39e4891fd64278b8e151c8d6ab071252826ef6885749442429fe9b58bc",
+        "url": "/api/effect-sources/manga-shirabii"
+      },
+      "files": [
+        {
+          "path": "manga-authors/authors/shirabii/SKILL.md",
+          "sha256": "18e16c1aea8f6141dd19aeb36753a7d1ec3e749d772883180c55b776f6d2bc87"
+        },
+        {
+          "path": "manga-authors/authors/shirabii/drawing.md",
+          "sha256": "02682629f5f7eb65b33912ca53c02a96db8110bca3117ccf6119e6d4fe6a3b1b"
+        },
+        {
+          "path": "manga-authors/authors/shirabii/prompts.md",
+          "sha256": "6fdc9f55e96ca2616a05a031f78bdbb8ee1a0e7855f2ec8b9507bc71f0a0edfe"
+        },
+        {
+          "path": "manga-authors/authors/shirabii/manifest.json",
+          "sha256": "f7836c4f57293fb87726d9aaa3ab2c634466a158fd6c532e99e2dce3dc43e100"
+        }
+      ]
+    }
+  ],
+  "mangaAuthors": {
+    "count": 100,
+    "mangaArtists": 80,
+    "illustrators": 20,
+    "file": "data/effect-sources/manga-authors.json",
+    "sha256": "4464ed21d1c0b2350922146a5b3483c37cad127a69b26d4204aa4ce77e1d696a",
+    "source": "human-distillation-lab/manga-authors/authors.json (local working copy)",
+    "imageValidation": "not-run"
+  }
+}

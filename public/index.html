@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人物工坊 · 制造资源与生成图片</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/" aria-label="人物工坊首页"><img src="/favicon.svg" alt="" width="26" height="26">人物工坊</a><nav class="page-tabs" role="tablist" aria-label="工作页面"><button id="tab-resources" role="tab" aria-controls="page-resources" aria-selected="false" tabindex="-1" data-page="resources">制造资源</button><button id="tab-generate" role="tab" aria-controls="page-generate" aria-selected="true" data-page="generate">单张出图</button><button id="tab-batch" role="tab" aria-controls="page-batch" aria-selected="false" tabindex="-1" data-page="batch">批量生产</button><button id="tab-sheets" role="tab" aria-controls="page-sheets" aria-selected="false" tabindex="-1" data-page="sheets">人设资料图</button><button id="tab-history" role="tab" aria-controls="page-history" aria-selected="false" tabindex="-1" data-page="history">已生成图库 <span id="history-count">0</span></button><button id="tab-queue" role="tab" aria-controls="page-queue" aria-selected="false" tabindex="-1" data-page="queue">生产队列 <span id="queue-count">0</span></button><button id="tab-settings" role="tab" aria-controls="page-settings" aria-selected="false" tabindex="-1" data-page="settings">设置</button></nav></header>
+  <div id="notice" class="notice global-notice" role="alert" hidden></div>
+  <div id="page-generate" class="assembly-shell" role="tabpanel" aria-labelledby="tab-generate">
+    <main id="studio-workspace" class="sheet assembly-sheet" data-business="generate">
+      <div class="page-heading assembly-heading"><div><h1 id="generate-title">画面编排</h1><p id="generate-description">选定整体骨架，再配置每个角色的衣服和头像。</p></div><div class="assembly-tools"><label class="field">主体类别<select id="subject-type"><option value="human">人物</option><option value="animal">动物</option></select></label><button type="button" class="text-button jump-output">看预览 ↓</button><button type="button" id="open-library" class="secondary">浏览资源库</button></div></div>
+      <div class="assembly-workbench">
+        <section class="recipe assembly-editor" aria-label="画面配置">
+          <section id="batch-panel" class="setup-section" hidden><div class="section-heading"><h2>批量组合</h2></div>
+            <label class="field">批次名称<input id="batch-name" maxlength="80" placeholder="例如：秋季新品展示"></label>
+            <label class="field">组合方式<select id="batch-mode"><option value="wardrobe">固定骨架和头像，逐件换衣</option><option value="paired">骨架、衣服、头像按顺序配对</option></select></label>
+            <p class="muted">在资源库中点选加入批量清单；再次点选可移除。顺序按选择先后排列，单项可固定复用。画面与风格使用下方设置。</p>
+            <div id="batch-lists"></div><button id="batch-clear" type="button" class="text-button">清空批量清单</button>
+            <p id="batch-summary" role="status"></p><div id="batch-preview" class="batch-preview"></div>
+            <button id="batch-submit" type="button" class="primary" disabled>加入生产队列</button>
+          </section>
+
+          <section class="setup-section skeleton-section" aria-labelledby="skeleton-heading">
+            <div class="section-heading"><h2 id="skeleton-heading">整体骨架</h2><span id="assembly-count" class="scope-note"></span></div>
+            <div id="pose-selection"></div>
+            <div id="prop-editor" class="prop-editor" hidden>
+              <div class="prop-heading"><h3>共享道具</h3><div class="prop-add"><button id="prop-add" type="button" class="secondary">添加道具</button></div></div>
+              <div id="prop-list"></div><p id="prop-help" class="muted" aria-live="polite"></p>
+            </div>
+          </section>
+          <section class="setup-section actor-section" aria-labelledby="recipe-title">
+            <div class="section-heading"><h2 id="recipe-title">角色造型</h2><button id="reset" type="button" class="text-button">重置画面</button></div>
+          <div id="character-tabs" class="character-tabs" aria-label="选择要配置的角色"></div><div class="character-buttons"><button id="add-character" class="secondary" type="button">添加角色 ＋</button><button id="remove-character" class="text-button" type="button" hidden>移除当前角色</button></div>
+
+            <div id="selections" class="role-parts"></div>
+            <div id="face-options" class="face-options"><label class="field">头像表情<select id="character-expression" aria-label="当前角色的头像表情"></select></label><button id="expression-choose" type="button" class="text-button">挑表情</button><button id="face-suite" type="button" class="text-button">制作表情</button></div>
+            <details id="role-details" class="assembly-details"><summary>角色位置与类型</summary>          <div class="character-fields"><label id="character-species-field" class="field" hidden><span id="character-species-label">动物物种</span><input id="character-species" maxlength="80" placeholder="例如：猫、狗、赤狐；同一物种用相同名称"></label><label class="field">骨架与头像类型<select id="character-gender"><option value="reference">依照头像参考</option><option value="male">男性</option><option value="female">女性</option></select></label><label id="character-anatomy-field" class="field" hidden>身体结构设定<textarea id="character-anatomy" rows="3" maxlength="600" aria-describedby="anatomy-help"></textarea><span id="anatomy-help" class="muted">同一种族可有不同结构。填写肢体数量、连接位置与融合部位；与所选资源保持同一版本。</span></label><label class="field">在骨架中的位置<input id="character-position" maxlength="120" placeholder="例如：左侧站立的人物、被抱起的人物"></label></div>
+</details>
+            <p id="character-help" class="muted" role="status"></p>
+          </section>
+          <section class="setup-section scene-section" aria-labelledby="assembly-scene-heading">
+            <div class="section-heading"><h2 id="assembly-scene-heading">场景层</h2><span class="scope-note">整张画面共用</span></div><label class="field background-mode">背景方式<select id="scene-background-mode"><option value="studio">浅灰摄影棚</option><option value="white">纯白背景</option><option value="transparent">无色（透明）</option><option value="image">图片背景</option></select></label><input type="hidden" id="background" value="studio"><div id="scene-selections" class="scene-selections"></div>
+          </section>
+        </section>
+        <div class="assembly-output">
+        <section class="preview" aria-labelledby="preview-title">
+          <div class="section-heading"><h2 id="preview-title">画面预览</h2><button type="button" class="text-button jump-editor">回到配置 ↑</button><button id="zoom-result" class="quiet" disabled>查看大图 ↗</button></div>
+          <div id="preview-stage" class="preview-stage"><img id="stage-backdrop" alt="已选背景预览" hidden><div id="empty-preview"><div id="reference-board" class="reference-strip"></div><h3>从选好的参考开始</h3><p>选中的参考会一起参与生成。<br>成图将在这里出现。</p></div><img id="result-image" alt="生成的人物图片" hidden><div id="working" class="working" hidden><span class="spinner" aria-hidden="true"></span><p id="working-text">正在生成…</p><p class="muted">可以继续浏览图库，已提交的参考不会改变。</p><button id="cancel" class="secondary">停止等待</button></div></div>
+          <div id="result-actions" class="result-actions" hidden><span id="result-caption"></span><button id="relight-result" type="button" class="secondary" title="首次校正会调用一次已设置的出图通道" hidden>校正现场光</button><a id="download" class="secondary" download>下载图片 ↓</a></div>
+          <div class="render-action"><button id="generate-action" class="primary" type="submit" form="generate-form" disabled>生成一张人物图 <span aria-hidden="true">↗</span></button><button id="regenerate" class="secondary" type="submit" form="generate-form" hidden>重新生成一张（消耗额度）</button><p id="generation-help" class="muted">正在检查出图能力…</p></div>
+          <p class="preview-note" id="preview-note">人物比例和服装细节可在成图中核对。</p>
+        </section>
+
+          <section class="output-settings" aria-label="出图设置"><div class="section-heading"><h2>出图设置</h2><span id="connection" class="connection" role="status">正在连接本地服务…</span></div>
+          <form id="generate-form">
+            <input type="hidden" id="output-type" value="image">
+
+            <p id="output-type-help" class="muted">根据骨架、衣服和头像生成单张人物画面。</p>
+            <p class="muted" id="shared-light-note" hidden>现场用光随背景。每个人按自己的位置、朝向和遮挡受光。</p>
+            <p class="muted" id="shadow-preview" aria-live="polite" hidden></p>
+            <label class="field">画面要求<textarea id="prompt" rows="3" maxlength="4000" placeholder="例如：自然微笑，望向窗边的柔光"></textarea></label>
+            <div class="field-pair"><label class="field">画风／视觉类型<select id="style"></select></label></div>
+            <label class="field">蒸馏风格方案<select id="effect"></select></label><p id="effect-detail" class="effect-detail muted"></p>
+            <div class="field-pair"><label class="field">画幅<select id="size"><option value="1024x1536">竖图 2:3</option><option value="1024x1024">方图 1:1</option><option value="1536x1024">横图 3:2</option></select></label><label class="field">画质<select id="quality"><option value="medium">标准</option><option value="high">精细</option><option value="low">快速草图</option></select></label></div>
+            <details id="camera-settings"><summary>机位与景别</summary><div class="field-pair"><label class="field">机位方向<select id="cameraDirection"></select></label><label class="field">俯仰角度<select id="cameraPitch"></select></label></div><label class="field">景别<select id="shotSize"></select></label><p class="muted">左正侧、右斜后等以主体自身的左右为准；绕拍 30° 则从原机位移动。顶拍时从正上方看，部分肢体会彼此遮挡。</p></details>
+            <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+
+          </form>
+
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div id="page-batch" class="assembly-shell" role="tabpanel" aria-labelledby="tab-batch" hidden></div>
+  <div id="page-sheets" class="assembly-shell" role="tabpanel" aria-labelledby="tab-sheets" hidden></div>
+    <dialog id="asset-picker" aria-labelledby="picker-title">
+      <div class="picker-heading"><div><h2 id="picker-title">选择资源</h2><p id="picker-context" class="muted"></p></div><button type="button" id="picker-close" class="secondary">完成</button></div>
+      <div class="picker-body"><aside class="picker-nav" aria-label="参考图库">
+        <label id="picker-root-field" class="field">资源类别<select id="picker-root" aria-label="资源类别"></select></label>
+        <nav id="library-tabs" aria-label="大件与下属小件"></nav>
+      </aside>
+        <section class="library" id="main-catalog" aria-labelledby="library-title">
+          <div class="section-heading"><h2 id="library-title">骨架姿势</h2><button id="upload-button" class="quiet">上传图片 ＋</button><input id="upload-input" type="file" accept="image/png,image/jpeg,image/webp" hidden></div>
+          <div class="filters"><label class="search"><span class="sr-only">搜索参考图</span><input id="search" type="search" placeholder="搜索姿势名称或编号" autocomplete="off"></label><label><span class="sr-only">筛选分类</span><select id="category"><option value="">全部分类</option></select></label></div>
+          <label id="gender-filter" class="field gender-filter" hidden>适用角色<select id="asset-gender"><option value="">全部类型</option><option value="male">男性</option><option value="female">女性</option><option value="unisex">通用</option><option value="unspecified">未分类</option></select></label><p id="character-context" class="muted"></p>
+          <div id="pose-filters" class="pose-filters"><label><span class="sr-only">筛选骨架体系</span><select id="group"><option value="">全部体系</option></select></label><label><span class="sr-only">筛选视角</span><select id="angle"><option value="">全部视角</option></select></label></div>
+          <div class="tag-filter-row"><label class="field">标签筛选<select id="tag-filter" aria-label="标签筛选"><option value="">全部标签</option><option value="untagged">未添加标签</option></select></label><button id="bulk-toggle" type="button" class="secondary" aria-pressed="false">批量选择</button></div>
+          <section id="library-bulk" class="library-bulk" aria-label="资源批量操作" hidden>
+            <p id="bulk-count" role="status"></p><div class="bulk-actions"><button id="bulk-page" type="button" class="secondary">选择本页</button><button id="bulk-all" type="button" class="secondary">全选筛选结果</button><button id="bulk-clear" type="button" class="text-button">清空选择</button></div>
+            <label class="field">编辑标签<input id="tag-input" maxlength="680" placeholder="例如：武侠，白色，商品展示（逗号分隔）" list="tag-suggestions"></label><datalist id="tag-suggestions"></datalist>
+            <div class="bulk-actions"><button id="tags-add" type="button" class="secondary">添加标签</button><button id="tags-remove" type="button" class="secondary">移除标签</button><button id="bulk-to-batch" type="button" class="text-button">用于批量商品展示</button></div><p id="tags-status" class="muted" role="status"></p>
+          </section>
+          <div class="library-meta"><span id="result-count">正在载入图库…</span><button id="clear-filters" class="text-button">清除筛选</button></div>
+          <div id="gallery" class="gallery" aria-live="polite" aria-busy="true"></div>
+          <div class="pager"><button id="previous" class="secondary" disabled>上一页</button><span id="page-label">—</span><button id="next" class="secondary" disabled>下一页</button></div>
+        </section>
+
+        <section id="part-catalog" aria-labelledby="part-catalog-title" hidden>
+          <div class="section-heading"><h2 id="part-catalog-title" tabindex="-1"></h2></div>
+          <p id="part-catalog-help" class="muted"></p><div id="part-choices"></div>
+          <div id="part-upload-tools"><label id="prop-upload-field" class="field">上传到道具款式<select id="prop-upload-kind"></select></label><button id="part-upload" type="button" class="secondary">上传小件参考图</button><input id="part-file" type="file" accept="image/png,image/jpeg,image/webp" hidden><span id="part-upload-status" role="status" class="muted"></span></div>
+          <div id="custom-part"><label class="field">自定义描述<input id="part-description" maxlength="100"></label><button id="part-apply" type="button" class="secondary">使用描述</button></div>
+        </section>
+      </div>
+    </dialog>
+  <main id="page-resources" class="resource-page sheet" role="tabpanel" aria-labelledby="tab-resources" hidden>
+    <div class="page-heading"><div><h1>制造资源</h1><p>从照片拆出骨架、衣服和头像，也可以为已有头像制作表情，或单独制作场景。</p></div><span id="resource-mode-label" class="connection">照片拆解</span></div>
+    <div class="resource-modes make-nav" role="group" aria-label="资源制作方式"><div class="make-group"><span>角色资料</span><div><button type="button" data-resource-mode="extraction" aria-pressed="true">照片拆解</button><button type="button" data-resource-mode="artwork" aria-pressed="false">原画真人化</button><button type="button" data-resource-mode="conversion" aria-pressed="false">单件资源转绘</button></div></div><div class="make-group"><span>头像属性</span><div><button type="button" data-resource-mode="expressions" aria-pressed="false">表情头像组</button></div></div><div class="make-group"><span>场景图层</span><div><button type="button" data-resource-mode="background" aria-pressed="false">背景制作</button><button type="button" data-resource-mode="foreground" aria-pressed="false">前景制作</button></div></div></div>
+    <section id="conversion-panel" class="scene-layout" hidden aria-label="资源写实化">
+      <form id="conversion-form" class="scene-form">
+        <h2>把角色设计转成写实资源</h2><p class="muted">选择库中的头像或衣服，单独制作写实版本。如果手上是完整角色原画，可以直接使用「原画真人化」。</p>
+        <label class="field">转绘资源类型<select id="conversion-kind"><option value="face">头像／头部</option><option value="costume">衣服</option></select></label>
+        <label class="field">搜索原资源<input id="conversion-search" type="search" placeholder="名称、编号、物种或标签"></label>
+        <label class="field">原资源<select id="conversion-source"></select></label><button id="conversion-current" type="button" class="text-button">使用当前角色的对应资源</button>
+        <img id="conversion-reference" class="expression-source" alt="转绘前的原资源" hidden>
+        <label class="field">补充要求（可选）<textarea id="conversion-prompt" rows="3" maxlength="4000" placeholder="例如：保留红色发梢、金色滚边和衣服刺绣"></textarea></label>
+        <p id="conversion-format" class="muted"></p><p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="conversion-start" type="submit" class="primary" disabled>制作写实资源</button><button id="conversion-regenerate" type="submit" class="secondary" hidden>重新制作一张（消耗额度）</button><p class="muted">每次转绘一张。相同原图、要求与出图配置已有结果时直接复用；原资源保持不变。</p>
+      </form>
+      <div class="scene-review"><div class="section-heading"><h2>预览与入库</h2><button id="conversion-history" type="button" class="secondary">查看转绘记录</button></div><p id="conversion-status" role="status" class="extract-status">选择原资源，制作写实版本。</p><button id="conversion-cancel" type="button" class="secondary" hidden>取消排队</button><div class="scene-preview"><p id="conversion-empty" class="muted">写实版本将在这里显示。确认角色特征和服装细节后入库。</p><img id="conversion-result" alt="转绘后的写实资源" hidden></div><div id="conversion-actions" class="scene-actions" hidden><button id="conversion-view" type="button" class="secondary">查看大图</button><a id="conversion-download" class="secondary" download>下载资源</a><label class="field">新资源名称<input id="conversion-title" maxlength="80"></label><button id="conversion-import" type="button" class="primary">审核通过，加入资料库</button><button id="conversion-use" type="button" class="secondary" hidden>用于生成图片</button></div><p id="conversion-import-status" class="muted" role="status"></p></div>
+    </section>
+    <section id="expression-panel" class="scene-layout" hidden aria-label="表情头像制作">
+      <form id="expression-form" class="scene-form">
+        <h2>一张头像，全套表情</h2><p class="muted">固定制作 12 种表情，每张都以原头像为参考，沿用原画风与头部角度。每张单独出图，使用所选通道额度，成功后自动入库并打上表情标签。</p>
+        <label class="field">搜索头像<input id="expression-search" type="search" placeholder="名称、编号、物种或标签"></label>
+        <label class="field">原始头像<select id="expression-face" aria-label="原始头像"></select></label><button id="expression-current" type="button" class="text-button">使用当前角色头像</button>
+        <img id="expression-source" class="expression-source" alt="表情组的原始头像" hidden>
+        <p class="muted">选定头像后自动加载已有表情。默认只补缺少项；对某张不满意，在对应卡片上勾选“重抽此表情”。新图成功后替代该张，失败保留旧版，历史成图仍可查看。</p>
+        <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="expression-start" type="submit" class="primary" disabled>制作全套 12 种表情</button><p id="expression-status" class="muted" role="status"></p>
+      </form>
+      <div><div class="section-heading"><h2>全套表情</h2><button id="expression-refresh" type="button" class="secondary">刷新状态</button></div><p id="expression-summary" class="muted" role="status"></p><div id="expression-results" class="expression-results"></div></div>
+    </section>
+    <div id="extraction-panel">
+    <div class="extraction-layout">
+      <form id="artwork-form" class="extract-form" hidden>
+        <h2>上传一张角色原画</h2>
+        <p class="muted">使用单个角色的动漫立绘或游戏截图。头像保留脸、头发和天然耳形。帽子、发簪、发带等可拆卸头饰归入衣装，分别摆放。全身图能提供更完整的衣装参考。</p>
+        <label class="source-picker"><span>选择角色原画</span><input id="artwork-file" type="file" accept="image/png,image/jpeg,image/webp"><span class="muted">PNG、JPEG、WebP · 最大 20 MB</span></label>
+        <img id="artwork-preview" class="source-preview" alt="本次制作使用的角色原画" hidden>
+        <fieldset class="extract-kinds"><legend>制作内容</legend><div><label class="check-label"><input type="checkbox" name="artwork-kind" value="face" checked>写实头像</label><label class="check-label"><input type="checkbox" name="artwork-kind" value="costume" checked>写实衣装</label></div></fieldset>
+        <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="artwork-start" type="submit" class="primary" disabled>制作写实资源</button>
+        <p id="artwork-help" class="muted">默认制作两张。逐张保存，确认满意的项目后入库。</p>
+      </form>
+      <form id="extract-form" class="extract-form">
+        <h2>1. 上传源图片</h2><label class="field">资源主体类别<select id="extract-subject-type"><option value="human">人物</option><option value="animal">动物</option></select></label><p id="extract-subject-help" class="muted"></p>
+        <label class="source-picker"><span>选择照片或角色设定图</span><input id="source-input" type="file" accept="image/png,image/jpeg,image/webp"><span class="muted">PNG、JPEG、WebP · 最大 20 MB</span></label>
+        <img id="source-preview" class="source-preview" alt="待拆解的源照片" hidden>
+        <label class="field">资源名称<input id="extract-title" maxlength="80" placeholder="例如：白衣武侠 02" required></label>
+        <fieldset id="extract-kinds" class="extract-kinds"><legend>本次制作的资源</legend><div><label class="check-label"><input type="checkbox" name="extract-kind" value="pose" checked>骨架</label><label class="check-label"><input type="checkbox" name="extract-kind" value="costume" checked>衣服</label><label class="check-label"><input type="checkbox" name="extract-kind" value="face" checked><span id="extract-face-label">头像</span></label><label class="check-label" hidden><input type="checkbox" name="extract-kind" value="surface"><span id="extract-surface-label">体表（皮毛／羽毛／鳞片）</span></label></div><p id="extract-kinds-help" class="muted">只制作勾选的项目。多人照片按角色分别制作衣服和头像，骨架为一张整体图。</p></fieldset>
+        <label class="field">照片中的主体数量<select id="extract-person-count"><option value="1">1 人</option><option value="2">2 人</option><option value="3">3 人</option><option value="4">4 人</option><option value="5">5 人</option><option value="6">6 人</option></select></label>
+        <div id="extract-subjects" class="extract-subjects"></div>
+        <label class="field">补充要求<textarea id="extract-prompt" rows="2" maxlength="4000" placeholder="例如：保留衣装刺绣和头饰的花纹细节"></textarea></label>
+        <label class="check-label"><input id="infer-hidden" type="checkbox" checked>合理补全被遮挡的肢体</label>
+        <p id="extract-pose-help" class="muted">骨架沿用现有图库的画法。遮挡部位只能根据照片推测，结果需要你审核。</p>
+        <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="extract-start" class="primary" type="submit" disabled>拆解为三项资源 <span aria-hidden="true">↗</span></button>
+        <p id="extract-help" class="muted">依次生成 3 张图片，消耗所选通道的额度。完成一张就保存一张。</p>
+      </form>
+      <section class="extraction-review" aria-labelledby="extraction-heading">
+        <div class="section-heading"><h2 id="extraction-heading">2. 预览与审核</h2><span id="extraction-count" class="muted">0 / 3 已完成</span></div>
+        <p id="extract-status" class="extract-status" role="status">上传一张照片，开始制造你的第一组资源。</p>
+        <div class="extraction-actions"><button id="extract-cancel" class="secondary" type="button" hidden>停止等待</button><button id="extract-resume" class="secondary" type="button" hidden>继续拆解未完成资源</button></div>
+        <div id="extraction-results" class="extraction-results"></div>
+        <div id="import-controls" class="import-controls" hidden><label class="field">入库名称<input id="import-title" maxlength="80"></label><label class="field"><span>未指定类型的头像归类</span><select id="import-gender"><option value="unspecified">未分类</option><option value="male">男性</option><option value="female">女性</option><option value="unisex">通用</option></select></label><label class="field">服装归类（独立于人物）<select id="import-costume-gender"><option value="unisex">通用</option><option value="male">男装</option><option value="female">女装</option><option value="unspecified">未分类</option></select></label><button id="import-resources" class="primary" type="button">审核通过，加入资料库</button><button id="use-resources" class="secondary" type="button" hidden>用这组资源生成图片 ↗</button><p id="import-status" class="muted" role="status">勾选认可的资源后入库，不会再次出图。</p></div>
+      </section>
+    </div>
+    <section class="extraction-history"><div class="section-heading"><h2 id="extract-records-heading">拆解记录</h2><button id="extract-refresh" class="secondary">刷新记录</button></div><p class="muted">源照片与已完成的资源都保存在项目内。中途停止后，可继续生成剩余资源。</p><div id="extraction-history-list"></div></section>
+    </div>
+    <section id="scene-panel" class="scene-layout" hidden aria-label="背景与前景制作">
+      <form id="scene-form" class="scene-form">
+        <label class="field">资源名称<input id="scene-title" maxlength="80" required placeholder="例如：雨后街道、近景花枝"></label>
+        <label class="field">文字描述<textarea id="scene-prompt" rows="4" maxlength="4000" placeholder="描述环境或近景物件、色彩、光线和构图"></textarea></label>
+        <div id="scene-light-field"><label class="field">背景主光<select id="scene-light"></select></label><p class="muted">方向以背景原图为准。入库后，选用这张背景的主体会沿用现场光。</p></div>
+        <label class="source-picker"><span>参考图片（可选）</span><input id="scene-source" type="file" accept="image/png,image/jpeg,image/webp"><span class="muted">文字、图片任选一种，也可一起使用 · 最大 20 MB</span></label>
+        <div id="scene-source-wrap" hidden><img id="scene-source-preview" class="source-preview" alt="场景参考图片"><button id="scene-source-clear" type="button" class="text-button">移除参考图片</button></div>
+        <div class="field-pair"><label class="field">画风／视觉类型<select id="scene-style"></select></label><label class="field">资源画幅<select id="scene-size"><option value="1536x1024">横图 3:2</option><option value="1024x1024">方图 1:1</option><option value="1024x1536">竖图 2:3</option></select></label></div>
+        <label class="field">蒸馏风格方案<select id="scene-effect"></select></label><p id="scene-effect-detail" class="effect-detail muted"></p>
+        <div class="field-pair"><label class="field">资源画质<select id="scene-quality"><option value="medium">标准</option><option value="high">精细</option><option value="low">快速草图</option></select></label></div>
+        <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <p id="scene-format" class="muted"></p><button id="scene-start" type="submit" class="primary" disabled>生成背景资源</button><button id="scene-regenerate" type="submit" class="secondary" hidden>重新制作一张（消耗额度）</button><p id="scene-help" class="muted"></p>
+      </form>
+      <div class="scene-review"><div class="section-heading"><h2>预览与入库</h2><button id="scene-history" type="button" class="secondary">查看制作记录</button></div><p id="scene-status" class="extract-status" role="status">填写描述或上传参考图片，开始制作。</p><button id="scene-cancel" type="button" class="secondary" hidden>停止等待</button><div class="scene-preview"><p id="scene-empty" class="muted">背景和前景将在这里显示。</p><img id="scene-result" alt="制作的场景资源" hidden></div><p id="scene-caption" class="muted"></p><div id="scene-actions" class="scene-actions" hidden><button id="scene-view" type="button" class="secondary">查看资源大图</button><a id="scene-download" class="secondary" download>下载资源</a><button id="scene-import" type="button" class="primary">审核通过，加入资料库</button><button id="scene-use" type="button" class="secondary" hidden>用于生成图片</button></div><p id="scene-import-status" class="muted"></p></div>
+    </section>
+  </main>
+  <main id="page-history" class="sheet history-page" role="tabpanel" aria-labelledby="tab-history" hidden>
+      <section id="generated-library" class="generated-library" aria-labelledby="history-title">
+        <div class="section-heading"><h1 id="history-title">已生成图库</h1><button id="history-refresh" class="secondary">刷新图库</button></div><p class="muted">人物、动物和场景分别归类，可按成图类型、画风和风格方案查询。查看、下载和复用设置不会重新出图。</p>
+        <div class="history-filters">
+          <label class="field history-search">搜索成图<input id="history-search" type="search" placeholder="标题、提示词、参考名称或任务编号"></label>
+          <label class="field">主体类别<select id="history-subject"><option value="">全部类别</option><option value="human">人物</option><option value="animal">动物</option><option value="scene">场景</option></select></label>
+          <label class="field">生成类型<select id="history-type"><option value="">全部类型</option><option value="image">单张图片</option><option value="character-sheet">角色资料图</option><option value="expression">表情头像</option><option value="resource-conversion">资源写实化</option><option value="scene-relight">现场光校正</option><option value="background">背景资源</option><option value="foreground">前景资源</option></select></label>
+          <label class="field">画风／视觉类型<select id="history-style"></select></label>
+          <label class="field">蒸馏风格方案<select id="history-effect"><option value="">全部效果</option></select></label>
+          <label class="field">主体数量<select id="history-people"><option value="">全部数量</option><option value="0">无人场景</option><option value="1">单主体</option><option value="2">双主体</option><option value="multi">多主体（3 个以上）</option></select></label>
+          <label class="field">通道<select id="history-provider"><option value="">全部通道</option><option value="quota">GPT 额度</option><option value="api">图像 API Key</option><option value="comfyui">外部 ComfyUI</option><option value="imported">已存样稿</option></select></label>
+          <label class="field">开始日期<input id="history-from" type="date"></label><label class="field">结束日期<input id="history-to" type="date"></label>
+          <label class="field">画幅<select id="history-size"><option value="">全部画幅</option><option value="portrait">竖图</option><option value="square">方图</option><option value="landscape">横图</option></select></label>
+          <label class="field">机位方向<select id="history-cameraDirection"><option value="">全部机位</option></select></label>
+          <label class="field">俯仰角度<select id="history-cameraPitch"><option value="">全部俯仰角度</option></select></label>
+          <label class="field">景别<select id="history-shotSize"><option value="">全部景别</option></select></label>
+          <label class="field">任务状态<select id="history-filter"><option value="completed">已保存成图</option><option value="all">全部任务</option><option value="running">生成中</option><option value="queued">准备中</option><option value="failed">生成失败</option><option value="interrupted">已中断</option><option value="cancelled">已停止</option></select></label>
+        </div>
+        <div class="library-meta"><span id="history-matches" role="status"></span><button id="history-clear" class="text-button">清除查询</button></div><div id="history-list"></div>
+      </section>
+  </main>
+  <main id="page-queue" class="sheet management-page" role="tabpanel" aria-labelledby="tab-queue" hidden>
+    <div class="page-heading"><div><h1>生产队列</h1><p>按提交顺序逐项制作。等待中的任务可以取消，离开页面不影响生产。</p></div><button id="queue-refresh" class="secondary">刷新队列</button></div>
+    <label class="field">筛选批次<input id="queue-search" type="search" placeholder="批次名称或任务编号"></label>
+    <h2>正在制作</h2><div id="queue-running"></div><h2>等待制作 <span id="queue-waiting-count">0</span></h2><div id="queue-waiting"></div>
+    <h2>最近完成与停止</h2><div id="queue-recent"></div>
+  </main>
+  <main id="page-settings" class="sheet management-page" role="tabpanel" aria-labelledby="tab-settings" hidden>
+    <div class="page-heading"><div><h1>出图设置</h1><p>图片、批量生产和资源制作共用此设置。已入队任务保留提交时的设置。</p></div></div>
+    <form id="settings-form" class="settings-form">
+      <label class="field">默认出图通道<select id="settings-provider"><option value="quota">GPT 额度</option><option value="api">图像 API Key</option><option value="comfyui">外部 ComfyUI</option></select></label>
+      <p class="muted">选择默认出图服务，所有新任务统一使用此配置。</p>
+      <div id="settings-image-api"><label class="field">API 模型<input id="settings-model" value="gpt-image-2" maxlength="100"></label>
+      <label class="field">API 地址<input id="settings-base" type="url" value="https://api.openai.com/v1" required></label>
+      <label class="field">API Key<input id="settings-key" type="password" autocomplete="new-password" maxlength="4096" placeholder="输入后保存；已保存时留空保持不变"></label>
+      <p id="settings-key-status" class="muted"></p><label class="check-label"><input id="settings-clear-key" type="checkbox">删除已保存的 Key（需切换其他出图通道）</label>
+      <p class="muted">Key 仅保存在服务端。更换 API 地址需要重新输入 Key。</p></div>
+      <fieldset id="settings-comfy" class="provider-config" hidden><legend>外部 ComfyUI</legend>
+        <label class="field">ComfyUI 地址<input id="comfy-url" type="url" placeholder="http://192.168.1.10:8188"></label>
+        <label class="field">鉴权方式<select id="comfy-auth"><option value="bearer">Authorization: Bearer</option><option value="x-api-key">X-API-Key</option></select></label>
+        <label class="field">ComfyUI Token（无鉴权可留空）<input id="comfy-token" type="password" autocomplete="new-password" maxlength="4096" placeholder="留空保持已保存的 Token"></label>
+        <p id="comfy-token-status" class="muted"></p><label class="check-label"><input id="comfy-clear-token" type="checkbox">删除 ComfyUI Token</label>
+        <label class="field">工作流配置（JSON）<textarea id="comfy-workflows" rows="10" spellcheck="false" placeholder='{"3":{"workflow":{…},"outputNode":"9"}}'></textarea></label>
+        <label class="field">导入工作流配置文件<input id="comfy-file" type="file" accept="application/json,.json"></label>
+        <p class="muted">从 ComfyUI 导出 API 格式工作流，按参考图数量分组。0 是纯文字场景，1 是单张源图，2 可用于人物骨架拆解，3 可用于单人合成。每组指定保存图片的 outputNode。</p>
+        <p class="muted">用 {{prompt}} 注入完整提示词，{{image1}}、{{image2}}… 按顺序接收所有参考图；{{width}}、{{height}}、{{seed}} 注入画幅和种子。未配置对应数量时会停止提交。<a href="/comfy-workflows.example.json" download>下载纯文字工作流示例</a></p>
+        <button id="comfy-check" type="button" class="secondary">检测已保存的连接</button><p id="comfy-check-status" role="status"></p>
+      </fieldset>
+      <button class="primary" type="submit">保存设置</button><p id="settings-status" role="status"></p>
+    </form>
+    <section class="mcp-info"><h2>其他 agent 调用 · MCP</h2><p>使用项目内的 <code>mcp.mjs</code> 启动 stdio MCP 服务。支持查询资源、提交图片与拆解、批量入队、查询进度、取消等待任务和审核入库。</p><p>所有调用沿用这里保存的通道；接入配置见项目 README。人物工坊服务需要保持运行。</p><pre id="mcp-config"></pre></section>
+  </main>
+  <dialog id="image-dialog"><div class="dialog-head"><h2 id="image-title">图片预览</h2><button id="image-close" class="secondary">关闭</button></div><img id="large-image" alt="参考图片大图"></dialog>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
