@@ -19,6 +19,7 @@ export function batchRequests(input) {
     const role={...base.characters[0],costume:row.costume,face:row.face,gender:'reference',position:''};
     if(row.face!==base.characters[0].face){
       delete role.expressionAssetId;
+      delete role.hairFaceId;
       if(role.attachments){role.attachments={...role.attachments};for(const key of Object.keys(ROLE_DETAILS.face))delete role.attachments[key];}
       if(role.partImages){role.partImages={...role.partImages};for(const key of Object.keys(ROLE_DETAILS.face))delete role.partImages[key];}
     }

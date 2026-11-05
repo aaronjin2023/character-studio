@@ -9,7 +9,7 @@ export const subjectTypeFor = item => SCENE_KINDS.includes(item?.outputType) || 
 export const subjectFor = item => SUBJECT_TYPES[subjectTypeFor(item)];
 export const resourceKindsFor = item => subjectFor(item)?.kinds || [];
 export const resourceName = (kind, item) => subjectFor(item)?.names[kind] || ({ background: '背景', foreground: '前景' }[kind]) || kind;
-export const subjectLabel = item => subjectFor(item)?.label || '场景';
+export const subjectLabel = item => subjectTypeFor(item)==='picture'?'整张图片':subjectFor(item)?.label || '场景';
 export const isFantasy = item => !!subjectFor(item)?.fantasy;
 export const resourceMatchesSubject = (kind, item, type) => SCENE_KINDS.includes(kind) || subjectTypeFor(item) === type || (kind === 'costume' && ['human', 'fantasy-humanoid'].includes(type) && ['human', 'fantasy-humanoid'].includes(subjectTypeFor(item)));
 export function validateSubjectType(value = 'human') {

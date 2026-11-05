@@ -6,8 +6,34 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="/" aria-label="人物工坊首页"><img src="/favicon.svg" alt="" width="26" height="26">人物工坊</a><nav class="page-tabs" role="tablist" aria-label="工作页面"><button id="tab-resources" role="tab" aria-controls="page-resources" aria-selected="false" tabindex="-1" data-page="resources">制造资源</button><button id="tab-generate" role="tab" aria-controls="page-generate" aria-selected="true" data-page="generate">单张出图</button><button id="tab-batch" role="tab" aria-controls="page-batch" aria-selected="false" tabindex="-1" data-page="batch">批量生产</button><button id="tab-sheets" role="tab" aria-controls="page-sheets" aria-selected="false" tabindex="-1" data-page="sheets">人设资料图</button><button id="tab-history" role="tab" aria-controls="page-history" aria-selected="false" tabindex="-1" data-page="history">已生成图库 <span id="history-count">0</span></button><button id="tab-queue" role="tab" aria-controls="page-queue" aria-selected="false" tabindex="-1" data-page="queue">生产队列 <span id="queue-count">0</span></button><button id="tab-settings" role="tab" aria-controls="page-settings" aria-selected="false" tabindex="-1" data-page="settings">设置</button></nav></header>
+  <header class="topbar"><a class="brand" href="/" aria-label="人物工坊首页"><img src="/favicon.svg" alt="" width="26" height="26">人物工坊</a><nav class="page-tabs" role="tablist" aria-label="工作页面"><button id="tab-resources" role="tab" aria-controls="page-resources" aria-selected="false" tabindex="-1" data-page="resources">制造资源</button><button id="tab-generate" role="tab" aria-controls="page-generate" aria-selected="true" data-page="generate">单张出图</button><button id="tab-style-transfer" role="tab" aria-controls="page-style-transfer" aria-selected="false" tabindex="-1" data-page="style-transfer">照片转风格</button><button id="tab-batch" role="tab" aria-controls="page-batch" aria-selected="false" tabindex="-1" data-page="batch">批量生产</button><button id="tab-sheets" role="tab" aria-controls="page-sheets" aria-selected="false" tabindex="-1" data-page="sheets">人设资料图</button><button id="tab-history" role="tab" aria-controls="page-history" aria-selected="false" tabindex="-1" data-page="history">已生成图库 <span id="history-count">0</span></button><button id="tab-queue" role="tab" aria-controls="page-queue" aria-selected="false" tabindex="-1" data-page="queue">生产队列 <span id="queue-count">0</span></button><button id="tab-settings" role="tab" aria-controls="page-settings" aria-selected="false" tabindex="-1" data-page="settings">设置</button></nav></header>
   <div id="notice" class="notice global-notice" role="alert" hidden></div>
+  <section id="page-style-transfer" class="resource-page" role="tabpanel" aria-labelledby="tab-style-transfer" hidden>
+    <div class="page-heading"><div><h1>照片转风格</h1><p>上传完整照片，让人物、物件与环境一起转成目标画风。</p></div></div>
+    <div class="scene-layout">
+      <form id="transfer-form" class="scene-form">
+        <label class="field">原始照片<input id="transfer-upload" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <p class="muted">支持人物、动物、物品和风景，无需先拆解资源。</p>
+        <div class="scene-preview"><p id="transfer-source-empty" class="muted">上传后在这里查看原图</p><img id="transfer-source" alt="原始照片" hidden></div>
+        <label class="field">画风／视觉类型<select id="transfer-style"></select></label>
+        <label class="field">蒸馏风格方案<select id="transfer-effect"></select></label>
+        <p id="transfer-effect-detail" class="effect-detail muted"></p>
+        <div class="field-pair"><label class="field">输出画幅<select id="transfer-size"><option value="1024x1536">竖图 2:3</option><option value="1024x1024">方图 1:1</option><option value="1536x1024">横图 3:2</option></select></label><label class="field">画质<select id="transfer-quality"><option value="medium">标准</option><option value="high">精细</option><option value="low">草稿</option></select></label></div>
+        <label class="field">补充要求（可选）<textarea id="transfer-prompt" rows="3" maxlength="4000" placeholder="无需填写提示词，也可以补充色调或笔触要求"></textarea></label>
+        <p class="muted">保留原图的主体、动作与构图关系。请选择接近原图的画幅；比例不同时会合理延展边缘。</p>
+        <p id="transfer-channel" class="muted"></p>
+        <button id="transfer-start" class="primary" type="submit" disabled>生成风格图片</button>
+        <button id="transfer-regenerate" class="secondary" type="submit" hidden>重新生成一张（消耗额度）</button>
+        <button id="transfer-recover" class="secondary" type="button" hidden>恢复上次提交（同一请求）</button>
+        <p id="transfer-error" role="alert" class="history-error"></p>
+      </form>
+      <section class="scene-review" aria-label="转绘结果"><div class="section-heading"><h2>转绘结果</h2><button id="transfer-history" class="text-button" type="button">查看转绘图库</button></div>
+        <div class="scene-preview"><p id="transfer-empty" class="muted">成图将在这里出现，原照片会保留。</p><img id="transfer-result" alt="照片转风格的生成结果" hidden></div>
+        <p id="transfer-progress" role="status"></p><button id="transfer-cancel" class="secondary" type="button" hidden>取消等待</button>
+        <div id="transfer-actions" class="scene-actions" hidden><button id="transfer-zoom" class="secondary" type="button">查看大图</button><a id="transfer-download" class="secondary" download>下载图片</a></div>
+      </section>
+    </div>
+  </section>
   <div id="page-generate" class="assembly-shell" role="tabpanel" aria-labelledby="tab-generate">
     <main id="studio-workspace" class="sheet assembly-sheet" data-business="generate">
       <div class="page-heading assembly-heading"><div><h1 id="generate-title">画面编排</h1><p id="generate-description">选定整体骨架，再配置每个角色的衣服和头像。</p></div><div class="assembly-tools"><label class="field">主体类别<select id="subject-type"><option value="human">人物</option><option value="animal">动物</option></select></label><button type="button" class="text-button jump-output">看预览 ↓</button><button type="button" id="open-library" class="secondary">浏览资源库</button></div></div>
@@ -84,6 +110,7 @@
       </aside>
         <section class="library" id="main-catalog" aria-labelledby="library-title">
           <div class="section-heading"><h2 id="library-title">骨架姿势</h2><button id="upload-button" class="quiet">上传图片 ＋</button><input id="upload-input" type="file" accept="image/png,image/jpeg,image/webp" hidden></div>
+          <div id="hair-reference-help" hidden><p class="muted">选择第二张头像，只移植它的发型与发色。主头像的脸、五官、肤色和表情保持不变；帽子、发饰仍在衣服中选择。</p><button id="hair-reference-clear" type="button" class="secondary">沿用主头像发型</button></div>
           <div class="filters"><label class="search"><span class="sr-only">搜索参考图</span><input id="search" type="search" placeholder="搜索姿势名称或编号" autocomplete="off"></label><label><span class="sr-only">筛选分类</span><select id="category"><option value="">全部分类</option></select></label></div>
           <label id="gender-filter" class="field gender-filter" hidden>适用角色<select id="asset-gender"><option value="">全部类型</option><option value="male">男性</option><option value="female">女性</option><option value="unisex">通用</option><option value="unspecified">未分类</option></select></label><p id="character-context" class="muted"></p>
           <div id="pose-filters" class="pose-filters"><label><span class="sr-only">筛选骨架体系</span><select id="group"><option value="">全部体系</option></select></label><label><span class="sr-only">筛选视角</span><select id="angle"><option value="">全部视角</option></select></label></div>
@@ -107,8 +134,90 @@
       </div>
     </dialog>
   <main id="page-resources" class="resource-page sheet" role="tabpanel" aria-labelledby="tab-resources" hidden>
-    <div class="page-heading"><div><h1>制造资源</h1><p>从照片拆出骨架、衣服和头像，也可以为已有头像制作表情，或单独制作场景。</p></div><span id="resource-mode-label" class="connection">照片拆解</span></div>
-    <div class="resource-modes make-nav" role="group" aria-label="资源制作方式"><div class="make-group"><span>角色资料</span><div><button type="button" data-resource-mode="extraction" aria-pressed="true">照片拆解</button><button type="button" data-resource-mode="artwork" aria-pressed="false">原画真人化</button><button type="button" data-resource-mode="conversion" aria-pressed="false">单件资源转绘</button></div></div><div class="make-group"><span>头像属性</span><div><button type="button" data-resource-mode="expressions" aria-pressed="false">表情头像组</button></div></div><div class="make-group"><span>场景图层</span><div><button type="button" data-resource-mode="background" aria-pressed="false">背景制作</button><button type="button" data-resource-mode="foreground" aria-pressed="false">前景制作</button></div></div></div>
+    <div class="page-heading"><div><h1>制造资源</h1><p>从照片拆出骨架、衣服和头像，也可以为头像制作表情、从一件衣服延展系列，或单独制作场景。</p></div><span id="resource-mode-label" class="connection">照片拆解</span></div>
+    <div class="resource-modes make-nav" role="group" aria-label="资源制作方式"><div class="make-group"><span>角色资料</span><div><button type="button" data-resource-mode="extraction" aria-pressed="true">照片拆解</button><button type="button" data-resource-mode="artwork" aria-pressed="false">原画真人化</button><button type="button" data-resource-mode="conversion" aria-pressed="false">单件资源转绘</button></div></div><div class="make-group"><span>头像属性</span><div><button type="button" data-resource-mode="expressions" aria-pressed="false">表情头像组</button></div></div><div class="make-group"><span>骨架动作</span><div><button type="button" data-resource-mode="pose-tweens" aria-pressed="false">骨架补间</button><button type="button" data-resource-mode="pose-sequences" aria-pressed="false">动作骨架序列</button></div></div><div class="make-group"><span>衣服设计</span><div><button type="button" data-resource-mode="costume-series" aria-pressed="false">服饰系列</button></div></div><div class="make-group"><span>场景图层</span><div><button type="button" data-resource-mode="background" aria-pressed="false">背景制作</button><button type="button" data-resource-mode="foreground" aria-pressed="false">前景制作</button></div></div></div>
+    <section id="pose-sequences-panel" class="scene-layout" hidden aria-label="动作骨架序列制作">
+      <form id="motion-form" class="scene-form">
+        <h2>用文字规划一段动作</h2><p class="muted">先制作完整动作方案，检查后再生成独立骨架帧。起始与结束骨架都可以不提供。</p>
+        <label class="field">动作描述<textarea id="motion-action" maxlength="2000" rows="5" placeholder="例如：右手三步上篮，从持球跨步、起跳、出手到落地。固定侧面机位。" required></textarea></label>
+        <label class="field">整段总帧数（含首尾）<input id="motion-count" type="number" min="2" max="30" step="1" value="8" required></label>
+        <label class="field">搜索骨架<input id="motion-search" type="search" placeholder="名称、编号、姿势或标签"></label>
+        <label class="field">骨架画法参考（可选）<select id="motion-style"></select></label>
+        <label class="field">或上传画法参考<input id="motion-upload-style" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <img id="motion-style-preview" class="expression-source" alt="骨架画法参考" hidden>
+        <label class="field">起始骨架（可选）<select id="motion-start"></select></label>
+        <label class="field">或上传起始骨架<input id="motion-upload-start" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <img id="motion-start-preview" class="expression-source" alt="固定起始骨架" hidden>
+        <label class="field">结束骨架（可选）<select id="motion-end"></select></label>
+        <label class="field">或上传结束骨架<input id="motion-upload-end" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <img id="motion-end-preview" class="expression-source" alt="固定结束骨架" hidden>
+        <p id="motion-help" class="muted"></p><p class="muted">提供的首尾原样保留，不重复制作。画法参考不固定动作；留空时沿用首尾或库内默认骨架。未标注人数的上传图按单人处理。</p>
+        <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="motion-plan-start" type="submit" class="primary">制作动作方案</button><button id="motion-recover" type="button" class="secondary" hidden>核对上次提交</button><p id="motion-status" class="muted" role="status"></p>
+      </form>
+      <div class="scene-review">
+        <div class="section-heading"><h2>动作方案与骨架序列</h2><button id="motion-refresh" type="button" class="secondary">刷新状态</button></div>
+        <label class="field">已保存的动作序列<select id="motion-saved"><option value="">新建动作序列</option></select></label>
+        <p id="motion-plan-status" class="muted" role="status"></p><div id="motion-plan-preview" class="scene-preview" hidden></div><div id="motion-plan-actions" class="scene-actions"></div>
+        <div id="motion-results" hidden><p class="muted">请先查看方案的动作顺序、左右肢体、起落支撑和固定首尾。如有冲突或动作过密，请修改描述、增加帧数或重做方案后再制作独立帧。模型生成不保证关节与骨长逐帧精确一致。</p>
+          <button id="motion-frames-start" type="button" class="primary" hidden>确认方案，制作骨架序列</button><p id="motion-summary" class="muted" role="status"></p>
+          <div id="motion-playback" hidden><div class="scene-preview"><img id="motion-play-image" alt="动作骨架帧"></div><div class="controls"><button id="motion-play" type="button" class="secondary" aria-pressed="false">逐格播放</button><label class="field">查看帧<input id="motion-scrub" type="range" min="0" max="7" value="0" step="1"></label></div><p id="motion-play-label" class="muted" role="status"></p><p class="muted">逐格播放仅用于检查姿态变化，不代表真实动作时长。</p></div>
+          <div id="motion-frames" class="expression-results"></div>
+        </div>
+      </div>
+    </section>
+    <section id="pose-tweens-panel" class="scene-layout" hidden aria-label="骨架补间制作">
+      <form id="tween-form" class="scene-form">
+        <h2>两张骨架，补出中间动作</h2><p class="muted">选择起始与结束骨架，沿用原骨架的画法。补间数量不包含首尾：填 5 新增 5 张，填 10 新增 10 张。</p>
+        <label class="field">搜索骨架<input id="tween-search" type="search" placeholder="名称、编号、姿势或标签"></label>
+        <label class="field">起始骨架<select id="tween-start"></select></label>
+        <label class="field">或上传起始骨架<input id="tween-upload-start" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <img id="tween-start-preview" class="expression-source" alt="起始骨架" hidden>
+        <label class="field">结束骨架<select id="tween-end"></select></label>
+        <label class="field">或上传结束骨架<input id="tween-upload-end" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <img id="tween-end-preview" class="expression-source" alt="结束骨架" hidden>
+        <label class="field">补间数量（不含首尾）<input id="tween-count" type="number" min="1" max="30" step="1" value="5" required></label>
+        <p id="tween-count-help" class="muted"></p>
+        <p class="muted">首尾应为相同人数、结构和机位。未标注人数的上传图按单人处理；多人、动物与幻想种请从已分类的骨架库选择。模型依据首尾推导动作，完成后请核对关节和连续性。</p>
+        <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="tween-submit" type="submit" class="primary">生成 / 补齐 5 张补间</button><button id="tween-recover" type="button" class="secondary" hidden>核对上次提交</button>
+        <p id="tween-status" class="muted" role="status"></p>
+      </form>
+      <div class="scene-review">
+        <div class="section-heading"><h2>首尾与补间序列</h2><button id="tween-refresh" type="button" class="secondary">刷新状态</button></div>
+        <label class="field">已保存的补间<select id="tween-saved"><option value="">新建补间</option></select></label>
+        <p id="tween-summary" class="muted" role="status"></p><div id="tween-frames" class="expression-results"></div>
+      </div>
+    </section>
+    <section id="costume-series-panel" class="scene-layout" hidden aria-label="服饰系列制作">
+      <form id="series-form" class="scene-form">
+        <h2>从一件衣服延展系列</h2><p class="muted">从原衣物提炼主题与设计语言，推导六款风格统一、设计各有变化的新衣。可以是同一类别，也可以跨类别。无需自行编写提示词。</p>
+        <label class="field">搜索原衣物<input id="series-search" type="search" placeholder="名称、编号或标签"></label>
+        <label class="field">原衣物<select id="series-source"></select></label>
+        <button id="series-current" type="button" class="text-button">使用当前角色衣服</button>
+        <label class="field">或上传一件衣物<input id="series-upload" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <img id="series-reference" class="expression-source" alt="系列原衣物" hidden>
+        <label class="field">系列名称<input id="series-title" maxlength="80" placeholder="默认沿用原衣物名称"></label>
+        <label class="field">系列主题／方向（可选）<textarea id="series-prompt" rows="3" maxlength="4000" placeholder="例如：山水主题，延续墨色与留白；可以都是不同款式的上衣。留空则自动从原衣提炼。"></textarea></label>
+        <p class="muted channel-summary">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
+        <button id="series-plan-start" type="submit" class="primary">制作系列设计方案</button>
+        <p class="muted">方案板单独制作一张。每款共同参考原衣物和方案板；相同原图、要求及出图配置复用已有结果。</p>
+        <p id="series-status" role="status" class="muted"></p>
+      </form>
+      <div class="scene-review">
+        <div class="section-heading"><h2>主题方案与同系列款式</h2><button id="series-refresh" type="button" class="secondary">刷新状态</button></div>
+        <label class="field">已保存的系列<select id="series-saved"><option value="">新建系列</option></select></label>
+        <p id="series-plan-status" class="muted" role="status">选择原衣物，先制作系列设计方案。</p>
+        <div id="series-plan-preview" class="scene-preview" hidden></div>
+        <div id="series-plan-actions" class="scene-actions"></div>
+        <div id="series-pieces-panel" hidden>
+          <p id="series-pieces-help" class="muted">查看方案板中的六款设计，按编号选择款式。已有款先加载，不满意的款可以单独重做；生成结果审核入库后用于出片。</p>
+          <div id="series-pieces" class="expression-results"></div>
+          <button id="series-pieces-start" type="button" class="primary">确认方案，制作所选款式</button>
+          <p id="series-summary" class="muted" role="status"></p>
+        </div>
+      </div>
+    </section>
     <section id="conversion-panel" class="scene-layout" hidden aria-label="资源写实化">
       <form id="conversion-form" class="scene-form">
         <h2>把角色设计转成写实资源</h2><p class="muted">选择库中的头像或衣服，单独制作写实版本。如果手上是完整角色原画，可以直接使用「原画真人化」。</p>
@@ -124,13 +233,13 @@
     </section>
     <section id="expression-panel" class="scene-layout" hidden aria-label="表情头像制作">
       <form id="expression-form" class="scene-form">
-        <h2>一张头像，全套表情</h2><p class="muted">固定制作 12 种表情，每张都以原头像为参考，沿用原画风与头部角度。每张单独出图，使用所选通道额度，成功后自动入库并打上表情标签。</p>
+        <h2>一张头像，全套表情</h2><p id="expression-description" class="muted">每套包含基础与强烈表情，每张都以原头像为参考，沿用原画风与头部角度。每张单独出图，使用所选通道额度，成功后自动入库并打上表情标签。</p>
         <label class="field">搜索头像<input id="expression-search" type="search" placeholder="名称、编号、物种或标签"></label>
         <label class="field">原始头像<select id="expression-face" aria-label="原始头像"></select></label><button id="expression-current" type="button" class="text-button">使用当前角色头像</button>
         <img id="expression-source" class="expression-source" alt="表情组的原始头像" hidden>
         <p class="muted">选定头像后自动加载已有表情。默认只补缺少项；对某张不满意，在对应卡片上勾选“重抽此表情”。新图成功后替代该张，失败保留旧版，历史成图仍可查看。</p>
         <p class="channel-summary muted">出图通道：<span data-channel-summary>正在读取设置…</span> · <a href="#settings">设置</a></p>
-        <button id="expression-start" type="submit" class="primary" disabled>制作全套 12 种表情</button><p id="expression-status" class="muted" role="status"></p>
+        <button id="expression-start" type="submit" class="primary" disabled>制作全套表情</button><p id="expression-status" class="muted" role="status"></p>
       </form>
       <div><div class="section-heading"><h2>全套表情</h2><button id="expression-refresh" type="button" class="secondary">刷新状态</button></div><p id="expression-summary" class="muted" role="status"></p><div id="expression-results" class="expression-results"></div></div>
     </section>
@@ -193,7 +302,7 @@
         <div class="history-filters">
           <label class="field history-search">搜索成图<input id="history-search" type="search" placeholder="标题、提示词、参考名称或任务编号"></label>
           <label class="field">主体类别<select id="history-subject"><option value="">全部类别</option><option value="human">人物</option><option value="animal">动物</option><option value="scene">场景</option></select></label>
-          <label class="field">生成类型<select id="history-type"><option value="">全部类型</option><option value="image">单张图片</option><option value="character-sheet">角色资料图</option><option value="expression">表情头像</option><option value="resource-conversion">资源写实化</option><option value="scene-relight">现场光校正</option><option value="background">背景资源</option><option value="foreground">前景资源</option></select></label>
+          <label class="field">生成类型<select id="history-type"><option value="">全部类型</option><option value="image">单张图片</option><option value="style-transfer">照片转风格</option><option value="character-sheet">角色资料图</option><option value="expression">表情头像</option><option value="resource-conversion">资源写实化</option><option value="pose-tween">骨架补间</option><option value="pose-plan">动作骨架方案</option><option value="pose-frame">动作骨架帧</option><option value="costume-plan">服饰设计方案</option><option value="costume-piece">系列服饰</option><option value="scene-relight">现场光校正</option><option value="background">背景资源</option><option value="foreground">前景资源</option></select></label>
           <label class="field">画风／视觉类型<select id="history-style"></select></label>
           <label class="field">蒸馏风格方案<select id="history-effect"><option value="">全部效果</option></select></label>
           <label class="field">主体数量<select id="history-people"><option value="">全部数量</option><option value="0">无人场景</option><option value="1">单主体</option><option value="2">双主体</option><option value="multi">多主体（3 个以上）</option></select></label>

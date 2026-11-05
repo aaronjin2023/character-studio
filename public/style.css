@@ -120,3 +120,7 @@
 #zoom-result:disabled{color:#515a55}
 @media(max-width:700px){.page-tabs{overflow-x:auto;justify-content:flex-start;scrollbar-width:thin}.page-tabs button{flex:0 0 auto;white-space:nowrap;font-size:12px;padding:5px 7px}.assembly-tools{width:100%;flex-wrap:wrap}.picker-nav nav{display:flex;overflow-x:auto;flex-wrap:nowrap}.picker-nav .nav-button{width:auto}.picker-nav .field{margin:4px 0 6px}.face-options{gap:3px}}
 #part-upload-tools{display:flex;align-items:end;flex-wrap:wrap;gap:8px;margin:12px 0;padding:10px 0;border-top:1px solid var(--border)}#part-upload-tools .field{margin:0}#part-upload-tools .muted{font-size:12px}
+
+#series-plan-preview{flex-direction:column}#series-plan-preview .expression-image img{aspect-ratio:3/2;max-height:500px}#series-pieces .expression-image img,#series-pieces .expression-placeholder{aspect-ratio:2/3}#series-pieces-start{margin-top:20px}#series-pieces .check-label{font-size:13px;line-height:1.6}#series-pieces .secondary{font-size:12px;padding:8px}
+
+.hair-reference-thumb{width:32px;height:32px;object-fit:cover;border-radius:4px;vertical-align:middle;margin-right:6px}

@@ -77,7 +77,8 @@ test('persistent queue, cancellations, settings snapshots, batches, and MCP shar
     const rpc=async(method,params)=>{const id=++nextID;let timer;try{return await Promise.race([new Promise(resolve=>{pending.set(id,resolve);child.stdin.write(JSON.stringify({jsonrpc:'2.0',id,method,params})+'\n');}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(`MCP timeout ${stderr}`)),5000);})]);}finally{clearTimeout(timer);pending.delete(id);}};
     const init=await rpc('initialize',{protocolVersion:'2025-11-25',capabilities:{},clientInfo:{name:'studio-tests',version:'1'}});assert.ok(init.result.serverInfo);
     child.stdin.write(JSON.stringify({jsonrpc:'2.0',method:'notifications/initialized'})+'\n');
-    const list=await rpc('tools/list',{});for(const name of ['convert_resource','relight_image','realize_artwork'])assert.ok(list.result.tools.some(tool=>tool.name===name));
+    const list=await rpc('tools/list',{});for(const name of ['transfer_photo_style','convert_resource','relight_image','realize_artwork','create_costume_series','get_costume_series','generate_costume_pieces','generate_pose_tweens','get_pose_tweens','create_pose_sequence','get_pose_sequence','generate_pose_sequence_frames'])assert.ok(list.result.tools.some(tool=>tool.name===name));
+    assert.match(JSON.stringify(list.result.tools.find(tool=>tool.name==='generate_image').inputSchema),/hairFaceId/);
     const invalidRelight=await rpc('tools/call',{name:'relight_image',arguments:{requestId:randomUUID(),sourceJobId:first.id}});assert.ok(invalidRelight.result.isError);
     const info=await rpc('tools/call',{name:'studio_info',arguments:{}});assert.ok(!info.result.isError,JSON.stringify(info));assert.equal(JSON.stringify(info).includes(key2),false);
     assert.equal(JSON.parse(info.result.content[0].text).shotSizes.medium,'半身');

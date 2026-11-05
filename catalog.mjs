@@ -89,7 +89,7 @@ export async function listResources() {
   const files = await readdir(join(DATA, 'resources')).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
   const items = await Promise.all(files.filter(file => /^resource-[\w-]+\.json$/.test(file)).map(file => readFile(join(DATA, 'resources', file), 'utf8').then(JSON.parse)));
   const seen=new Set();
-  return items.filter(item => KINDS.includes(item.kind)).sort((a,b)=>(b.publishedAt||b.createdAt).localeCompare(a.publishedAt||a.createdAt)).map(item=>{
+  return items.filter(item => KINDS.includes(item.kind)||(item.kind==='source'&&item.partKind)).sort((a,b)=>(b.publishedAt||b.createdAt).localeCompare(a.publishedAt||a.createdAt)).map(item=>{
     if(!item.expression)return item;
     const slot=JSON.stringify([item.expression.sourceFaceId,item.expression.id]),superseded=seen.has(slot);
     seen.add(slot);return {...item,superseded};
@@ -102,13 +102,13 @@ export async function listUploads() {
   return items.filter(item=>KINDS.includes(item.kind)||(item.kind==='source'&&item.partKind));
 }
 
-export async function saveResource(job, kind, title, bytes, { key = kind, gender = 'unspecified', personCount = 1, characterIndex, roleGenders, species, roleSpecies, anatomy, roleAnatomies,expression,tags=[] } = {}) {
-  if (!KINDS.includes(kind) || !/^[0-9a-f-]{36}$/.test(job.id)) throw new Error('资源编号无效。');
+export async function saveResource(job, kind, title, bytes, { key = kind, gender = 'unspecified', personCount = 1, characterIndex, roleGenders, species, roleSpecies, anatomy, roleAnatomies,expression,partKind,tags=[] } = {}) {
+  if (!(KINDS.includes(kind)||(kind==='source'&&Object.hasOwn(PART_LABELS,partKind))) || !/^[0-9a-f-]{36}$/.test(job.id)) throw new Error('资源编号无效。');
   if (typeof title !== 'string' || !title.trim() || title.length > 80) throw new Error('请输入 80 字以内的资源名称。');
   if (!bytes.length || bytes.length > MAX_IMAGE_BYTES) throw new Error('图片需小于 20 MB。');
   if (!new RegExp(`^${kind}(?:-[1-6])?$`).test(key) || !['male', 'female', 'unisex', 'unspecified'].includes(gender)) throw new Error('资源分类无效。');
   const subjectType = subjectTypeFor({...job, kind});
-  if (subjectType !== 'scene' && !resourceKindsFor({subjectType}).includes(kind)) throw new Error('资源类型与主体类别不匹配。');
+  if (kind!=='source' && subjectType !== 'scene' && !resourceKindsFor({subjectType}).includes(kind)) throw new Error('资源类型与主体类别不匹配。');
   const id = `resource-${job.id}-${key}`;
   const extension = { 'image/png': '.png', 'image/jpeg': '.jpg', 'image/webp': '.webp' }[imageType(bytes)];
   const folder = join(DATA, 'resources');
@@ -118,6 +118,10 @@ export async function saveResource(job, kind, title, bytes, { key = kind, gender
     // Reimporting a legacy job must preserve the light assigned to its approved background.
     item.sceneLight = job.sceneLight ?? await readFile(join(folder, `${id}.json`), 'utf8').then(data => JSON.parse(data).sceneLight ?? 'auto').catch(error => { if (error.code === 'ENOENT') return 'auto'; throw error; });
   }
+  if(partKind)item.partKind=partKind;
+  if(job.outputType==='pose-frame')item.poseSequence={planId:job.planId,action:job.action,stylePoseId:job.stylePoseId,startPoseId:job.startPoseId,endPoseId:job.endPoseId,frameIndex:job.frameIndex,count:job.count,revision:job.sequenceRevision};
+  if(job.outputType==='pose-tween')item.poseTween={startPoseId:job.startPoseId,endPoseId:job.endPoseId,startHash:job.startHash,endHash:job.endHash,frameIndex:job.frameIndex,count:job.count,revision:job.tweenRevision};
+  if(job.outputType==='costume-piece')item.series={id:job.seriesId,pieceId:job.pieceId,sourceAssetId:job.sourceAssetId,sourceHash:job.sourceHash,planHash:job.planHash,revision:job.seriesRevision};
   if(tags.length)item.tags=normalizeTags(tags);
   if(job.renderMode==='live-action'){
     item.tags=normalizeTags([...tags,'写实化','原画真人化']);

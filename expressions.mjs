@@ -34,7 +34,7 @@ export function expressionSettings(input,source) {
 }
 export function expressionPrompt(job) {
   const source=job.references[0],config=subjectFor(job),expression=EXPRESSIONS.find(item=>item.id===job.expressionId);
-  return `根据唯一参考图1，制作同一${config.label}的单张「${expression.label}」表情头像。${expression.prompt}\n保持图1的身份、脸型、五官比例、年龄特征、肤色或头部花纹、发型、可见饰品、原有朝向与头部结构不变；保持原图绘制媒介、线条、光影和画风，不把漫画转成真人。只改变表情，不新增手势、道具或衣服。\n${config.hasGender?'保持眉眼嘴的自然结构和身份可辨识度。':'表情通过该物种实际拥有的眼部、口鼻或喙、耳部实现；不添加人类牙齿、嘴唇、眉毛或发型。'}${config.fantasy?'保留全部头部、角、耳、口鼻等非人结构和连接，不把幻想种改成人类。':''}${source.species?`物种／种族：${source.species}。`:''}${source.anatomy?`身体结构：${source.anatomy}。`:''}\n统一方形头肩构图，完整保留头顶和下巴、耳与角，头部在画面中的比例与图1接近。浅灰色干净背景，少量原衣领。只输出一张头像，不拼图，不添加文字、表情符号或水印。`;
+  return `根据唯一参考图1，制作同一${config.label}的单张「${expression.label}」表情头像。${expression.prompt}\n${expression.strong?'采用高强度面部表演，缩略图中也能辨认目标情绪，不能弱化成轻微微笑或普通皱眉。允许眉眼开合、嘴部开合、肌肉褶皱和脸颊挤压随情绪充分变化，但固定的骨相、五官位置和身份特征不变。摄影头像使用可信的真人面部运动；漫画头像可按原画风夸张表演，但不增大眼球、拉长口鼻、改变颅骨或增加牙齿。动物或幻想种将动作转译为其实际头部结构能够实现的表演。\n':''}保持图1的身份、脸型、五官比例、年龄特征、肤色或头部花纹、发型、可见饰品、原有朝向与头部结构不变；保持原图绘制媒介、线条、光影和画风，不把漫画转成真人。只改变表情，不新增手势、道具或衣服。\n${config.hasGender?'保持眉眼嘴的自然结构和身份可辨识度。':'表情通过该物种实际拥有的眼部、口鼻或喙、耳部实现；不添加人类牙齿、嘴唇、眉毛或发型。'}${config.fantasy?'保留全部头部、角、耳、口鼻等非人结构和连接，不把幻想种改成人类。':''}${source.species?`物种／种族：${source.species}。`:''}${source.anatomy?`身体结构：${source.anatomy}。`:''}\n统一方形头肩构图，完整保留头顶和下巴、耳与角，头部在画面中的比例与图1接近。浅灰色干净背景，少量原衣领。只输出一张头像，不拼图，不添加文字、表情符号或水印。`;
 }
 export function expressionKey(job){return createHash('sha256').update(settingsKey(job)).digest('hex');}
 export async function publishExpression(job,bytes) {

@@ -4,12 +4,12 @@ import { SUBJECT_TYPES, subjectTypeFor, subjectFor, resourceKindsFor, subjectLab
 export const MAX_CHARACTERS = 6;
 export const ROLE_DETAILS = {
   pose:{leftHand:'左手持物',rightHand:'右手持物'},
-  costume:{necklace:'项链',earrings:'耳环',glasses:'眼镜',backpack:'背包',headwear:'头饰'},
+  costume:{necklace:'项链',earrings:'耳环',glasses:'眼镜',backpack:'背包',headwear:'头饰',shoes:'鞋履'},
   face:{hair:'发型',faceTattoo:'面部纹身'}
 };
 export const PART_LABELS=Object.assign({},...Object.values(ROLE_DETAILS));
 export function detailEntries(role) {
-  return Object.entries(PART_LABELS).filter(([key])=>role.attachments?.[key]?.trim());
+  return Object.entries(PART_LABELS).filter(([key])=>!(key==='hair'&&role.hairFaceId)&&role.attachments?.[key]?.trim());
 }
 export const SCENE_PROPS = {
   'sofa-2': {label:'双人沙发', slots:['左座','右座']},
@@ -43,8 +43,9 @@ export function scenePropIssue(props, characters) {
   return '';
 }
 export const CONVERSION_REVISION = 7;
+export const STYLE_TRANSFER_REVISION = 1;
 export const STYLE_REVISIONS = Object.fromEntries(STYLE_OPTIONS.map(style => [style.id, style.revision]));
-export const OUTPUT_TYPES = { image: '人物图片', 'character-sheet': '人设资料图', background: '背景资源', foreground: '前景资源', expression:'表情头像', 'resource-conversion':'资源写实化', 'scene-relight':'现场光校正' };
+export const OUTPUT_TYPES = { 'style-transfer':'照片转风格', 'pose-tween':'骨架补间','pose-plan':'动作骨架方案','pose-frame':'动作骨架帧', image: '人物图片', 'character-sheet': '人设资料图', background: '背景资源', foreground: '前景资源', expression:'表情头像', 'resource-conversion':'资源写实化', 'costume-plan':'服饰设计方案', 'costume-piece':'系列服饰', 'scene-relight':'现场光校正' };
 export const SCENE_LIGHT_REVISION = 2;
 export const usesSceneLighting = job => outputTypeFor(job) === 'image' && subjectTypeFor(job) === 'human' && !!job.selections?.background && ['photo','cinematic','editorial','film'].includes(job.style);
 export const CAMERA_DIRECTIONS = { reference:'沿用骨架机位', front:'正面', 'front-left':'左斜前', 'front-right':'右斜前', 'side-left':'左正侧', 'side-right':'右正侧', 'rear-left':'左斜后', 'rear-right':'右斜后', back:'正背面', left:'从原机位向左绕拍约 30°', right:'从原机位向右绕拍约 30°' };
@@ -68,7 +69,7 @@ export function projectedShadow(light, direction = 'reference', pitch = 'referen
 }
 export const outputTypeFor = job => job.outputType ?? 'image';
 export const isSceneJob = job => ['background', 'foreground'].includes(outputTypeFor(job));
-export const outputLabel = job => isSceneJob(job)||['expression','resource-conversion','scene-relight'].includes(outputTypeFor(job)) ? OUTPUT_TYPES[outputTypeFor(job)] : subjectFor(job)?.[outputTypeFor(job) === 'character-sheet' ? 'sheet' : 'image'] || OUTPUT_TYPES[outputTypeFor(job)];
+export const outputLabel = job => isSceneJob(job)||['style-transfer','expression','resource-conversion','scene-relight','costume-plan','costume-piece','pose-tween','pose-plan','pose-frame'].includes(outputTypeFor(job)) ? OUTPUT_TYPES[outputTypeFor(job)] : subjectFor(job)?.[outputTypeFor(job) === 'character-sheet' ? 'sheet' : 'image'] || OUTPUT_TYPES[outputTypeFor(job)];
 export function charactersFor(job) {
   if (isSceneJob(job)) return [];
   return job.characters || [{ costume: job.selections?.costume, face: job.selections?.face, gender: 'reference', position: '' }];
@@ -78,6 +79,10 @@ export function faceRole(role, ref) {
     ? {...role,face:ref.expression.sourceFaceId,expressionAssetId:ref.id} : role;
 }
 export function referenceSlots(job) {
+  if(job.outputType==='style-transfer')return [{kind:'source',id:job.sourceId}];
+  if(['pose-plan','pose-frame'].includes(job.outputType))return [job.stylePoseId,job.startPoseId,job.endPoseId].filter(Boolean).map(id=>({kind:'pose',id}));
+  if(outputTypeFor(job)==='pose-tween')return [{kind:'pose',id:job.startPoseId},{kind:'pose',id:job.endPoseId}];
+  if(['costume-plan','costume-piece'].includes(outputTypeFor(job)))return [{kind:'costume',id:job.sourceAssetId}];
   if(outputTypeFor(job)==='scene-relight')return [{kind:'source',id:job.sourceJobId}];
   if(outputTypeFor(job)==='resource-conversion')return [{kind:job.sourceKind,id:job.sourceAssetId}];
   if(outputTypeFor(job)==='expression')return [{kind:'face',id:job.sourceFaceId}];
@@ -86,7 +91,9 @@ export function referenceSlots(job) {
   for(const slot of slots){
     const images=charactersFor(job)[slot.characterIndex]?.partImages;
     const extras=slot.kind==='pose'?(job.sceneProps||[]).flatMap((p,i)=>p.assetId?[{key:p.kind,id:p.assetId,label:`第${i+1}件${SCENE_PROPS[p.kind].label}`}]:[])
-      :images?Object.entries(PART_LABELS).filter(([key])=>images[key]&&(slot.kind==='face'?Object.hasOwn(ROLE_DETAILS.face,key):slot.kind==='costume'&&!Object.hasOwn(ROLE_DETAILS.face,key))).map(([key,label])=>({key,label,id:images[key]})):[];
+      :images?Object.entries(PART_LABELS).filter(([key])=>images[key]&&!(key==='hair'&&charactersFor(job)[slot.characterIndex]?.hairFaceId)&&(slot.kind==='face'?Object.hasOwn(ROLE_DETAILS.face,key):slot.kind==='costume'&&!Object.hasOwn(ROLE_DETAILS.face,key))).map(([key,label])=>({key,label,id:images[key]})):[];
+    const hairFaceId=charactersFor(job)[slot.characterIndex]?.hairFaceId;
+    if(slot.kind==='face'&&hairFaceId)extras.unshift({key:'hair',kind:'face',label:'发型参考头像',id:hairFaceId});
     if(extras.length)slot.extras=extras;
   }
   return slots;
@@ -128,8 +135,8 @@ export function settingsKey(job) {
     subjectTypeFor(job), job.subjectRevision ?? 1, outputTypeFor(job), job.provider, job.selections?.pose, charactersFor(job).map((role,index) => {
       const character=faceRole(role,job.references?.find(ref=>ref.kind==='face'&&ref.characterIndex===index));
       const details=detailEntries(character).map(([key])=>[key,character.attachments[key].trim()]);
-      const images=Object.keys(PART_LABELS).filter(k=>character.partImages?.[k]).map(k=>[k,character.partImages[k]]);
-      return [character.costume, character.surface, character.face, character.gender || 'reference', character.species?.trim() || '', character.position ?? '', ...(isFantasy(job) ? [character.anatomy?.trim() || ''] : []), ...(character.expressionAssetId?[character.expressionAssetId]:[]), ...(details.length?[details]:[]), ...(images.length?[['images',images]]:[])];
+      const images=Object.keys(PART_LABELS).filter(k=>character.partImages?.[k]&&!(k==='hair'&&character.hairFaceId)).map(k=>[k,character.partImages[k]]);
+      return [character.costume, character.surface, character.face, character.gender || 'reference', character.species?.trim() || '', character.position ?? '', ...(isFantasy(job) ? [character.anatomy?.trim() || ''] : []), ...(character.expressionAssetId?[character.expressionAssetId]:[]), ...(details.length?[details]:[]), ...(images.length?[['images',images]]:[]), ...(character.hairFaceId?[['hairFace',character.hairFaceId]]:[])];
     }),
     job.prompt ?? '', job.style, job.styleRevision ?? 1, job.background, job.size, job.quality,
     job.effect ?? 'none', job.effectRevision ?? 0, job.selections?.background || '', job.selections?.foreground || '',
@@ -140,7 +147,11 @@ export function settingsKey(job) {
     ...(job.sceneProps?.length ? [job.sceneProps.map(prop=>[prop.kind,...prop.roles,...(prop.assetId?[prop.assetId]:[])])] : []),
     ...(outputTypeFor(job)==='scene-relight'?[job.sourceJobId,job.sourceHash,job.sceneLight,job.relightRevision??1]:[]),
     ...(outputTypeFor(job)==='expression'?[job.sourceFaceId,job.sourceHash,job.expressionId,job.expressionRevision]:[]),
+    ...(['pose-plan','pose-frame'].includes(outputTypeFor(job))?[job.action,job.stylePoseId,job.startPoseId,job.endPoseId,job.count,job.referenceHashes,job.poseMetadata,job.planId,job.planHash,job.frameIndex,job.sequenceRevision]:[]),
+    ...(outputTypeFor(job)==='pose-tween'?[job.startPoseId,job.endPoseId,job.startHash,job.endHash,job.count,job.frameIndex,job.tweenRevision]:[]),
+    ...(['costume-plan','costume-piece'].includes(outputTypeFor(job))?[job.title,job.sourceAssetId,job.sourceHash,job.seriesRevision,job.seriesId,job.pieceId,job.planHash]:[]),
     ...(outputTypeFor(job)==='resource-conversion'?[job.sourceKind,job.sourceAssetId,job.sourceHash,job.conversionRevision]:[]),
+    ...(outputTypeFor(job)==='style-transfer'?[job.sourceId,job.sourceHash,job.transferRevision]:[]),
     ...(job.provider === 'api' ? [job.model?.trim(), endpoint] : []),...pipelineIdentity(job)
   ]);
 }
@@ -165,6 +176,7 @@ export function matchesHistory(job, { query = '', from = '', to = '', provider =
   const [width, height] = String(job.size || '').split('x').map(Number);
   const format = width > 0 && height > 0 ? width === height ? 'square' : width < height ? 'portrait' : 'landscape' : 'unknown';
   if (size && format !== size) return false;
+  if(people && outputTypeFor(job)==='style-transfer')return false;
   const count = job.personCount ?? charactersFor(job).length;
   if (people && (people === 'multi' ? count < 3 : count !== Number(people))) return false;
   const date = new Date(job.createdAt);

@@ -1,3 +1,4 @@
+import * as costumeSeries from '../public/costume-series.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -10,6 +11,27 @@ import * as expressions from '../public/expressions.js';
 import * as effects from '../public/effects.js';
 import * as extraction from '../public/extraction-settings.js';
 
+test('hair picker selects another avatar without replacing the main face or its expression',async()=>{
+  const nodes=new Map();
+  const node=()=>({value:'',textContent:'',dataset:{},children:[],classList:{toggle(){}},append(...children){this.children.push(...children);},prepend(...children){this.children.unshift(...children);},replaceChildren(...children){this.children=children;},setAttribute(){},removeAttribute(){},close(){this.open=false;}});
+  const $=selector=>{if(!nodes.has(selector))nodes.set(selector,node());return nodes.get(selector);};
+  const context={...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,...costumeSeries,setupStyleTransfer:()=>({render(){},refresh(){}}),setupCostumeSeries:()=>({}),setupPoseTweens:()=>({}),setupPoseSequences:()=>({}),isPoseSequence:job=>['pose-plan','pose-frame'].includes(job?.outputType),document:{querySelector:$,querySelectorAll:()=>[],createElement:node},window:{addEventListener(){}},Option:class{constructor(text,value){this.textContent=text;this.value=value;}},localStorage:{getItem(){},setItem(){}}};
+  const source=(await readFile(new URL('../public/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').split('initEffects();switchPage(')[0];
+  runInNewContext(source+'\nrenderSelections=()=>{};renderTagFilter=()=>{};renderBulk=()=>{};globalThis.app={state,showPickerPart,applyHair,setSelected,pickerSelectedID,selectedID};',context);
+  const {app}=context;
+  app.state.assetKind='face';app.state.pickerTarget='role';app.state.pickerPart='base';
+  app.state.characters=[{face:'main',expressionAssetId:'smile',gender:'female',attachments:{hair:'短发'}}];
+  app.state.catalogs.face=[{id:'main',title:'主脸',gender:'female'},{id:'donor',title:'发型来源',gender:'male'}];
+  $('#asset-gender').value='female';app.showPickerPart('hair');
+  assert.equal($('#main-catalog').hidden,false);assert.equal($('#part-catalog').hidden,true);assert.equal($('#custom-part').hidden,true);assert.equal($('#hair-reference-help').hidden,false);assert.equal($('#asset-gender').value,'');
+  assert.equal($('#gallery').children.length,2);$('#gallery').children[1].onclick();
+  assert.equal(app.state.characters[0].face,'main');assert.equal(app.state.characters[0].expressionAssetId,'smile');assert.equal(app.state.characters[0].hairFaceId,'donor');assert.equal(app.state.characters[0].attachments.hair,undefined);
+  assert.equal(app.selectedID('face'),'main');assert.equal(app.pickerSelectedID(),'donor');
+  app.applyHair('');assert.equal(app.state.characters[0].hairFaceId,undefined);assert.equal(app.state.characters[0].expressionAssetId,'smile');
+  app.applyHair('donor');app.showPickerPart('base');assert.equal($('#hair-reference-help').hidden,true);assert.equal(app.pickerSelectedID(),'main');
+  app.setSelected('face','donor');assert.equal(app.state.characters[0].hairFaceId,undefined);assert.equal(app.state.characters[0].expressionAssetId,undefined);
+});
+
 test('browsing scene references preserves character settings and displays terminal API errors without resubmitting', async () => {
   const nodes = new Map(), requests = [], timers = [];
   const node = () => ({ value:'', textContent:'', firstChild:{}, options:[], dataset:{}, classList:{toggle(){}},
@@ -17,7 +39,7 @@ test('browsing scene references preserves character settings and displays termin
   const $ = selector => { if (!nodes.has(selector)) nodes.set(selector,node()); return nodes.get(selector); };
   for (const [key,value] of Object.entries({style:'photo',background:'studio',size:'1024x1536',quality:'high',effect:'none','output-type':'image','api-model':'gpt-image-2','api-base':'https://image-provider.example/v1'})) $(`#${key}`).value=value;
   const storage = new Map(); let responseJob;
-  const context = { ...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,
+  const context = { ...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,...costumeSeries,setupStyleTransfer:()=>({render(){},refresh(){}}),setupCostumeSeries:()=>({}),setupPoseTweens:()=>({}),setupPoseSequences:()=>({}),isPoseSequence:job=>['pose-plan','pose-frame'].includes(job?.outputType),
     document:{querySelector:$,querySelectorAll:()=>[],createElement:node},window:{addEventListener(){}},
     Option:class {constructor(text,value){this.textContent=text;this.value=value;}},
     localStorage:{setItem:(k,v)=>storage.set(k,v),getItem:k=>storage.get(k),removeItem:k=>storage.delete(k)},
@@ -57,7 +79,7 @@ test('expression previews load before generation, survive avatar races, and keep
   const nodes=new Map(),created=[],pending=[],requests=[];
   const node=()=>{const item={value:'',textContent:'',dataset:{},children:[],classList:{toggle(){}},append(...children){this.children.push(...children);},replaceChildren(...children){this.children=children;},setAttribute(){},removeAttribute(){}};created.push(item);return item;};
   const $=selector=>{if(!nodes.has(selector))nodes.set(selector,node());return nodes.get(selector);};
-  const context={...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,
+  const context={...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,...costumeSeries,setupStyleTransfer:()=>({render(){},refresh(){}}),setupCostumeSeries:()=>({}),setupPoseTweens:()=>({}),setupPoseSequences:()=>({}),isPoseSequence:job=>['pose-plan','pose-frame'].includes(job?.outputType),
     document:{querySelector:$,querySelectorAll:selector=>selector==='[data-expression-replace]'?created.filter(item=>item.dataset.expressionReplace):[],createElement:node,createTextNode:text=>({textContent:text})},window:{addEventListener(){}},
     Option:class {constructor(text,value){this.textContent=text;this.value=value;}},localStorage:{getItem(){},setItem(){}},
     fetch:async(url,options)=>{requests.push({url,method:options?.method||'GET'});if(url==='/api/bootstrap')return {ok:true,json:async()=>({catalogs:{}})};return new Promise(resolve=>pending.push({url,resolve}));}
@@ -71,7 +93,7 @@ test('expression previews load before generation, survive avatar races, and keep
   app.state.expressionFaceId='second';const second=app.loadExpressions();assert.equal(pending.length,2);
   respond(1,result('second'));await second;respond(0,result('first'));await first;
   assert.ok(app.state.expressionItems.every(item=>item.saved.id.startsWith('second-')));assert.equal($('#expression-start').disabled,true);assert.match($('#expression-start').textContent,/已齐全/);
-  assert.equal(created.filter(item=>item.src?.startsWith('/second/')).length,12);assert.ok(requests.every(request=>request.method==='GET'));
+  assert.equal(created.filter(item=>item.src?.startsWith('/second/')).length,expressions.EXPRESSIONS.length);assert.match($('#expression-description').textContent,/全套 24 种表情（12 种基础 \+ 12 种强烈）/);assert.ok(requests.every(request=>request.method==='GET'));
   const smile=created.findLast(item=>item.dataset.expressionReplace==='smile');smile.checked=true;smile.onchange();assert.equal($('#expression-start').disabled,false);assert.equal($('#expression-start').textContent,'重抽 1 种表情');
   const refresh=app.loadExpressions();respond(2,result('second'));await refresh;assert.equal(smile.checked,true);assert.deepEqual(Array.from(app.state.expressionReplaceIds),['smile']);
   app.state.expressionFaceId='third';const failed=app.loadExpressions();assert.equal($('#expression-start').disabled,true);assert.equal(app.state.expressionReplaceIds.length,0);respond(3,{error:'模拟读取失败'},false);await assert.rejects(failed,/模拟读取失败/);assert.equal($('#expression-start').disabled,true);
@@ -82,7 +104,7 @@ test('expression previews load before generation, survive avatar races, and keep
 test('conversion history remains reviewable after changing provider and never appears under another source',async()=>{
   const nodes=new Map(),node=()=>({value:'',textContent:'',dataset:{},classList:{toggle(){}},append(){},replaceChildren(){},setAttribute(){},removeAttribute(){}});
   const $=selector=>{if(!nodes.has(selector))nodes.set(selector,node());return nodes.get(selector);};
-  const context={...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,document:{querySelector:$,querySelectorAll:()=>[],createElement:node},window:{addEventListener(){}},Option:class {constructor(text,value){this.textContent=text;this.value=value;}},localStorage:{getItem(){},setItem(){}}};
+  const context={...settings,...subjects,...effects,...extraction,...providers,...tags,...expressions,...costumeSeries,setupStyleTransfer:()=>({render(){},refresh(){}}),setupCostumeSeries:()=>({}),setupPoseTweens:()=>({}),setupPoseSequences:()=>({}),isPoseSequence:job=>['pose-plan','pose-frame'].includes(job?.outputType),document:{querySelector:$,querySelectorAll:()=>[],createElement:node},window:{addEventListener(){}},Option:class {constructor(text,value){this.textContent=text;this.value=value;}},localStorage:{getItem(){},setItem(){}}};
   const source=(await readFile(new URL('../public/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').split('initEffects();switchPage(')[0];
   runInNewContext(source+'\nglobalThis.app={state,updateConversion};',context);
   const {app}=context;app.state.csrf='test';app.state.quota.available=true;app.state.conversionSourceId='original';$('#conversion-kind').value='face';$('#conversion-prompt').value='';

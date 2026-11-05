@@ -1,3 +1,9 @@
+import {costumeSource,costumeSettings,costumePrompt,costumeItems,costumeBatch} from './costume-series.mjs';
+import {tweenSource,tweenSettings,tweenPrompt} from './pose-tweens.mjs';
+import {tweenRequest} from './public/pose-tweens.js';
+import {sequenceSource,sequenceSettings,sequencePrompt,sequenceItems} from './pose-sequences.mjs';
+import {isPoseSequence,sequenceBatch,sequenceFrames} from './public/pose-sequences.js';
+import {costumePiecesFor,isCostumeSeries} from './public/costume-series.js';
 import { generateComfy, checkComfy, workflowFor } from './comfy.mjs';
 import { pipelineIdentity } from './public/providers.js';
 import {loadTags,withTags,updateTags} from './resource-tags.mjs';
@@ -83,7 +89,14 @@ async function prepare(input, requestID, extracting, pending = [], source) {
   const resolved = {...input, ...connection};
   const expression=!extracting&&input.outputType==='expression';
   const conversion=!extracting&&input.outputType==='resource-conversion';
+  const transfer=!extracting&&input.outputType==='style-transfer';
   const relight=!extracting&&input.outputType==='scene-relight';
+  const costume=!extracting&&isCostumeSeries(input);
+  const tween=!extracting&&input.outputType==='pose-tween';
+  const sequence=!extracting&&isPoseSequence(input);
+  if(sequence)source||=await sequenceSource(input,jobs);
+  if(tween)source||=await tweenSource(input);
+  if(costume)source||=await costumeSource(input,jobs);
   let original;
   if(relight){
     if(!localRelight)throw new Error('锁定底图的现场光校正需要 macOS Vision。');
@@ -97,12 +110,19 @@ async function prepare(input, requestID, extracting, pending = [], source) {
     if(input.renderMode!=='live-action')throw new Error('未知的资源制作方案。');
     source=await artworkSettings(resolved);
   }
-  const data = extracting ? source?.data??validateExtraction(resolved) : expression?expressionSettings(resolved,source):conversion?conversionSettings(resolved,source):relight?{
+  const data = extracting ? source?.data??validateExtraction(resolved) : sequence?sequenceSettings(resolved,source):tween?tweenSettings(resolved,source):costume?costumeSettings(resolved,source):expression?expressionSettings(resolved,source):conversion?conversionSettings(resolved,source):relight?{
     ...validateProvider(resolved),outputType:'scene-relight',sourceJobId:original.id,sourceHash:createHash('sha256').update(source.bytes).digest('hex'),
     sceneLightRevision:SCENE_LIGHT_REVISION,relightRevision:2,sceneLight:original.sceneLight??'auto',subjectType:'human',style:original.style,effect:original.effect??'none',
     background:'opaque',size:original.size,quality:original.quality,selections:original.selections,characters:original.characters,
     title:'现场光校正 · '+(original.references?.find(ref=>ref.kind==='background')?.title||'人物图片'),prompt:''
   }:validateRequest(resolved);
+  if(transfer){
+    const item=await findAsset('source',data.sourceId);
+    if(item.partKind)throw new Error('请上传完整照片，不要选择小件资源。');
+    source={bytes:await readFile(await assetPath('source',data.sourceId))};imageType(source.bytes);
+    data.sourceHash=createHash('sha256').update(source.bytes).digest('hex');
+    data.title=`${item.title.slice(0,50)} · 照片转风格`;
+  }
   if(!extracting && ['image','character-sheet'].includes(data.outputType)){
     data.characters=await Promise.all(data.characters.map(async(role,index)=>{
       if(!role.expressionAssetId && role.face.startsWith('resource-'))role=faceRole(role,await findAsset('face',role.face));
@@ -170,11 +190,14 @@ async function prepare(input, requestID, extracting, pending = [], source) {
   const job = {...data, id:requestID, createdAt:new Date().toISOString(), queuedAt:new Date().toISOString(), status:'queued', message:'已加入队列，等待开始。', ...(connection.credentialId ? {credentialId:connection.credentialId} : {})};
   if (extracting) job.outputs = {};
   else {
-    job.references = relight ? original.references : await Promise.all(referenceSlots(data).map(async ({kind,id,characterIndex}) => ({kind,characterIndex,...(kind === 'background' && backgroundAsset ? backgroundAsset : await findAsset(kind,id))})));
-    if (!isSceneJob(data)&&!expression&&!conversion&&!relight) {
+    job.references = sequence ? source.refs.map(ref=>ref.item) : costume ? [{...source.source,kind:'costume'}] : relight ? original.references : await Promise.all(referenceSlots(data).map(async ({kind,id,characterIndex}) => ({kind,characterIndex,...(kind === 'background' && backgroundAsset ? backgroundAsset : await findAsset(kind,id))})));
+    if (!isSceneJob(data)&&!expression&&!conversion&&!transfer&&!relight&&!costume&&!tween&&!sequence) {
       for(const slot of referenceSlots(data))for(const ref of slot.extras||[]){
-        const part=await findAsset('source',ref.id);
-        if(part.partKind!==ref.key)throw new Error(`所选图片不属于${ref.label}资源。`);
+        const part=await findAsset(ref.kind||'source',ref.id);
+        if(ref.kind==='face'){
+          if(subjectTypeFor(part)!=='human')throw new Error('发型参考请选择人物头像。');
+          (job.hairReferences||=[]).push({...part,kind:'face',characterIndex:slot.characterIndex});
+        }else if(part.partKind!==ref.key)throw new Error(`所选图片不属于${ref.label}资源。`);
       }
       if (job.references.some(ref => !resourceMatchesSubject(ref.kind,ref,data.subjectType))) throw new Error('资源主体类别不匹配，请使用当前类别的骨架和参考图。');
       const count = poseCount(job.references[0]);
@@ -182,15 +205,30 @@ async function prepare(input, requestID, extracting, pending = [], source) {
       const mismatch = roleMismatch(data.characters, job.references[0], job.references.filter(ref=>ref.kind==='face'), data.subjectType, job.references.filter(ref=>ref.kind==='surface'));
       if (mismatch) throw new Error(mismatch);
     }
-    job.resolvedPrompt = relight?relightPrompt(original):expression?expressionPrompt(job):conversion?conversionPrompt(job):buildPrompt(job);
+    job.resolvedPrompt = sequence?sequencePrompt(job):tween?tweenPrompt(job):costume?costumePrompt(job):relight?relightPrompt(original):expression?expressionPrompt(job):conversion?conversionPrompt(job):buildPrompt(job);
   }
   if(job.provider==='comfyui') {
-    const counts=extracting?[...new Set(extractionParts(job).map(part=>part.kind==='pose'&&subjectTypeFor(job)==='human'?2:1))]:[referenceSlots(job).length];
+    const counts=extracting?[...new Set(extractionParts(job).map(part=>part.kind==='pose'&&subjectTypeFor(job)==='human'?2:1))]:[sequence?source.refs.length:costume?(source.plan?2:1):referenceSlots(job).length];
     for(const count of counts)workflowFor(comfyWorkflows(job),count);
   }
-  if(expression||conversion||relight||data.renderMode==='live-action'){
+  if(sequence){
+    await mkdir(join(DATA,'jobs',job.id),{recursive:true});job.poseSnapshots=[];
+    for(const [i,ref] of source.refs.entries()){
+      const file=`pose-${i}.${{'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[imageType(ref.bytes)]}`;
+      await writeFile(join(DATA,'jobs',job.id,file),ref.bytes,{mode:0o600});job.poseSnapshots.push(file);
+    }
+  }
+  if(tween||costume||expression||conversion||transfer||relight||data.renderMode==='live-action'){
     job.sourceSnapshot=`reference.${{'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[imageType(source.bytes)]}`;
     await mkdir(join(DATA,'jobs',job.id),{recursive:true});await writeFile(join(DATA,'jobs',job.id,job.sourceSnapshot),source.bytes,{mode:0o600});
+  }
+  if(source?.planBytes){
+    job.planSnapshot=`plan.${{'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[imageType(source.planBytes)]}`;
+    await writeFile(join(DATA,'jobs',job.id,job.planSnapshot),source.planBytes,{mode:0o600});
+  }
+  if(tween){
+    job.endSnapshot=`end.${{'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[imageType(source.endBytes)]}`;
+    await writeFile(join(DATA,'jobs',job.id,job.endSnapshot),source.endBytes,{mode:0o600});
   }
   return {job, apiKey:connection.apiKey, reused:false};
 }
@@ -204,7 +242,7 @@ async function enqueue(entries, record) {
   queue = ids; batches = records;
   for (const {job,apiKey} of fresh) { jobs.set(job.id,job); if (apiKey && !job.credentialId) transientKeys.set(job.id,apiKey); }
 }
-function batchResult(record) { return {id:record.id,...(record.type?{type:record.type,faceId:record.faceId}:{}),items:record.jobIds.map(id=>jobs.get(id)), count:record.jobIds.length, queued:record.jobIds.filter(id=>jobs.get(id)?.status==='queued').length}; }
+function batchResult(record) { return {id:record.id,...(record.type?{type:record.type,faceId:record.faceId,seriesId:record.seriesId}:{}),...(record.type==='pose-sequence'?{planId:record.planId,totalCount:record.totalCount}:{}),...(record.type==='pose-tween'?{startPoseId:record.startPoseId,endPoseId:record.endPoseId,createdAt:record.createdAt}:{}),items:record.jobIds.map(id=>jobs.get(id)), count:record.jobIds.length, queued:record.jobIds.filter(id=>jobs.get(id)?.status==='queued').length}; }
 async function body(req, max) {
   let size = 0; const chunks = [];
   for await (const chunk of req) { size += chunk.length; if (size > max) throw new Error('请求超过大小限制。'); chunks.push(chunk); }
@@ -231,7 +269,9 @@ async function runJob(job, apiKey, controller) {
       await runExtraction(job, apiKey, controller);
     } else {
       job.status = 'running'; job.message = '正在准备原始参考图…'; await saveJob(job);
-      const paths = job.sourceSnapshot?[join(DATA,'jobs',job.id,job.sourceSnapshot)]:await Promise.all(referenceSlots(job).map(({kind,id}) => assetPath(kind, id)));
+      const paths = job.poseSnapshots?job.poseSnapshots.map(file=>join(DATA,'jobs',job.id,file)):job.sourceSnapshot?[join(DATA,'jobs',job.id,job.sourceSnapshot)]:await Promise.all(referenceSlots(job).map(({kind,id}) => assetPath(kind, id)));
+      if(job.planSnapshot)paths.push(join(DATA,'jobs',job.id,job.planSnapshot));
+      if(job.endSnapshot)paths.push(join(DATA,'jobs',job.id,job.endSnapshot));
       if (controller.signal.aborted) throw new Error('任务已取消。');
       const onStatus = text => { job.message = text; };
       let baseMask;
@@ -308,7 +348,7 @@ export async function createServer() {
       if (req.method === 'GET' && path === '/api/bootstrap') {
         const resources = [...await listResources(),...await listUploads()];
         const safeCatalog = Object.fromEntries(KINDS.map(k => [k, [...resources.filter(item => item.kind === k), ...CATALOG[k]].map(({ thumb, full, ...item }) => withTags(k,item))]));
-        return send(res, 200, { csrf, localRelight, partAssets:resources.filter(item=>item.partKind), mcpPath:join(ROOT, 'mcp.mjs'), settings:publicSettings(), catalogs: safeCatalog, quota: await quotaStatus(), defaults: Object.fromEntries(Object.entries({pose:'full_single_P018_front',costume:'SPR-0161',face:'f71f980dde3'}).map(([kind,id])=>[kind,safeCatalog[kind].some(item=>item.id===id)?id:''])) });
+        return send(res, 200, { csrf, localRelight, partAssets:resources.filter(item=>item.partKind).map(item=>withTags('source',item)), mcpPath:join(ROOT, 'mcp.mjs'), settings:publicSettings(), catalogs: safeCatalog, quota: await quotaStatus(), defaults: Object.fromEntries(Object.entries({pose:'full_single_P018_front',costume:'SPR-0161',face:'f71f980dde3'}).map(([kind,id])=>[kind,safeCatalog[kind].some(item=>item.id===id)?id:''])) });
       }
       if (req.method === 'GET' && ['/api/jobs', '/api/extractions'].includes(path)) return send(res, 200, [...jobs.values()].filter(job => (job.type === 'extraction') === (path === '/api/extractions')).sort((a,b) => b.createdAt.localeCompare(a.createdAt)));
       if(req.method==='POST'&&path==='/api/resource-tags'){
@@ -366,8 +406,17 @@ export async function createServer() {
       const sceneImport = path.match(/^\/api\/jobs\/([0-9a-f-]+)\/import$/);
       if (req.method === 'POST' && sceneImport) {
         const job = jobs.get(sceneImport[1]);
-        if (!job || (!isSceneJob(job)&&job.outputType!=='resource-conversion') || job.status !== 'completed' || !job.output) return send(res, 400, {error:'请先完成场景制作或资源转绘，再审核入库。'});
+        if (!job || (!isSceneJob(job)&&!['resource-conversion','costume-piece','pose-tween','pose-frame'].includes(job.outputType)) || job.status !== 'completed' || !job.output) return send(res, 400, {error:'请先完成资源制作，再审核入库。'});
         const input = JSON.parse((await body(req, 2000)).toString());
+        if(['pose-tween','pose-frame'].includes(job.outputType))return send(res,200,await mutate(async()=>{
+          const resource=await saveResource(job,'pose',input.title,await readFile(join(DATA,'jobs',job.id,job.output)),{...job.poseMetadata,tags:[job.outputType==='pose-frame'?'动作骨架序列':'骨架补间',`第${job.frameIndex}帧`]});
+          job.resourceId=resource.id;await saveJob(job);return withTags('pose',resource);
+        }));
+        if(job.outputType==='costume-piece')return send(res,200,await mutate(async()=>{
+          const spec=costumePiecesFor(job).find(item=>item.id===job.pieceId),source=job.references[0],kind=spec.partKind?'source':'costume';
+          const resource=await saveResource(job,kind,input.title,await readFile(join(DATA,'jobs',job.id,job.output)),{gender:source.gender||'unspecified',species:source.species,anatomy:source.anatomy,partKind:spec.partKind,tags:['服饰系列',spec.label]});
+          job.resourceId=resource.id;await saveJob(job);return withTags(kind,resource);
+        }));
         if(job.outputType==='resource-conversion'){
           const source=job.references[0];
           return send(res,200,withTags(job.sourceKind,await saveResource(job,job.sourceKind,input.title,await readFile(join(DATA,'jobs',job.id,job.output)),{gender:source.gender||'unspecified',species:source.species,anatomy:source.anatomy,tags:['写实化']})));
@@ -397,6 +446,79 @@ export async function createServer() {
           if (active?.id === job.id && req.headers['x-stop-running'] === 'true') {active.controller.abort();return {message:'已请求停止等待。'};}
           const error=new Error('任务已开始，无法作为等待任务取消。');error.status=409;throw error;
         }));
+      }
+      if(req.method==='GET'&&path==='/api/pose-sequences')return send(res,200,[...jobs.values()].filter(job=>job.outputType==='pose-plan').sort((a,b)=>b.createdAt.localeCompare(a.createdAt)));
+      const sequenceRoute=path.match(/^\/api\/pose-sequences\/([0-9a-f-]+)$/);
+      if(req.method==='GET'&&sequenceRoute){
+        const plan=jobs.get(sequenceRoute[1]);
+        if(plan?.outputType!=='pose-plan')return send(res,404,{error:'动作方案不存在。'});
+        return send(res,200,{plan,items:sequenceItems(jobs.values(),plan)});
+      }
+      const sequenceReference=path.match(/^\/api\/pose-sequences\/([0-9a-f-]+)\/(start|end)$/);
+      if(req.method==='GET'&&sequenceReference){
+        const plan=jobs.get(sequenceReference[1]),i=plan?.references?.findIndex(ref=>ref.role===sequenceReference[2]);
+        if(plan?.outputType!=='pose-plan'||!(i>=0)||!plan.poseSnapshots?.[i])return send(res,404,{error:'该首尾骨架不存在。'});
+        return await sendFile(res,join(DATA,'jobs',plan.id,plan.poseSnapshots[i]));
+      }
+      if(req.method==='POST'&&path==='/api/pose-sequences'){
+        const input=sequenceBatch(JSON.parse((await body(req,2000)).toString())),id=req.headers['idempotency-key'];
+        if(typeof id!=='string'||!uuid.test(id))throw new Error('请求编号无效，请刷新页面。');
+        const signature=createHash('sha256').update(JSON.stringify(input)).digest('hex');
+        const result=await mutate(async()=>{
+          if(batches[id]){if(batches[id].type!=='pose-sequence'||batches[id].signature!==signature){const error=new Error('批次编号已用于其他配置。');error.status=409;throw error;}return batchResult(batches[id]);}
+          const source=await sequenceSource({outputType:'pose-frame',...input},jobs),entries=[];
+          for(const frameIndex of sequenceFrames(source.plan)){
+            const entry=await prepare({outputType:'pose-frame',...input,frameIndex},randomUUID(),false,entries.map(item=>item.job),source);
+            if(!entry.reused)Object.assign(entry.job,{batchId:id,batchIndex:frameIndex,batchName:source.plan.title});entries.push(entry);
+          }
+          await enqueue(entries,{id,signature,type:'pose-sequence',planId:input.planId,totalCount:source.plan.count,jobIds:entries.map(entry=>entry.job.id)});
+          return batchResult(batches[id]);
+        });
+        send(res,202,result);pump();return;
+      }
+      if(req.method==='GET'&&path==='/api/pose-tweens')return send(res,200,Object.values(batches).filter(record=>record.type==='pose-tween').map(({id,name,createdAt,startPoseId,endPoseId,jobIds})=>({id,name,createdAt,startPoseId,endPoseId,count:jobIds.length})).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)));
+      if(req.method==='POST'&&path==='/api/pose-tweens'){
+        const input=tweenRequest(JSON.parse((await body(req,2000)).toString())),id=req.headers['idempotency-key'];
+        if(typeof id!=='string'||!uuid.test(id))throw new Error('请求编号无效，请刷新页面。');
+        const signature=createHash('sha256').update(JSON.stringify(input)).digest('hex');
+        const result=await mutate(async()=>{
+          if(batches[id]){if(batches[id].type!=='pose-tween'||batches[id].signature!==signature){const error=new Error('批次编号已用于其他配置。');error.status=409;throw error;}return batchResult(batches[id]);}
+          const source=await tweenSource(input),entries=[],name=`骨架补间 · ${source.source.title.slice(0,22)} → ${source.end.title.slice(0,22)}`;
+          for(let frameIndex=1;frameIndex<=input.count;frameIndex++){
+            const entry=await prepare({...input,frameIndex,outputType:'pose-tween'},randomUUID(),false,entries.map(item=>item.job),source);
+            if(!entry.reused)Object.assign(entry.job,{batchId:id,batchIndex:frameIndex,batchName:name});entries.push(entry);
+          }
+          const record={id,signature,type:'pose-tween',...input,name,createdAt:new Date().toISOString(),jobIds:entries.map(entry=>entry.job.id)};
+          await enqueue(entries,record);return batchResult(record);
+        });
+        send(res,202,result);pump();return;
+      }
+      if(req.method==='GET'&&path==='/api/costume-series')return send(res,200,[...jobs.values()].filter(job=>job.outputType==='costume-plan').sort((a,b)=>b.createdAt.localeCompare(a.createdAt)));
+      const seriesRoute=path.match(/^\/api\/costume-series\/([0-9a-f-]+)$/);
+      if(req.method==='GET'&&seriesRoute){
+        const plan=jobs.get(seriesRoute[1]);
+        if(!plan||plan.outputType!=='costume-plan')return send(res,404,{error:'服饰系列不存在。'});
+        return send(res,200,{plan,items:costumeItems(jobs.values(),plan)});
+      }
+      if(req.method==='POST'&&path==='/api/costume-series'){
+        const input=costumeBatch(JSON.parse((await body(req,3000)).toString())),id=req.headers['idempotency-key'];
+        if(typeof id!=='string'||!uuid.test(id))throw new Error('请求编号无效，请刷新页面。');
+        const signature=createHash('sha256').update(JSON.stringify(input)).digest('hex');
+        const result=await mutate(async()=>{
+          if(batches[id]){if(batches[id].type!=='costume-series'||batches[id].signature!==signature){const error=new Error('批次编号已用于其他配置。');error.status=409;throw error;}return batchResult(batches[id]);}
+          const source=await costumeSource({outputType:'costume-piece',seriesId:input.seriesId},jobs);
+          const items=costumeItems(jobs.values(),source.plan),entries=[];
+          if(input.pieceIds.some(id=>!items.some(item=>item.id===id)))throw new Error('款式编号与该系列方案不匹配，请重新加载方案。');
+          for(const pieceId of input.pieceIds){
+            const item=items.find(item=>item.id===pieceId),replace=input.replacePieces.includes(pieceId);
+            if(replace&&['queued','running'].includes(item.job?.status)){const error=new Error('勾选的单品仍在制作，请等待完成后再重做。');error.status=409;throw error;}
+            const entry=await prepare({outputType:'costume-piece',seriesId:input.seriesId,pieceId,regenerate:replace},randomUUID(),false,entries.map(item=>item.job),source);
+            if(!entry.reused)Object.assign(entry.job,{batchId:id,batchIndex:entries.length+1,batchName:source.plan.title});entries.push(entry);
+          }
+          const record={id,signature,type:'costume-series',seriesId:input.seriesId,jobIds:entries.map(entry=>entry.job.id)};
+          await enqueue(entries,record);return batchResult(record);
+        });
+        send(res,202,result);pump();return;
       }
       if(req.method==='GET'&&path==='/api/expression-sets'){
         const source=await expressionSource(url.searchParams.get('faceId'),jobs.values());
@@ -464,7 +586,7 @@ export async function createServer() {
       if (req.method === 'GET' && assetRoute) return await sendFile(res, await assetPath(assetRoute[1], assetRoute[2], url.searchParams.has('thumb')));
       const effectSource = path.match(/^\/api\/effect-sources\/(manga-[a-z0-9-]+)$/);
       if (req.method === 'GET' && effectSource && effectFor(effectSource[1])?.creatorType) return await sendFile(res, join(ROOT, 'data/effect-sources', `${effectSource[1]}.md`), 'text/plain; charset=utf-8');
-      const files = { '/expressions.js':['expressions.js','text/javascript; charset=utf-8'], '/tags.js':['tags.js','text/javascript; charset=utf-8'], '/providers.js':['providers.js','text/javascript; charset=utf-8'], '/comfy-workflows.example.json':['comfy-workflows.example.json','application/json; charset=utf-8'], '/batch.js':['batch.js','text/javascript; charset=utf-8'], '/': ['index.html', 'text/html; charset=utf-8'], '/app.js': ['app.js', 'text/javascript; charset=utf-8'], '/job-settings.js': ['job-settings.js', 'text/javascript; charset=utf-8'], '/effects.js': ['effects.js', 'text/javascript; charset=utf-8'], '/manga-effects.js': ['manga-effects.js', 'text/javascript; charset=utf-8'], '/subject-types.js': ['subject-types.js', 'text/javascript; charset=utf-8'], '/extraction-settings.js': ['extraction-settings.js', 'text/javascript; charset=utf-8'], '/style.css': ['style.css', 'text/css; charset=utf-8'], '/font.woff2': ['font.woff2', 'font/woff2'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
+      const files = { '/style-transfer-ui.js':['style-transfer-ui.js','text/javascript; charset=utf-8'], '/pose-sequences.js':['pose-sequences.js','text/javascript; charset=utf-8'], '/pose-sequences-ui.js':['pose-sequences-ui.js','text/javascript; charset=utf-8'], '/pose-tweens.js':['pose-tweens.js','text/javascript; charset=utf-8'], '/pose-tweens-ui.js':['pose-tweens-ui.js','text/javascript; charset=utf-8'], '/costume-series.js':['costume-series.js','text/javascript; charset=utf-8'], '/costume-series-ui.js':['costume-series-ui.js','text/javascript; charset=utf-8'], '/expressions.js':['expressions.js','text/javascript; charset=utf-8'], '/tags.js':['tags.js','text/javascript; charset=utf-8'], '/providers.js':['providers.js','text/javascript; charset=utf-8'], '/comfy-workflows.example.json':['comfy-workflows.example.json','application/json; charset=utf-8'], '/batch.js':['batch.js','text/javascript; charset=utf-8'], '/': ['index.html', 'text/html; charset=utf-8'], '/app.js': ['app.js', 'text/javascript; charset=utf-8'], '/job-settings.js': ['job-settings.js', 'text/javascript; charset=utf-8'], '/effects.js': ['effects.js', 'text/javascript; charset=utf-8'], '/manga-effects.js': ['manga-effects.js', 'text/javascript; charset=utf-8'], '/subject-types.js': ['subject-types.js', 'text/javascript; charset=utf-8'], '/extraction-settings.js': ['extraction-settings.js', 'text/javascript; charset=utf-8'], '/style.css': ['style.css', 'text/css; charset=utf-8'], '/font.woff2': ['font.woff2', 'font/woff2'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
       if (req.method === 'GET' && files[path]) return await sendFile(res, join(ROOT, 'public', files[path][0]), files[path][1]);
       send(res, 404, { error: '未找到该页面。' });
     } catch (error) { if (!res.headersSent) send(res, error.status || 400, { error: error.code === 'ENOENT' ? '文件不存在。' : String(error.message).slice(0, 600) }); else res.end(); }
